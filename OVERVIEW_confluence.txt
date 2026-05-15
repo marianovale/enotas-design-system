@@ -1,0 +1,166 @@
+h1. {anchor:enotas-design-system-visão-executiva}eNotas Design System — Visão Executiva
+bq. Documento de referência para stakeholders e times de engenharia. Explica o que foi construído, por que foi construído dessa forma, e como se integra com a realidade técnica do eNotas hoje e com o Cosmos DS no futuro.
+----
+h2. {anchor:o-problema-que-estamos-resolvendo}O problema que estamos resolvendo
+O eNotas é uma funcionalidade crítica dentro da Hotmart, mas seu frontend acumula anos de decisões tomadas de forma isolada: componentes visuais repetidos sem padrão, inconsistências entre telas, e um custo crescente de manutenção toda vez que uma mudança de design precisa ser propagada.
+
+Ao mesmo tempo, o time de produto da Hotmart avança com o *Cosmos DS* — o Design System corporativo em React. O eNotas precisa de um caminho que:
+
+# *Resolva o problema de consistência visual hoje*, sem exigir reescrita do frontend existente
+# *Não crie dívida técnica* que dificulte a convergência futura com o Cosmos
+# *Seja sustentável* — documentado, versionado e fácil de evoluir por qualquer dev do time
+
+----
+h2. {anchor:a-solução-web-components-como-ponte}A solução: Web Components como ponte
+h3. {anchor:por-que-web-components}Por que Web Components?
+A stack atual do eNotas é *ASP.NET com Razor Views + JavaScript + jQuery*. Nesse cenário, qualquer solução baseada em React, Vue ou Angular exigiria uma migração de frontend — custosa, arriscada e sem valor de negócio imediato.
+
+*Web Components são a única tecnologia de componentes que funciona nativamente em qualquer HTML*, independente de framework. O navegador os reconhece como elementos HTML de primeira classe — exatamente como {{<input>}}, {{<select>}} ou {{<button>}}.
+
+Isso significa que o eNotas pode adotar o Design System *hoje*, em qualquer {{.cshtml}}, sem tocar no jQuery existente, sem configurar bundlers, sem alterar o pipeline de build do .NET.
+
+h3. {anchor:como-funciona-na-prática}Como funciona na prática
+Uma única adição no {{\_Layout.cshtml}} — o arquivo de layout base que já existe no projeto:
+
+{code:html}
+<script type="module" src="/dist/enotas-ds/enotas-ds.esm.js"></script>
+<link rel="stylesheet" href="/dist/tokens.css">
+{code}
+A partir daí, *qualquer dev do time* pode usar os componentes em qualquer view:
+
+{code:html}
+<!-- Antes: HTML solto, sem padrão -->
+<button class="btn btn-primary btn-emitir">Emitir Nota</button>
+
+<!-- Depois: componente do DS com props tipadas -->
+<en-button variant="primary" size="md">Emitir Nota</en-button>
+{code}
+Os eventos funcionam com jQuery sem nenhuma adaptação:
+
+{code:js}
+$('en-button').on('enClick', function() {
+    // lógica existente intacta
+});
+{code}
+----
+h2. {anchor:o-que-foi-construído}O que foi construído
+h3. {anchor:camada-de-tokens}Camada de Tokens
+Todos os valores visuais do Figma — cores, tipografia, espaçamento, bordas, sombras — foram exportados como *CSS Custom Properties* com o prefixo {{\-\-en\-\*}}. Essa camada é a "linguagem" compartilhada entre o Figma e o código.
+
+A arquitetura tem dois níveis intencionais:
+
+|| Nível || Exemplo || Função ||
+| *Global* \(primitivo) | {{\-\-en-color-teal-500: #22baa0}} | Valor bruto, sem semântica |
+| *Semântico* \(alias) | {{\-\-en-action-primary-background: var\(\-\-en-color-teal-500)}} | Intenção de uso |
+
+Isso garante que uma mudança de cor primária \(ex: teal → outro tom) seja feita *em um único lugar* e se propaga automaticamente para todos os componentes.
+
+h3. {anchor:componentes-fase-2-11-primitivos-entregues}Componentes \(Fase 2 — 11 primitivos entregues)
+Todos os componentes seguem o mesmo padrão:
+
+* *{{.tsx}}* — lógica Stencil com props tipadas, eventos prefixados {{en\-}}, acessibilidade \(ARIA, teclado)
+* *{{.css}}* — estilos com Shadow DOM, usando exclusivamente tokens {{\-\-en\-\*}}
+* *{{.stories.ts}}* — documentação interativa no Storybook com Controls
+* *{{.figma.tsx}}* — Code Connect: mapeia o componente Figma ao Web Component real
+
+|| Componente || Tag || Casos de uso no eNotas ||
+| {{en-button}} | {{<en-button>}} | CTAs de emissão, cancelamento, ações em tabelas |
+| {{en-input}} | {{<en-input>}} | CNPJ, e-mail, razão social, campos de formulário |
+| {{en-textarea}} | {{<en-textarea>}} | Motivo de cancelamento, observações |
+| {{en-select}} | {{<en-select>}} | Regime tributário, tipo de NF, filtros |
+| {{en-checkbox}} | {{<en-checkbox>}} | Configurações, filtros, toggles \(switch) |
+| {{en-input-tag}} | {{<en-input-tag>}} | Filtros por múltiplos valores, tags de busca |
+| {{en-tab}} | {{<en-tab>}} | Navegação entre NFS-e / NF-e / NF-e de devolução |
+| {{en-icon}} | {{<en-icon>}} | 110\+ ícones do Figma disponíveis |
+| {{en-badge}} | {{<en-badge>}} | Labels de status em listagens |
+| {{en-nf-status}} | {{<en-nf-status>}} | Status semântico de notas \(emitida, falha, cancelada…) |
+| {{en-spinner}} | {{<en-spinner>}} | Loading states em ações assíncronas |
+
+h3. {anchor:integração-com-figma-code-connect}Integração com Figma \(Code Connect)
+O *Code Connect* está publicado para todos os componentes. Isso significa que quando um designer inspeciona um componente no Figma Dev Mode, o código gerado automaticamente já usa {{<en-button>}}, {{<en-input>}}, etc. — não divs genéricas.
+
+O fluxo de handoff passa a ser:
+
+{noformat}
+Designer ajusta componente no Figma
+        ↓
+Dev abre Dev Mode → copia o código gerado
+        ↓
+Cola diretamente no .cshtml
+        ↓
+Funciona. Sem interpretação, sem retrabalho.{noformat}
+----
+h2. {anchor:como-o-merge-com-o-cosmos-será-possível}Como o merge com o Cosmos será possível
+h3. {anchor:a-aposta-técnica-central}A aposta técnica central
+O eNotas DS foi construído com *Stencil.js* — e não com Lit, FAST ou vanilla Web Components — por uma razão específica: o Stencil *gera automaticamente wrappers React* a partir dos mesmos componentes Web.
+
+Isso significa que o mesmo {{<en-button>}} que hoje roda no Razor já tem um wrapper React disponível:
+
+{code:tsx}
+// Wrapper React gerado automaticamente pelo Stencil
+import { EnButton } from '@enotas-ds/components-react';
+
+<EnButton variant="primary" size="md" onEnClick={handleClick}>
+  Emitir Nota
+</EnButton>
+{code}
+h3. {anchor:o-caminho-de-migração}O caminho de migração
+A convergência com o Cosmos acontecerá em etapas, sem big-bang:
+
+*Etapa 1 — Hoje \(concluída)* O DS roda no .NET via {{<script>}} tag. O HTML das views permanece intacto.
+
+*Etapa 2 — Alinhamento de tokens* Quando o time Cosmos definir o mapeamento semântico \({{\-\-cosmos-action-primary}}), basta criar um arquivo de alias que aponta os tokens semânticos do eNotas para os do Cosmos. O HTML das views *não muda nada*.
+
+{code:css}
+/* arquivo de compatibilidade — uma linha por token */
+--en-action-primary-background: var(--cosmos-action-primary);
+{code}
+*Etapa 3 — Migração gradual para React* Views que forem sendo migradas para React \(Cosmos) simplesmente trocam a tag HTML pelo wrapper React. A lógica de negócio no componente continua idêntica — só muda a sintaxe de uso.
+
+{code:html}
+<!-- Razor (continua funcionando) -->
+<en-button variant="primary">Emitir</en-button>
+
+<!-- React/Cosmos (novo, mesmo componente por baixo) -->
+<EnButton variant="primary">Emitir</EnButton>
+{code}
+*Etapa 4 — Unificação \(opcional)* Se o Cosmos absorver os componentes do eNotas, a API de props já está alinhada \({{variant}}, {{size}}, {{intent}}, {{disabled}}) — foi uma decisão de projeto deliberada. A migração é um find-and-replace.
+
+h3. {anchor:o-que-não-precisará-ser-refeito}O que não precisará ser refeito
+* Toda a camada de tokens \(só o mapeamento semântico muda)
+* A API dos componentes \(props, eventos, comportamentos)
+* Os testes e stories do Storybook
+* O Code Connect no Figma
+
+----
+h2. {anchor:governança-e-evolução}Governança e evolução
+h3. {anchor:para-adicionar-um-novo-componente}Para adicionar um novo componente
+{noformat}
+1. Inspecionar o componente no Figma Dev Mode
+2. Criar en-[nome].tsx + en-[nome].css com tokens --en-*
+3. Criar en-[nome].stories.ts para documentação
+4. Criar en-[nome].figma.tsx para Code Connect
+5. pnpm build:components && pnpm figma:connect
+6. Atualizar STATUS.md{noformat}
+O Stencil gera a documentação de props automaticamente — sem esforço manual de manutenção de docs.
+
+h3. {anchor:para-atualizar-tokens-do-figma}Para atualizar tokens do Figma
+{noformat}
+1. Exportar variáveis atualizadas do Figma
+2. Atualizar packages/tokens/src/global/ ou /semantic/
+3. pnpm build:tokens
+4. Os componentes já refletem a mudança — CSS variables se propagam automaticamente{noformat}
+----
+h2. {anchor:resumo-executivo}Resumo executivo
+|| Dimensão || Situação antes || Situação agora ||
+| *Consistência visual* | Componentes ad-hoc por view | Sistema unificado, baseado no Figma |
+| *Velocidade de desenvolvimento* | Dev interpreta o design manualmente | Code Connect gera o código do componente certo |
+| *Compatibilidade com .NET* | Não havia camada de componentes | Web Components nativos, zero configuração |
+| *Debt técnico* | Qualquer componente React criaria bifurcação | Stencil gera wrappers React automaticamente |
+| *Merge com Cosmos* | Dependia de reescrever o frontend | Troca de mapeamento de tokens + find-and-replace |
+| *Documentação* | Inexistente | Storybook com Controls, acessibilidade e Code Connect |
+
+O eNotas Design System não é um projeto paralelo ao produto — é a infraestrutura que permite que qualquer evolução de interface aconteça mais rápido, com mais consistência e com menos risco de regressão visual.
+
+----
+_Dúvidas ou contribuições: abrir issue no repositório ou acionar o responsável pelo DS no time._

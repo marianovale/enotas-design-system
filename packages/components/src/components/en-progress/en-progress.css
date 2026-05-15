@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--en-spacing-1, 0.25rem);
+}
+
+.label, .pct {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  color: var(--en-text-secondary, #6b6b6b);
+}
+
+.pct { font-weight: var(--en-font-weight-semibold, 600); color: var(--en-text-primary, #1f1f1f); }
+
+.track {
+  width: 100%;
+  background: var(--en-surface-sunken, #ebebeb);
+  border-radius: var(--en-radius-full, 9999px);
+  overflow: hidden;
+}
+
+:host(.size-sm) .track { height: 4px; }
+:host(.size-md) .track { height: 8px; }
+
+.fill {
+  height: 100%;
+  border-radius: var(--en-radius-full, 9999px);
+  background: var(--en-action-primary-background, #22baa0);
+  transition: width 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:host(.intent-success) .fill  { background: var(--en-color-success-500, #22c55e); }
+:host(.intent-warning) .fill  { background: var(--en-color-warning-500, #f59e0b); }
+:host(.intent-danger) .fill   { background: var(--en-color-danger-500, #f13838); }

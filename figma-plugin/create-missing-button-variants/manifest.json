@@ -1,0 +1,20 @@
+{
+  "name": "create-missing-button-variants",
+  "id": "1636437780394350217",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [
+    "inspect"
+  ],
+  "enableProposedApi": false,
+  "documentAccess": "dynamic-page",
+  "editorType": [
+    "dev"
+  ],
+  "ui": "ui.html",
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ]
+  }
+}

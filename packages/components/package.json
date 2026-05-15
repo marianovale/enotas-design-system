@@ -1,0 +1,37 @@
+{
+  "name": "@enotas-ds/components",
+  "version": "0.1.0",
+  "description": "Web Components do eNotas DS — construídos com Stencil.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./loader": "./loader/index.js"
+  },
+  "collection": "dist/collection/collection-manifest.json",
+  "files": ["dist", "loader"],
+  "scripts": {
+    "build": "stencil build",
+    "build:react": "stencil build --config stencil.react.config.ts",
+    "dev": "stencil build --watch",
+    "clean": "rm -rf dist loader www .stencil",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@enotas-ds/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@stencil/core": "^4.20.0",
+    "@stencil/react-output-target": "^0.5.3",
+    "@storybook/web-components": "^8.6.18",
+    "lit": "^3.0.0"
+  },
+  "peerDependencies": {
+    "@stencil/core": "^4.20.0"
+  }
+}

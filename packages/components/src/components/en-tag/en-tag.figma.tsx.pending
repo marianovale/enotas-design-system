@@ -1,0 +1,20 @@
+import figma from '@figma/code-connect';
+
+// en-tag ainda não tem node Figma dedicado — mapeamento pendente de design
+figma.connect('https://www.figma.com/design/KeXcEZ17XRl5yxs8vJEQeh/eNotas-Design-System', {
+  props: {
+    variant: figma.enum('variant', {
+      neutral: 'neutral',
+      red:     'red',
+      orange:  'orange',
+      yellow:  'yellow',
+      green:   'green',
+      teal:    'teal',
+      blue:    'blue',
+      purple:  'purple',
+    }),
+    dismissible: figma.enum('dismissible', { true: true, false: false }),
+  },
+  example: ({ variant, dismissible }) =>
+    `<en-tag variant="${variant ?? 'neutral'}"${dismissible ? ' dismissible' : ''}>Categoria</en-tag>`,
+});

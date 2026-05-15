@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--en-spacing-3, 0.75rem);
+  padding: var(--en-spacing-4, 1rem) var(--en-spacing-6, 1.5rem);
+  background: var(--en-surface-default, #ffffff);
+  border-top: 1px solid var(--en-border-default, #e1e3e6);
+}
+
+.col-left {
+  display: flex;
+  align-items: center;
+  gap: var(--en-spacing-4, 1rem);
+  flex-wrap: wrap;
+}
+
+.col-right {
+  display: flex;
+  align-items: center;
+  gap: var(--en-spacing-3, 0.75rem);
+  margin-left: auto;
+}
+
+.copyright, .version {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  color: var(--en-text-secondary, #6b6b6b);
+}
+
+.version {
+  padding: 2px var(--en-spacing-2, 0.5rem);
+  background: var(--en-surface-sunken, #ebebeb);
+  border-radius: var(--en-radius-full, 9999px);
+  font-size: 11px;
+  font-weight: var(--en-font-weight-medium, 500);
+}

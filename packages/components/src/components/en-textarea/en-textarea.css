@@ -1,0 +1,59 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--en-spacing-1, 0.25rem);
+  width: 100%;
+}
+
+.label {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  font-weight: var(--en-font-weight-medium, 500);
+  color: var(--en-text-primary, #1f1f1f);
+}
+
+.required { color: var(--en-color-danger-500, #f13838); }
+
+textarea {
+  width: 100%;
+  padding: var(--en-spacing-3, 0.75rem) var(--en-spacing-4, 1rem);
+  background: var(--en-surface-default, #ffffff);
+  border: 1px solid var(--en-input-border, #e1e3e6);
+  border-radius: var(--en-radius-md, 0.5rem);
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-textarea-font-size, var(--en-font-size-sm, 0.875rem));
+  color: var(--en-text-primary, #1f1f1f);
+  resize: vertical;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  box-sizing: border-box;
+}
+
+/* --- variantSize --- */
+:host(.vsize-sm) {
+  --en-textarea-font-size: var(--en-font-size-xs, 0.75rem);
+}
+:host(.vsize-default) {
+  --en-textarea-font-size: var(--en-font-size-sm, 0.875rem);
+}
+:host(.vsize-lg) {
+  --en-textarea-font-size: var(--en-font-size-md, 1rem);
+}
+
+textarea::placeholder { color: var(--en-text-secondary, #6b6b6b); }
+
+:host(.state-focus) textarea {
+  border-color: var(--en-border-focus, #22baa0);
+  box-shadow: 0 0 0 3px rgba(34, 186, 160, 0.15);
+}
+
+:host(.state-inactived) textarea {
+  background: var(--en-surface-sunken, #ebebeb);
+  cursor: not-allowed;
+  color: var(--en-text-disabled, #b3b3b3);
+}
+
+:host(.has-error) textarea { border-color: var(--en-color-danger-500, #f13838); }
+
+.error-msg { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-color-danger-500, #f13838); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }
+.hint-msg  { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-text-secondary, #6b6b6b); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }

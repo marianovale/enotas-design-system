@@ -1,0 +1,160 @@
+:host {
+  display: inline-flex;
+}
+
+:host(.is-full-width) {
+  display: flex;
+  width: 100%;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-weight: var(--en-font-weight-medium, 500);
+  border: 1px solid transparent;
+  border-radius: var(--en-radius-md, 0.5rem);
+  cursor: pointer;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  white-space: nowrap;
+  width: 100%;
+  text-decoration: none;
+}
+
+:host(.is-pill) button {
+  border-radius: var(--en-radius-full, 9999px);
+}
+
+button:focus-visible {
+  outline: 2px solid var(--en-border-focus, #f04f00);
+  outline-offset: 2px;
+}
+
+/* --- Tamanhos --- */
+:host(.size-sm) button {
+  padding: var(--en-spacing-1, 0.25rem) var(--en-spacing-3, 0.75rem);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  height: 2rem;
+}
+
+:host(.size-md) button {
+  padding: 0 16px;
+  font-size: var(--en-font-size-md, 1rem);
+  height: 40px;
+}
+
+:host(.size-lg) button {
+  padding: var(--en-spacing-3, 0.75rem) var(--en-spacing-6, 1.5rem);
+  font-size: var(--en-font-size-lg, 1.125rem);
+  height: 3rem;
+}
+
+/* --- Variantes --- */
+
+/* default (= primary) */
+:host(.variant-default) button {
+  background-color: var(--en-action-primary-background, #22baa0);
+  color: var(--en-action-primary-foreground, #ffffff);
+}
+:host(.variant-default) button:hover:not(:disabled) {
+  background-color: var(--en-action-primary-background-hover, #12795f);
+}
+
+/* secondary */
+:host(.variant-secondary) button {
+  background-color: var(--en-action-secondary-background, transparent);
+  color: var(--en-action-secondary-foreground, #333333);
+  border-color: var(--en-action-secondary-border, #b3b3b3);
+}
+:host(.variant-secondary) button:hover:not(:disabled) {
+  background-color: var(--en-action-secondary-background-hover, #f7f7f7);
+}
+
+/* ghost */
+:host(.variant-ghost) button {
+  background-color: var(--en-action-ghost-background, transparent);
+  color: var(--en-action-ghost-foreground, #333333);
+}
+:host(.variant-ghost) button:hover:not(:disabled) {
+  background-color: var(--en-action-ghost-background-hover, #ebebeb);
+}
+
+/* negative (= danger) */
+:host(.variant-negative) button {
+  background-color: var(--en-action-danger-background, #f13838);
+  color: var(--en-action-danger-foreground, #ffffff);
+}
+:host(.variant-negative) button:hover:not(:disabled) {
+  background-color: var(--en-action-danger-background-hover, #c01f1f);
+}
+
+/* positive */
+:host(.variant-positive) button {
+  background-color: var(--en-color-success-500, #1a8a3c);
+  color: #ffffff;
+}
+:host(.variant-positive) button:hover:not(:disabled) {
+  background-color: var(--en-color-success-600, #147030);
+}
+
+/* attention */
+:host(.variant-attention) button {
+  background-color: var(--en-color-warning-500, #f59e0b);
+  color: var(--en-text-primary, #1f1f1f);
+}
+:host(.variant-attention) button:hover:not(:disabled) {
+  background-color: var(--en-color-warning-600, #d97706);
+}
+
+/* informative */
+:host(.variant-informative) button {
+  background-color: var(--en-color-info-500, #0077cc);
+  color: #ffffff;
+}
+:host(.variant-informative) button:hover:not(:disabled) {
+  background-color: var(--en-color-info-600, #005fa3);
+}
+
+/* cta (= antigo color="purple") */
+:host(.variant-cta) button {
+  background-color: var(--en-color-brand-purple-500, #841e67);
+  color: #ffffff;
+}
+:host(.variant-cta) button:hover:not(:disabled) {
+  background-color: var(--en-color-brand-purple-600, #6d1353);
+}
+
+/* white */
+:host(.variant-white) button {
+  background-color: #ffffff;
+  color: var(--en-text-primary, #1f1f1f);
+  border-color: var(--en-border-default, #e1e3e6);
+}
+:host(.variant-white) button:hover:not(:disabled) {
+  background-color: var(--en-color-neutral-50, #f7f7f7);
+}
+
+/* link */
+:host(.variant-link) button {
+  background-color: transparent;
+  color: var(--en-action-primary-background, #22baa0);
+  border-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+:host(.variant-link) button:hover:not(:disabled) {
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+/* --- Estados --- */
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+:host(.is-loading) button {
+  cursor: wait;
+}

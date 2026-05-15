@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--en-color-neutral-100, #ebebeb);
+  border-radius: var(--en-radius-full, 9999px);
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+:host([active]) { opacity: 1; }
+
+.bar {
+  height: 100%;
+  background: var(--en-action-primary-background, #22baa0);
+  border-radius: var(--en-radius-full, 9999px);
+  transition: width 300ms ease;
+  width: 0%;
+}
+
+/* Indeterminate — animação contínua */
+.bar--indeterminate {
+  width: 40%;
+  animation: indeterminate 1.4s ease-in-out infinite;
+}
+
+@keyframes indeterminate {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(250%); }
+  100% { transform: translateX(250%); }
+}

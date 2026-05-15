@@ -1,0 +1,8 @@
+{
+  "name": "eNotas DS Tools",
+  "id": "enotas-ds-tools",
+  "api": "1.0.0",
+  "main": "plugin-main.js",
+  "editorType": ["figma"],
+  "ui": "plugin-ui.html"
+}

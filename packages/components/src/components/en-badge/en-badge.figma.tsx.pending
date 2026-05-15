@@ -1,0 +1,23 @@
+import figma from '@figma/code-connect';
+
+figma.connect('https://www.figma.com/design/KeXcEZ17XRl5yxs8vJEQeh/eNotas-Design-System?node-id=290-9286', {
+  props: {
+    variant: figma.enum('intent', {
+      neutral:     'default',
+      default:     'default',
+      success:     'positive',
+      positive:    'positive',
+      warning:     'attention',
+      attention:   'attention',
+      danger:      'negative',
+      negative:    'negative',
+      info:        'informative',
+      informative: 'informative',
+      brand:       'brand',
+    }),
+    size:    figma.enum('size', { sm: 'sm', md: 'md', lg: 'lg' }),
+    outline: figma.enum('outline', { true: true, false: false }),
+  },
+  example: ({ variant, size, outline }) =>
+    `<en-badge variant="${variant ?? 'default'}"${size && size !== 'md' ? ` size="${size}"` : ''}${outline ? ' outline' : ''}>Label</en-badge>`,
+});

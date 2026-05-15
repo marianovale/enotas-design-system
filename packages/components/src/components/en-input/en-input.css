@@ -1,0 +1,101 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--en-spacing-1, 0.25rem);
+  width: 100%;
+}
+
+.label {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  font-weight: var(--en-font-weight-medium, 500);
+  color: var(--en-text-primary, #1f1f1f);
+  display: block;
+}
+
+.required {
+  color: var(--en-color-danger-500, #f13838);
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--en-spacing-2, 0.5rem);
+  height: var(--en-input-height, 40px);
+  padding: 0 var(--en-spacing-4, 1rem);
+  background: var(--en-surface-default, #ffffff);
+  border: 1px solid var(--en-input-border, #e1e3e6);
+  border-radius: var(--en-radius-md, 0.5rem);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-input-font-size, var(--en-font-size-sm, 0.875rem));
+  color: var(--en-text-primary, #1f1f1f);
+  min-width: 0;
+}
+
+/* --- variantSize --- */
+:host(.vsize-sm) {
+  --en-input-height: 32px;
+  --en-input-font-size: var(--en-font-size-xs, 0.75rem);
+}
+:host(.vsize-default) {
+  --en-input-height: 40px;
+  --en-input-font-size: var(--en-font-size-sm, 0.875rem);
+}
+:host(.vsize-lg) {
+  --en-input-height: 48px;
+  --en-input-font-size: var(--en-font-size-md, 1rem);
+}
+
+input::placeholder {
+  color: var(--en-text-secondary, #6b6b6b);
+}
+
+/* Estados */
+:host(.state-focus) .input-wrapper {
+  border-color: var(--en-border-focus, #22baa0);
+  box-shadow: 0 0 0 3px rgba(34, 186, 160, 0.15);
+}
+
+:host(.state-finished) .input-wrapper {
+  border-color: var(--en-input-border, #e1e3e6);
+}
+
+:host(.state-inactived) .input-wrapper {
+  background: var(--en-surface-sunken, #ebebeb);
+  border-color: var(--en-input-border, #e1e3e6);
+  cursor: not-allowed;
+}
+
+:host(.state-inactived) input {
+  cursor: not-allowed;
+  color: var(--en-text-disabled, #b3b3b3);
+}
+
+/* Erro */
+:host(.has-error) .input-wrapper {
+  border-color: var(--en-color-danger-500, #f13838);
+}
+
+:host(.has-error.state-focus) .input-wrapper {
+  box-shadow: 0 0 0 3px rgba(241, 56, 56, 0.15);
+}
+
+.error-msg {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  color: var(--en-color-danger-500, #f13838);
+}
+
+.hint-msg {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  color: var(--en-text-secondary, #6b6b6b);
+}

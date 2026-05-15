@@ -1,0 +1,37 @@
+{
+  "name": "enotas-ds",
+  "private": true,
+  "version": "0.0.0",
+  "description": "eNotas Design System — Web Components escaláveis para Hotmart eNotas",
+  "scripts": {
+    "build": "pnpm --recursive --filter './packages/**' build",
+    "build:tokens": "pnpm --filter @enotas-ds/tokens build",
+    "build:components": "pnpm --filter @enotas-ds/components build",
+    "build:components:react": "pnpm --filter @enotas-ds/components build:react",
+    "storybook": "pnpm --filter @enotas-ds/storybook storybook",
+    "build:storybook": "pnpm --filter @enotas-ds/storybook build",
+    "figma:connect": "figma connect publish --token $FIGMA_ACCESS_TOKEN",
+    "lint": "eslint 'packages/*/src/**/*.{ts,tsx}'",
+    "typecheck": "pnpm --recursive typecheck",
+    "clean": "pnpm --recursive clean"
+  },
+  "devDependencies": {
+    "@figma/code-connect": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@bundled-es-modules/glob",
+      "esbuild",
+      "style-dictionary"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--en-spacing-2, 0.5rem);
+  padding: var(--en-spacing-1, 0.25rem) var(--en-spacing-3, 0.75rem);
+  border-radius: var(--en-radius-full, 9999px);
+  border: 1px solid transparent;
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  font-weight: var(--en-font-weight-medium, 500);
+  white-space: nowrap;
+}
+
+.type-label {
+  font-weight: var(--en-font-weight-bold, 700);
+  font-size: var(--en-font-size-xs, 0.75rem);
+  letter-spacing: 0.04em;
+}
+
+/* Intents */
+:host(.intent-success)  { background: var(--en-feedback-success-background, #e6f7ec); color: var(--en-feedback-success-foreground, #0e5c27); }
+:host(.intent-warning)  { background: var(--en-feedback-warning-background, #fff8e1); color: var(--en-feedback-warning-foreground, #92600a); }
+:host(.intent-danger)   { background: var(--en-feedback-danger-background,  #fde8e8); color: var(--en-feedback-danger-foreground,  #991b1b); }
+:host(.intent-info)     { background: var(--en-feedback-info-background,    #e0f0ff); color: var(--en-feedback-info-foreground,    #004f8a); }
+:host(.intent-neutral)  { background: var(--en-color-neutral-100, #ebebeb);           color: var(--en-color-neutral-700, #333333); }
+
+/* Hovering */
+:host(.is-hovering) { box-shadow: var(--en-shadow-sm, 0 1px 2px rgba(0,0,0,0.05)); }

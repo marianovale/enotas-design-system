@@ -1,0 +1,23 @@
+{
+  "name": "@enotas-ds/storybook",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build": "storybook build",
+    "clean": "rm -rf storybook-static"
+  },
+  "dependencies": {
+    "@enotas-ds/components": "workspace:*",
+    "@enotas-ds/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.18",
+    "@storybook/addon-essentials": "^8.6.18",
+    "@storybook/web-components": "^8.6.18",
+    "@storybook/web-components-vite": "^8.6.18",
+    "lit": "^3.0.0",
+    "storybook": "^8.6.18",
+    "vite": "^5.0.0"
+  }
+}

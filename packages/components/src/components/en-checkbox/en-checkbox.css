@@ -1,0 +1,98 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--en-spacing-2, 0.5rem);
+  cursor: pointer;
+  user-select: none;
+}
+
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+:host(:focus-visible) .control {
+  outline: 2px solid var(--en-border-focus, #22baa0);
+  outline-offset: 2px;
+}
+
+/* --- Controle base --- */
+.control {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 150ms ease, border-color 150ms ease;
+}
+
+.label {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-md, 1rem);
+  color: var(--en-text-primary, #1f1f1f);
+}
+
+/* --- Square --- */
+:host(.type-square) .control {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--en-border-strong, #8f8f8f);
+  border-radius: var(--en-radius-sm, 0.25rem);
+  background: var(--en-surface-default, #ffffff);
+  color: transparent;
+}
+:host(.type-square.is-checked) .control {
+  background: var(--en-action-primary-background, #22baa0);
+  border-color: var(--en-action-primary-background, #22baa0);
+  color: #ffffff;
+}
+:host(.type-square) .control svg { width: 12px; height: 10px; }
+:host(.type-square.is-indeterminate) .control {
+  background: var(--en-action-primary-background, #22baa0);
+  border-color: var(--en-action-primary-background, #22baa0);
+  color: #ffffff;
+}
+:host(.type-square.is-indeterminate) .control svg { width: 12px; height: 2px; }
+
+/* --- Round --- */
+:host(.type-round) .control {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--en-border-strong, #8f8f8f);
+  border-radius: var(--en-radius-full, 9999px);
+  background: var(--en-surface-default, #ffffff);
+  color: transparent;
+}
+:host(.type-round.is-checked) .control {
+  background: var(--en-action-primary-background, #22baa0);
+  border-color: var(--en-action-primary-background, #22baa0);
+  color: #ffffff;
+}
+:host(.type-round) .control svg { width: 12px; height: 10px; }
+:host(.type-round.is-indeterminate) .control {
+  background: var(--en-action-primary-background, #22baa0);
+  border-color: var(--en-action-primary-background, #22baa0);
+  color: #ffffff;
+}
+:host(.type-round.is-indeterminate) .control svg { width: 12px; height: 2px; }
+
+/* --- Switch --- */
+:host(.type-switch) .control {
+  width: 44px;
+  height: 24px;
+  border-radius: var(--en-radius-full, 9999px);
+  background: var(--en-color-neutral-300, #b3b3b3);
+  padding: 2px;
+  justify-content: flex-start;
+}
+:host(.type-switch.is-checked) .control {
+  background: var(--en-action-primary-background, #22baa0);
+  justify-content: flex-end;
+}
+.thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--en-radius-full, 9999px);
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: transform 150ms ease;
+}

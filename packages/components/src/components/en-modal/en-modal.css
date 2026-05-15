@@ -1,0 +1,90 @@
+:host { display: contents; }
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.48);
+  z-index: 1200;
+  animation: fade-in 150ms ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1201;
+  background: var(--en-surface-default, #ffffff);
+  border-radius: var(--en-radius-lg, 0.75rem);
+  box-shadow: var(--en-shadow-xl, 0 20px 60px rgba(0,0,0,0.18));
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 48px);
+  animation: dialog-in 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes dialog-in {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)); }
+  to   { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.size-sm { width: min(400px, calc(100vw - 32px)); }
+.size-md { width: min(560px, calc(100vw - 32px)); }
+.size-lg { width: min(800px, calc(100vw - 32px)); }
+.size-full { width: calc(100vw - 32px); height: calc(100vh - 48px); }
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--en-spacing-5, 1.25rem) var(--en-spacing-6, 1.5rem) var(--en-spacing-4, 1rem);
+  border-bottom: 1px solid var(--en-border-default, #e1e3e6);
+  flex-shrink: 0;
+}
+
+.heading {
+  margin: 0;
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-lg, 1.125rem);
+  font-weight: var(--en-font-weight-semibold, 600);
+  color: var(--en-text-primary, #1f1f1f);
+}
+
+.close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--en-radius-sm, 0.25rem);
+  background: transparent;
+  color: var(--en-text-secondary, #6b6b6b);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 100ms ease;
+}
+
+.close-btn:hover { background: var(--en-surface-hover, #f5f5f5); color: var(--en-text-primary, #1f1f1f); }
+
+.dialog-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--en-spacing-5, 1.25rem) var(--en-spacing-6, 1.5rem);
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--en-spacing-3, 0.75rem);
+  padding: var(--en-spacing-4, 1rem) var(--en-spacing-6, 1.5rem);
+  border-top: 1px solid var(--en-border-default, #e1e3e6);
+  flex-shrink: 0;
+}
+
+.dialog-footer:empty { display: none; }

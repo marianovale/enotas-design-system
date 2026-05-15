@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configuração — eNotas</title>
+
+  <!-- Fontes -->
+  <link rel="stylesheet" href="https://static.hotmart.com/fonts/v1/css/hotmart-sans.min.css">
+  <link rel="stylesheet" href="https://static.hotmart.com/fonts/v1/css/hotmart-display.min.css">
+  <link rel="stylesheet" href="https://kit.fontawesome.com/d4567fa4f9.css" crossorigin="anonymous">
+
+  <!-- eNotas DS -->
+  <link rel="stylesheet" href="../packages/tokens/dist/tokens.css">
+  <script type="module" src="../packages/components/dist/enotas-ds/enotas-ds.esm.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--en-font-family-sans);
+      background: var(--en-surface-page);
+      color: var(--en-text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      padding: 20px 24px 16px;
+      background: var(--en-surface-default);
+      border-bottom: 1px solid var(--en-border-default);
+    }
+
+    .page-header h1 {
+      font-family: var(--en-font-family-sans);
+      font-size: var(--en-font-size-xl);
+      font-weight: var(--en-font-weight-semibold);
+      line-height: var(--en-font-line-height-xl);
+      color: var(--en-text-primary);
+    }
+
+    /* ── Main content ── */
+    .content {
+      flex: 1;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* ── Stepper wrapper ── */
+    .stepper-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+
+    .stepper-wrapper en-stepper {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    /* ── Success banner ── */
+    .success-banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+
+    .success-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--en-feedback-success-background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .success-icon en-icon {
+      color: var(--en-feedback-success-foreground);
+    }
+
+    .success-banner h2 {
+      font-family: var(--en-font-family-sans);
+      font-size: var(--en-font-size-lg);
+      font-weight: var(--en-font-weight-bold);
+      color: var(--en-text-primary);
+      line-height: var(--en-font-line-height-lg);
+    }
+
+    .success-banner p {
+      font-size: var(--en-font-size-sm);
+      color: var(--en-text-secondary);
+      line-height: var(--en-font-line-height-sm);
+      max-width: 480px;
+    }
+
+    /* ── Option cards grid ── */
+    .option-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .option-card {
+      background: var(--en-surface-default);
+      border: 1px solid var(--en-border-default);
+      border-radius: var(--en-radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .option-card:hover {
+      border-color: var(--en-action-primary-background);
+      box-shadow: var(--en-shadow-md);
+    }
+
+    .option-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .option-card-icon--teal {
+      background: var(--en-feedback-success-background);
+    }
+
+    .option-card-icon--teal en-icon {
+      color: var(--en-action-primary-background);
+    }
+
+    .option-card-icon--blue {
+      background: var(--en-feedback-info-background);
+    }
+
+    .option-card-icon--blue en-icon {
+      color: var(--en-color-info-500);
+    }
+
+    .option-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .option-card-body h3 {
+      font-size: var(--en-font-size-md);
+      font-weight: var(--en-font-weight-semibold);
+      color: var(--en-text-primary);
+      line-height: var(--en-font-line-height-md);
+    }
+
+    .option-card-body p {
+      font-size: var(--en-font-size-sm);
+      color: var(--en-text-secondary);
+      line-height: var(--en-font-line-height-sm);
+    }
+
+    .option-card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .option-card-list li {
+      font-size: var(--en-font-size-sm);
+      color: var(--en-text-secondary);
+      line-height: var(--en-font-line-height-sm);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .option-card-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .option-card--teal .option-card-list li::before {
+      background: var(--en-action-primary-background);
+    }
+
+    .option-card--blue .option-card-list li::before {
+      background: var(--en-color-info-500);
+    }
+
+    .option-card en-button {
+      margin-top: auto;
+    }
+
+    /* ── Help footer ── */
+    .help-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: var(--en-font-size-sm);
+      color: var(--en-text-secondary);
+    }
+
+    .help-footer a {
+      color: var(--en-action-primary-background);
+      text-decoration: none;
+      font-weight: var(--en-font-weight-medium);
+    }
+
+    .help-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Color token fallbacks for info (not yet in semantic layer) ── */
+    :root {
+      --en-color-info-500: #0077cc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page header -->
+  <header class="page-header">
+    <h1>Empresa</h1>
+  </header>
+
+  <main class="content">
+
+    <!-- Stepper -->
+    <div class="stepper-wrapper">
+      <en-stepper id="setup-stepper" current-step="1"></en-stepper>
+    </div>
+
+    <!-- Success banner -->
+    <div class="success-banner" role="status">
+      <div class="success-icon">
+        <en-icon name="done-check-circle" size="24px"></en-icon>
+      </div>
+      <h2>Conta criada com sucesso!</h2>
+      <p>Agora você está a apenas um passo de começar a emitir suas notas fiscais.</p>
+    </div>
+
+    <!-- Option cards -->
+    <div class="option-cards">
+
+      <!-- Card: Configurar agora -->
+      <div class="option-card option-card--teal" role="button" tabindex="0" onclick="handleOption('configure')">
+        <div class="option-card-icon option-card-icon--teal">
+          <en-icon name="setting" size="20px"></en-icon>
+        </div>
+        <div class="option-card-body">
+          <h3>Configurar agora</h3>
+          <p>Configure sua conta de forma rápida e autônoma</p>
+        </div>
+        <ul class="option-card-list">
+          <li>Processo guiado passo a passo</li>
+          <li>Comece a emitir em minutos</li>
+          <li>Suporte disponível se precisar</li>
+        </ul>
+        <en-button variant="primary" size="md">Configurar conta</en-button>
+      </div>
+
+      <!-- Card: Aguardar suporte -->
+      <div class="option-card option-card--blue" role="button" tabindex="0" onclick="handleOption('support')">
+        <div class="option-card-icon option-card-icon--blue">
+          <en-icon name="clock" size="20px"></en-icon>
+        </div>
+        <div class="option-card-body">
+          <h3>Aguardar suporte</h3>
+          <p>Nossos analistas entrarão em contato para ajudar</p>
+        </div>
+        <ul class="option-card-list">
+          <li>Contato em até 24h úteis</li>
+          <li>Suporte personalizado</li>
+          <li>Ideal para casos complexos</li>
+        </ul>
+        <en-button variant="secondary" size="md">Solicitar suporte</en-button>
+      </div>
+
+    </div>
+
+    <!-- Help footer -->
+    <div class="help-footer">
+      <en-icon name="help" size="16px"></en-icon>
+      <span>Precisa de ajuda?</span>
+      <a href="#">Acesse a central de ajuda</a>
+    </div>
+
+  </main>
+
+  <script>
+    // Stepper — 3 passos, passo 1 ativo (0-indexed)
+    document.querySelector('#setup-stepper').steps = [
+      { label: 'Conta criada' },
+      { label: 'Configure sua conta' },
+      { label: 'Comece a emitir' },
+    ];
+
+    function handleOption(choice) {
+      if (choice === 'configure') {
+        // navegar para fluxo de configuração
+        console.log('Iniciando configuração guiada');
+      } else {
+        // navegar para tela de confirmação de suporte
+        console.log('Solicitando suporte especializado');
+      }
+    }
+
+    // Acessibilidade: Enter/Space nos cards
+    document.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

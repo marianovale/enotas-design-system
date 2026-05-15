@@ -1,0 +1,7 @@
+{
+  "name": "eNotas — Fix Checkbox & NfStatus Docs",
+  "id": "enotas-fix-checkbox-nfstatus",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"]
+}

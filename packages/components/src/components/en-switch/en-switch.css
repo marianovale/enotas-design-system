@@ -1,0 +1,70 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--en-spacing-2, 0.5rem);
+  cursor: pointer;
+  user-select: none;
+}
+
+:host([disabled]) {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+:host(:focus-visible) .track {
+  outline: 2px solid var(--en-border-focus, #22baa0);
+  outline-offset: 2px;
+}
+
+/* --- Track --- */
+.track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 44px;
+  height: 24px;
+  border-radius: var(--en-radius-full, 9999px);
+  background: var(--en-color-neutral-300, #b3b3b3);
+  padding: 2px;
+  transition: background-color 150ms ease;
+  flex-shrink: 0;
+}
+
+:host(.is-checked) .track {
+  background: var(--en-action-primary-background, #22baa0);
+}
+
+/* --- Thumb --- */
+.thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--en-radius-full, 9999px);
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 150ms ease;
+  flex-shrink: 0;
+}
+
+:host(.is-checked) .thumb {
+  transform: translateX(20px);
+}
+
+/* --- Label --- */
+.label {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-md, 1rem);
+  color: var(--en-text-primary, #1f1f1f);
+}
+
+/* --- Hidden native input --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

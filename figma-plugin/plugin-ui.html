@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { font-family: Inter, sans-serif; padding: 16px; margin: 0; background: #f7f7f7; }
+  h2 { font-size: 13px; font-weight: 600; margin: 0 0 12px; color: #1f1f1f; }
+  button {
+    display: block; width: 100%; padding: 10px 14px; margin-bottom: 8px;
+    background: #22baa0; color: #fff; border: none; border-radius: 6px;
+    font-size: 13px; font-weight: 500; cursor: pointer; text-align: left;
+  }
+  button:hover { background: #12795f; }
+  button.secondary { background: #fff; color: #333; border: 1px solid #d6d6d6; }
+  button.secondary:hover { background: #f0f0f0; }
+  .desc { font-size: 11px; color: #6b6b6b; margin: -4px 0 12px; }
+  #log {
+    margin-top: 12px; padding: 10px; background: #fff; border: 1px solid #d6d6d6;
+    border-radius: 6px; font-size: 11px; font-family: monospace; white-space: pre-wrap;
+    max-height: 200px; overflow-y: auto; display: none;
+  }
+</style>
+</head>
+<body>
+<h2>eNotas DS Tools</h2>
+
+<button onclick="run('standardize')">1 — Padronizar Propriedades</button>
+<p class="desc">Renomeia props inconsistentes e preenche descriptions nos 25 components sets.</p>
+
+<button onclick="run('variables')">2 — Criar Variáveis Semânticas</button>
+<p class="desc">Cria coleções "Core / Color" e "Semantic" com todos os tokens --en-*.</p>
+
+
+<div id="log"></div>
+
+<script>
+function run(action) {
+  const log = document.getElementById('log');
+  log.style.display = 'block';
+  log.textContent = 'Rodando...';
+  parent.postMessage({ pluginMessage: { type: action } }, '*');
+}
+window.onmessage = (e) => {
+  const log = document.getElementById('log');
+  log.textContent = e.data.pluginMessage?.result || 'Sem resposta.';
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+:host {
+  display: inline-block;
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1100;
+  padding: var(--en-spacing-1, 0.25rem) var(--en-spacing-2, 0.5rem);
+  background: var(--en-color-neutral-900, #1f1f1f);
+  color: #ffffff;
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  border-radius: var(--en-radius-sm, 0.25rem);
+  pointer-events: none;
+  animation: tooltip-in 120ms ease;
+  max-width: 240px;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.4;
+}
+
+@keyframes tooltip-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* --- Posicionamentos base (align=center) --- */
+:host(.placement-top) .tooltip {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+:host(.placement-bottom) .tooltip {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+:host(.placement-left) .tooltip {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+:host(.placement-right) .tooltip {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* --- align=start (top/bottom: left-aligned; left/right: top-aligned) --- */
+:host(.placement-top.align-start) .tooltip,
+:host(.placement-bottom.align-start) .tooltip {
+  left: 0;
+  transform: none;
+}
+:host(.placement-left.align-start) .tooltip,
+:host(.placement-right.align-start) .tooltip {
+  top: 0;
+  transform: none;
+}
+
+/* --- align=end (top/bottom: right-aligned; left/right: bottom-aligned) --- */
+:host(.placement-top.align-end) .tooltip,
+:host(.placement-bottom.align-end) .tooltip {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+:host(.placement-left.align-end) .tooltip,
+:host(.placement-right.align-end) .tooltip {
+  top: auto;
+  bottom: 0;
+  transform: none;
+}
+
+/* --- Seta (posicao default = center) --- */
+.arrow {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--en-color-neutral-900, #1f1f1f);
+  transform: rotate(45deg);
+}
+:host(.placement-top) .arrow    { bottom: -3px; left: 50%; margin-left: -3px; }
+:host(.placement-bottom) .arrow { top: -3px; left: 50%; margin-left: -3px; }
+:host(.placement-left) .arrow   { right: -3px; top: 50%; margin-top: -3px; }
+:host(.placement-right) .arrow  { left: -3px; top: 50%; margin-top: -3px; }

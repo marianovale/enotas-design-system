@@ -1,0 +1,13 @@
+import figma from '@figma/code-connect';
+
+// en-lookup ainda não tem node Figma dedicado — mapeamento pendente de design
+// Equivalente Cosmos: Combobox
+figma.connect('https://www.figma.com/design/KeXcEZ17XRl5yxs8vJEQeh/eNotas-Design-System', {
+  props: {
+    disabled: figma.enum('state', { disabled: true, inactive: true }),
+    multiple: figma.enum('mode', { multiple: true }),
+    loading:  figma.enum('state', { loading: true }),
+  },
+  example: ({ disabled, multiple, loading }) =>
+    `<en-lookup label="Tomador" placeholder="Buscar..."${multiple ? ' multiple' : ''}${loading ? ' loading' : ''}${disabled ? ' disabled' : ''}></en-lookup>`,
+});

@@ -1,0 +1,75 @@
+:host {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--en-spacing-3, 0.75rem) var(--en-spacing-4, 1rem);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  gap: var(--en-spacing-2, 0.5rem);
+}
+
+:host([disabled]) { cursor: not-allowed; opacity: 0.4; }
+
+:host(:focus-visible) { outline: 2px solid var(--en-border-focus, #22baa0); outline-offset: -2px; border-radius: var(--en-radius-sm, 0.25rem); }
+
+.label {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-md, 1rem);
+  font-weight: var(--en-font-weight-medium, 500);
+  color: var(--en-text-secondary, #6b6b6b);
+  transition: color 150ms ease;
+  white-space: nowrap;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: var(--en-radius-full, 9999px);
+  background: transparent;
+  transition: background-color 150ms ease;
+}
+
+/* Ativo */
+:host(.status-active) .label { color: var(--en-action-primary-background, #22baa0); font-weight: var(--en-font-weight-semibold, 600); }
+:host(.status-active) .indicator { background: var(--en-action-primary-background, #22baa0); }
+
+/* Hover */
+:host(.status-hovered) .label,
+:host(:hover:not([disabled])) .label { color: var(--en-text-primary, #1f1f1f); }
+
+.inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--en-spacing-2, 0.5rem);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: inherit;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 var(--en-spacing-1, 0.25rem);
+  border-radius: var(--en-radius-full, 9999px);
+  background: var(--en-color-neutral-200, #d6d6d6);
+  color: var(--en-text-primary, #1f1f1f);
+  font-size: var(--en-font-size-xs, 0.75rem);
+  font-weight: var(--en-font-weight-semibold, 600);
+  transition: background 150ms ease;
+}
+
+:host(.status-active) .count {
+  background: var(--en-action-primary-background, #22baa0);
+  color: var(--en-color-neutral-0, #ffffff);
+}

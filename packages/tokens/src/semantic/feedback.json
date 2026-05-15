@@ -1,0 +1,24 @@
+{
+  "feedback": {
+    "success": {
+      "background": { "value": "{color.success.100}", "type": "color" },
+      "foreground": { "value": "{color.success.700}", "type": "color" },
+      "icon":       { "value": "{color.success.500}", "type": "color" }
+    },
+    "warning": {
+      "background": { "value": "{color.warning.100}", "type": "color" },
+      "foreground": { "value": "{color.warning.700}", "type": "color" },
+      "icon":       { "value": "{color.warning.500}", "type": "color" }
+    },
+    "danger": {
+      "background": { "value": "{color.danger.100}",  "type": "color" },
+      "foreground": { "value": "{color.danger.700}",  "type": "color" },
+      "icon":       { "value": "{color.danger.500}",  "type": "color" }
+    },
+    "info": {
+      "background": { "value": "{color.info.100}",    "type": "color" },
+      "foreground": { "value": "{color.info.700}",    "type": "color" },
+      "icon":       { "value": "{color.info.500}",    "type": "color" }
+    }
+  }
+}

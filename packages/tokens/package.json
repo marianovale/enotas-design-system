@@ -1,0 +1,27 @@
+{
+  "name": "@enotas-ds/tokens",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Design tokens para o eNotas DS — gerados via Style Dictionary",
+  "main": "dist/tokens.js",
+  "style": "dist/tokens.css",
+  "exports": {
+    ".": {
+      "import": "./dist/tokens.js",
+      "require": "./dist/tokens.cjs"
+    },
+    "./css": "./dist/tokens.css",
+    "./json": "./dist/tokens.json",
+    "./tailwind-preset": "./dist/tailwind-preset.js",
+    "./tailwind-theme": "./dist/tailwind-theme.css"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "node style-dictionary.config.js",
+    "clean": "rm -rf dist",
+    "typecheck": "echo 'No TS in tokens package'"
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.0.0"
+  }
+}

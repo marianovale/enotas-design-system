@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment"
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "loader", "www", "src/**/*.stories.ts", "src/**/*.figma.tsx"]
+}

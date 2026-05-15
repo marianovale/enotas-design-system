@@ -1,0 +1,82 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--en-spacing-1, 0.25rem);
+}
+
+.label {
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-sm, 0.875rem);
+  font-weight: var(--en-font-weight-medium, 500);
+  color: var(--en-text-primary, #1f1f1f);
+}
+
+.required { color: var(--en-color-danger-500, #f13838); }
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  border: 1px solid var(--en-input-border, #e1e3e6);
+  border-radius: var(--en-radius-md, 0.5rem);
+  background: var(--en-surface-default, #ffffff);
+  overflow: hidden;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+:host(.state-focus) .input-wrapper {
+  border-color: var(--en-border-focus, #22baa0);
+  box-shadow: 0 0 0 3px rgba(34,186,160,0.15);
+}
+
+:host(.has-error) .input-wrapper { border-color: var(--en-color-danger-500, #f13838); }
+
+:host(.state-inactived) .input-wrapper {
+  background: var(--en-surface-sunken, #ebebeb);
+}
+
+.btn-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: var(--en-text-secondary, #6b6b6b);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 100ms ease;
+}
+
+.btn-step:hover:not(:disabled) {
+  background: var(--en-surface-hover, #f5f5f5);
+  color: var(--en-action-primary-background, #22baa0);
+}
+
+.btn-step:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+input[type="number"] {
+  flex: 1;
+  height: 100%;
+  border: none;
+  border-left: 1px solid var(--en-input-border, #e1e3e6);
+  border-right: 1px solid var(--en-input-border, #e1e3e6);
+  outline: none;
+  background: transparent;
+  text-align: center;
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  font-size: var(--en-font-size-md, 1rem);
+  font-weight: var(--en-font-weight-semibold, 600);
+  color: var(--en-text-primary, #1f1f1f);
+  -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button { display: none; }
+
+.error-msg { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-color-danger-500, #f13838); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }
+.hint-msg  { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-text-secondary, #6b6b6b); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }
