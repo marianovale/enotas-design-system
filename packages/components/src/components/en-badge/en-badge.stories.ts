@@ -1,24 +1,29 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import type { BadgeIntent, BadgeSize } from './en-badge';
+import type { BadgeVariant, BadgeSize } from './en-badge';
 
 const meta: Meta = {
   title: 'Primitives/EnBadge',
   tags: ['autodocs'],
   argTypes: {
-    intent: {
+    variant: {
       control: 'select',
-      options: ['neutral', 'success', 'warning', 'danger', 'info', 'brand'] satisfies BadgeIntent[],
+      options: ['default', 'positive', 'negative', 'attention', 'informative', 'brand'] satisfies BadgeVariant[],
+      description: 'Variante visual (alinhado com Cosmos DS)',
     },
     size: {
       control: 'select',
       options: ['sm', 'md'] satisfies BadgeSize[],
+      description: 'Tamanho do badge',
     },
-    outline: { control: 'boolean' },
+    outline: {
+      control: 'boolean',
+      description: 'Contorno em vez de fundo sólido',
+    },
     label: { control: 'text' },
   },
   args: {
-    intent: 'neutral',
+    variant: 'default',
     size: 'md',
     outline: false,
     label: 'Status',
@@ -26,35 +31,69 @@ const meta: Meta = {
 };
 export default meta;
 
-type Story = StoryObj<{ intent: BadgeIntent; size: BadgeSize; outline: boolean; label: string }>;
+type Story = StoryObj<{ variant: BadgeVariant; size: BadgeSize; outline: boolean; label: string }>;
 
 export const Default: Story = {
-  render: ({ intent, size, outline, label }) =>
-    html`<en-badge intent=${intent} size=${size} ?outline=${outline}>${label}</en-badge>`,
+  render: ({ variant, size, outline, label }) =>
+    html`<en-badge variant=${variant} size=${size} ?outline=${outline}>${label}</en-badge>`,
 };
 
-export const AllIntents: Story = {
+export const AllVariants: Story = {
+  name: 'Todas as variantes',
   render: () => html`
     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
-      <en-badge intent="neutral">Neutral</en-badge>
-      <en-badge intent="brand">Brand</en-badge>
-      <en-badge intent="success">Aprovado</en-badge>
-      <en-badge intent="warning">Pendente</en-badge>
-      <en-badge intent="danger">Rejeitado</en-badge>
-      <en-badge intent="info">Em análise</en-badge>
+      <en-badge variant="default">Default</en-badge>
+      <en-badge variant="positive">Autorizada</en-badge>
+      <en-badge variant="negative">Rejeitada</en-badge>
+      <en-badge variant="attention">Pendente</en-badge>
+      <en-badge variant="informative">Em análise</en-badge>
+      <en-badge variant="brand">eNotas</en-badge>
     </div>
   `,
 };
 
 export const Outline: Story = {
+  name: 'Variante outline',
   render: () => html`
     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
-      <en-badge intent="neutral" outline>Neutral</en-badge>
-      <en-badge intent="brand" outline>Brand</en-badge>
-      <en-badge intent="success" outline>Aprovado</en-badge>
-      <en-badge intent="warning" outline>Pendente</en-badge>
-      <en-badge intent="danger" outline>Rejeitado</en-badge>
-      <en-badge intent="info" outline>Em análise</en-badge>
+      <en-badge variant="default" outline>Default</en-badge>
+      <en-badge variant="positive" outline>Autorizada</en-badge>
+      <en-badge variant="negative" outline>Rejeitada</en-badge>
+      <en-badge variant="attention" outline>Pendente</en-badge>
+      <en-badge variant="informative" outline>Em análise</en-badge>
+      <en-badge variant="brand" outline>eNotas</en-badge>
+    </div>
+  `,
+};
+
+export const Sizes: Story = {
+  name: 'Tamanhos',
+  render: () => html`
+    <div style="display:flex;gap:0.75rem;align-items:center">
+      <en-badge variant="positive" size="sm">sm</en-badge>
+      <en-badge variant="positive" size="md">md</en-badge>
+    </div>
+  `,
+};
+
+export const InContext: Story = {
+  name: 'Em contexto — listagem de notas',
+  render: () => html`
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:480px;font-family:sans-serif;font-size:14px">
+      ${[
+        { nf: 'NFS-e #001234', tomador: 'Empresa ABC Ltda',   variant: 'positive',    label: 'Autorizada'  },
+        { nf: 'NFS-e #001235', tomador: 'Comércio XYZ S.A.',  variant: 'attention',   label: 'Pendente'    },
+        { nf: 'NFS-e #001236', tomador: 'Serviços DEF Ltda',  variant: 'negative',    label: 'Rejeitada'   },
+        { nf: 'NFS-e #001237', tomador: 'Tech Solutions Inc', variant: 'informative', label: 'Em análise'  },
+      ].map(({ nf, tomador, variant, label }) => html`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid #e5e7eb;border-radius:8px">
+          <div>
+            <div style="font-weight:600">${nf}</div>
+            <div style="color:#6b7280;margin-top:2px">${tomador}</div>
+          </div>
+          <en-badge variant=${variant}>${label}</en-badge>
+        </div>
+      `)}
     </div>
   `,
 };
