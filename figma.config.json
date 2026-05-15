@@ -3,6 +3,6 @@
     "parser": "react",
     "include": ["packages/components/src/**/*.figma.tsx"],
     "exclude": ["node_modules"],
-    "sourceUrl": "https://github.com/hotmart-org/enotas-design-system/blob/main"
+    "sourceUrl": "https://github.com/marianovale666/enotas-design-system/blob/main"
   }
 }
