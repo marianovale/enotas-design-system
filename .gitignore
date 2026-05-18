@@ -9,3 +9,6 @@ storybook-static/
 .env
 .env.local
 .claude/
+*.pptx
+*.docx
+*.zip
