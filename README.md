@@ -51,7 +51,8 @@ packages/tokens/        → @enotas-ds/tokens      (Style Dictionary — CSS var
 packages/components/    → @enotas-ds/components   (Stencil.js Web Components)
 packages/icons/         → @enotas-ds/icons         (SVGs)
 apps/storybook/         → documentação interativa
-figma-plugin/           → plugins auxiliares para o Figma
+tools/figma-desktop-bridge/ → plugin Figma para sync de tokens via MCP
+scripts/                → automações: token sync, migração Cosmos
 ```
 
 ---
@@ -78,6 +79,13 @@ pnpm storybook               # http://localhost:6006
 
 # Figma Code Connect
 pnpm figma:connect           # publica snippets no Figma Dev Mode
+
+# Token Sync Pipeline
+pnpm tokens:pull             # exporta Variables do Figma → .figma-export/ (requer Desktop Bridge)
+pnpm tokens:sync             # detecta drift Figma ↔ src/*.json e atualiza os arquivos
+pnpm tokens:sync:dry         # preview das mudanças sem aplicar
+pnpm tokens:cosmos:dry       # preview da migração para identidade Hotmart/Cosmos
+pnpm tokens:cosmos           # aplica migração de tokens para identidade Hotmart/Cosmos
 
 # Qualidade
 pnpm lint
@@ -131,13 +139,40 @@ Todos os valores visuais são CSS Custom Properties com prefixo `--en-*`:
 
 ```css
 /* Camada global (primitivos) */
---en-color-teal-500: #22baa0;
+--en-color-brand-500: #22baa0;   /* teal eNotas — temporário */
 
 /* Camada semântica (intenção) */
---en-action-primary-background: var(--en-color-teal-500);
+--en-action-primary-background: var(--en-color-brand-500);
 ```
 
 Alterar a cor primária em um lugar propaga para todos os componentes automaticamente. Ao mergear com o Cosmos DS, apenas o mapeamento semântico muda — o HTML das views permanece intacto.
+
+### Estratégia de migração para identidade Hotmart
+
+**Decisão de produto (mai/2026):** o eNotas adotará 100% a identidade visual da Hotmart via Cosmos DS. Os tokens `--en-*` atuais têm valores próprios (ex: teal `#22baa0`) de forma **intencional e temporária** — o Cosmos ainda não é consumível no ambiente .NET sem bundler.
+
+Quando a migração acontecer:
+
+```bash
+# Preview do que vai mudar
+pnpm tokens:cosmos:dry
+
+# Aplica: substitui src/global/color.json + src/semantic/*.json pelos valores Cosmos
+pnpm tokens:cosmos
+
+# Regenera o CSS com a nova identidade Hotmart
+pnpm build:tokens
+```
+
+O HTML/Razor das views **não muda** — apenas os valores visuais mudam. A nova identidade usa primary preto `#0d0d0d`, neutros quentes e CTA laranja `#ff4000` alinhados com o Cosmos DS da Hotmart.
+
+---
+
+## Figma Desktop Bridge
+
+O plugin `tools/figma-desktop-bridge/` conecta o Claude Code diretamente ao Figma via WebSocket, sem precisar de token de API Enterprise. Ele expõe **106 ferramentas MCP** — exportar tokens, inspecionar componentes, capturar screenshots, criar variáveis — usadas pelo agente de design para manter o pipeline Figma → código sempre sincronizado.
+
+Para usar: instale o plugin no Figma Desktop (Plugins → Development → Import from manifest) e configure o MCP Server no `.mcp.json`.
 
 ---
 
