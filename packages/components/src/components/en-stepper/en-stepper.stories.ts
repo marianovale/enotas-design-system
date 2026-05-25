@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta } from '@storybook/web-components';
 
 const STEPS = [
   { label: 'Dados da empresa', description: 'CNPJ, razão social e endereço' },

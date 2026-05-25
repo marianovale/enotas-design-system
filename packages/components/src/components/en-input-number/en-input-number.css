@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   height: 48px;
-  border: 1px solid var(--en-input-border, #e1e3e6);
+  border: 1px solid var(--en-border-strong, #8f8f8f);
   border-radius: var(--en-radius-md, 0.5rem);
   background: var(--en-surface-default, #ffffff);
   overflow: hidden;
@@ -63,8 +63,8 @@ input[type="number"] {
   flex: 1;
   height: 100%;
   border: none;
-  border-left: 1px solid var(--en-input-border, #e1e3e6);
-  border-right: 1px solid var(--en-input-border, #e1e3e6);
+  border-left: 1px solid var(--en-border-strong, #8f8f8f);
+  border-right: 1px solid var(--en-border-strong, #8f8f8f);
   outline: none;
   background: transparent;
   text-align: center;

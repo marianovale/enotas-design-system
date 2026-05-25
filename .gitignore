@@ -12,3 +12,6 @@ storybook-static/
 *.pptx
 *.docx
 *.zip
+
+# Figma token export (gerado, não versionado)
+packages/tokens/.figma-export/*.json

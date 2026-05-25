@@ -23,7 +23,7 @@
   min-height: 40px;
   padding: 4px var(--en-spacing-3, 0.75rem);
   background: var(--en-surface-default, #ffffff);
-  border: 1px solid var(--en-input-border, #e1e3e6);
+  border: 1px solid var(--en-border-strong, #8f8f8f);
   border-radius: var(--en-radius-md, 0.5rem);
   transition: border-color 150ms ease, box-shadow 150ms ease;
   cursor: text;

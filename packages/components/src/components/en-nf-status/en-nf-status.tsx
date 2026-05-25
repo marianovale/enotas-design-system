@@ -45,7 +45,7 @@ export class EnNfStatus {
       <Host
         class={{
           [`intent-${config.intent}`]: true,
-          [`type-${this.type.replace(/[\s\/]/g, '-')}`]: true,
+          [`type-${this.type.replace(/[\s/]/g, '-')}`]: true,
           'is-hovering': this.hovering,
         }}
       >

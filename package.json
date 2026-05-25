@@ -10,7 +10,12 @@
     "build:components:react": "pnpm --filter @enotas-ds/components build:react",
     "storybook": "pnpm --filter @enotas-ds/storybook storybook",
     "build:storybook": "pnpm --filter @enotas-ds/storybook build",
-    "figma:connect": "figma connect publish --token $FIGMA_ACCESS_TOKEN",
+    "figma:connect": "figma connect publish --token $FIGMA_ACCESS_TOKEN --skip-validation --force",
+    "tokens:cosmos:dry": "node scripts/tokens-cosmos-migrate.mjs --dry-run",
+    "tokens:cosmos": "node scripts/tokens-cosmos-migrate.mjs",
+    "tokens:pull": "node scripts/tokens-pull.mjs",
+    "tokens:sync": "node scripts/tokens-sync.mjs",
+    "tokens:sync:dry": "node scripts/tokens-sync.mjs --dry-run",
     "lint": "eslint 'packages/*/src/**/*.{ts,tsx}'",
     "typecheck": "pnpm --recursive typecheck",
     "clean": "pnpm --recursive clean"

@@ -24,7 +24,7 @@
   height: var(--en-input-height, 40px);
   padding: 0 var(--en-spacing-4, 1rem);
   background: var(--en-surface-default, #ffffff);
-  border: 1px solid var(--en-input-border, #e1e3e6);
+  border: 1px solid var(--en-border-strong, #8f8f8f);
   border-radius: var(--en-radius-md, 0.5rem);
   transition: border-color 150ms ease, box-shadow 150ms ease;
 }
@@ -65,12 +65,12 @@ input::placeholder {
 }
 
 :host(.state-finished) .input-wrapper {
-  border-color: var(--en-input-border, #e1e3e6);
+  border-color: var(--en-border-strong, #8f8f8f);
 }
 
 :host(.state-inactived) .input-wrapper {
   background: var(--en-surface-sunken, #ebebeb);
-  border-color: var(--en-input-border, #e1e3e6);
+  border-color: var(--en-border-strong, #8f8f8f);
   cursor: not-allowed;
 }
 

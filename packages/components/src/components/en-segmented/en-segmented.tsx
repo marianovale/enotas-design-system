@@ -21,7 +21,7 @@ export class EnSegmented {
   @Watch('options')
   optionsChanged(val: any) {
     if (typeof val === 'string') {
-      try { this.options = JSON.parse(val); } catch {}
+      try { this.options = JSON.parse(val); } catch (_e) { /* JSON inválido — mantém valor anterior */ }
     }
   }
 

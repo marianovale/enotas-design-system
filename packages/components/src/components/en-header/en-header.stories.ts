@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { Meta } from '@storybook/web-components';
 
 const meta: Meta = {
   title: 'Compostos/EnHeader',

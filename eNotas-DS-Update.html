@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eNotas Design System — Atualização de Projeto</title>
+<style>
+  :root {
+    --en-teal: #22BAA0;
+    --en-teal-dark: #1A9485;
+    --en-teal-light: #D1F5EF;
+    --en-dark: #0D1117;
+    --en-dark-surface: #161B22;
+    --en-surface: #F8FAFC;
+    --en-white: #FFFFFF;
+    --en-text: #1E293B;
+    --en-muted: #64748B;
+    --en-border: #E2E8F0;
+    --en-red: #EF4444;
+    --en-red-light: #FEE2E2;
+    --en-green: #10B981;
+    --en-green-light: #D1FAE5;
+    --en-yellow: #F59E0B;
+    --en-yellow-light: #FEF3C7;
+    --en-blue: #3B82F6;
+    --en-blue-light: #DBEAFE;
+    --en-purple: #8B5CF6;
+    --en-purple-light: #EDE9FE;
+    --en-orange: #F97316;
+    --en-orange-light: #FFEDD5;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 12px rgba(0,0,0,.1), 0 2px 6px rgba(0,0,0,.06);
+    --shadow-lg: 0 12px 32px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--en-text);
+    background: var(--en-surface);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  section { padding: 80px 0; }
+  section.dark { background: var(--en-dark); color: var(--en-white); }
+  section.light { background: var(--en-white); }
+  section.surface { background: var(--en-surface); }
+
+  /* ── TYPOGRAPHY ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--en-teal);
+    margin-bottom: 12px;
+    display: block;
+  }
+  h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; }
+  h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; line-height: 1.2; }
+  h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.3; }
+  h4 { font-size: .9375rem; font-weight: 600; }
+  p { font-size: .9375rem; line-height: 1.7; }
+  .text-muted { color: var(--en-muted); }
+  .text-teal { color: var(--en-teal); }
+
+  /* ── EN-BADGE ── */
+  .en-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+  .en-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .en-badge.positive  { background: var(--en-green-light);  color: #065F46; }
+  .en-badge.positive::before  { background: var(--en-green); }
+  .en-badge.negative  { background: var(--en-red-light);    color: #991B1B; }
+  .en-badge.negative::before  { background: var(--en-red); }
+  .en-badge.attention { background: var(--en-yellow-light); color: #92400E; }
+  .en-badge.attention::before { background: var(--en-yellow); }
+  .en-badge.informative { background: var(--en-blue-light); color: #1E40AF; }
+  .en-badge.informative::before { background: var(--en-blue); }
+  .en-badge.default   { background: var(--en-border);       color: var(--en-muted); }
+  .en-badge.default::before   { background: var(--en-muted); }
+
+  /* ── EN-TAG ── */
+  .en-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    white-space: nowrap;
+  }
+  .en-tag.neutral   { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+  .en-tag.teal      { background: var(--en-teal-light); color: var(--en-teal-dark); border: 1px solid #A7EBE0; }
+  .en-tag.blue      { background: var(--en-blue-light); color: #1E40AF; border: 1px solid #BFDBFE; }
+  .en-tag.green     { background: var(--en-green-light); color: #065F46; border: 1px solid #A7F3D0; }
+  .en-tag.yellow    { background: var(--en-yellow-light); color: #92400E; border: 1px solid #FDE68A; }
+  .en-tag.purple    { background: var(--en-purple-light); color: #5B21B6; border: 1px solid #DDD6FE; }
+  .en-tag.orange    { background: var(--en-orange-light); color: #9A3412; border: 1px solid #FED7AA; }
+
+  /* ── EN-BUTTON ── */
+  .en-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: var(--radius-md);
+    font-size: .875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: all .15s ease;
+    line-height: 1;
+  }
+  .en-button.primary { background: var(--en-teal); color: white; }
+  .en-button.primary:hover { background: var(--en-teal-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(34,186,160,.35); }
+  .en-button.secondary { background: transparent; color: var(--en-teal); border: 1.5px solid var(--en-teal); }
+  .en-button.secondary:hover { background: var(--en-teal-light); }
+  .en-button.ghost { background: transparent; color: var(--en-muted); }
+  .en-button.ghost:hover { background: var(--en-border); color: var(--en-text); }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--en-white);
+    border: 1px solid var(--en-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .2s ease, transform .2s ease;
+  }
+  .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .card.dark-card {
+    background: var(--en-dark-surface);
+    border-color: rgba(255,255,255,.08);
+    color: var(--en-white);
+  }
+  .card.dark-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-delay-1 { transition-delay: .1s; }
+  .fade-in-delay-2 { transition-delay: .2s; }
+  .fade-in-delay-3 { transition-delay: .3s; }
+  .fade-in-delay-4 { transition-delay: .4s; }
+
+  /* ══════════════════════════════════════════
+     SECTION 1 — HERO
+  ══════════════════════════════════════════ */
+  #hero {
+    background: var(--en-dark);
+    padding: 100px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--en-teal);
+  }
+  #hero::after {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(34,186,160,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--en-teal);
+    background: rgba(34,186,160,.1);
+    border: 1px solid rgba(34,186,160,.25);
+    padding: 5px 14px;
+    border-radius: var(--radius-full);
+    margin-bottom: 20px;
+  }
+  #hero h1 { color: var(--en-white); margin-bottom: 16px; }
+  #hero h1 span { color: var(--en-teal); }
+  .hero-subtitle {
+    font-size: 1.0625rem;
+    color: rgba(255,255,255,.6);
+    margin-bottom: 32px;
+    max-width: 620px;
+    line-height: 1.8;
+  }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero-date {
+    font-size: .875rem;
+    color: rgba(255,255,255,.4);
+    letter-spacing: .04em;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hero-stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    transition: background .2s;
+  }
+  .hero-stat-pill:hover { background: rgba(255,255,255,.08); }
+  .hero-stat-pill .num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--en-teal);
+    min-width: 48px;
+  }
+  .hero-stat-pill .label {
+    font-size: .8125rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.4;
+  }
+  .hero-stat-pill .icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(34,186,160,.15);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .875rem;
+    flex-shrink: 0;
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION 2 — PROBLEMA / SOLUÇÃO
+  ══════════════════════════════════════════ */
+  #problema { background: var(--en-white); }
+  .problema-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .problema-card {
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .problema-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .problema-card.before {
+    background: #FFF9F9;
+    border: 1.5px solid #FECACA;
+  }
+  .problema-card.after {
+    background: #F0FDFA;
+    border: 1.5px solid #A7EBE0;
+  }
+  .problema-icon {
+    width: 40px; height: 40px;
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+  }
+  .before .problema-icon { background: var(--en-red-light); }
+  .after  .problema-icon { background: var(--en-teal-light); }
+  .problema-card h3 { margin-bottom: 4px; }
+  .before h3 { color: #991B1B; }
+  .after  h3 { color: var(--en-teal-dark); }
+  .problema-card .sub {
+    font-size: .8125rem;
+    color: var(--en-muted);
+    margin-bottom: 20px;
+  }
+  .problema-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .problema-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: .875rem;
+    line-height: 1.5;
+  }
+  .problema-list li .check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .6rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-weight: 700;
+  }
+  .before .check { background: var(--en-red-light); color: var(--en-red); }
+  .after  .check { background: var(--en-teal-light); color: var(--en-teal-dark); }
+
+  /* ══════════════════════════════════════════
+     SECTION 3 — BIG NUMBERS
+  ══════════════════════════════════════════ */
+  #numeros { background: var(--en-dark); }
+  #numeros .section-label { color: rgba(34,186,160,.9); }
+  #numeros h2 { color: white; margin-bottom: 8px; }
+  #numeros .sub-headline { color: rgba(255,255,255,.5); font-size: .9375rem; margin-bottom: 48px; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--radius-lg);
+    padding: 28px 20px;
+    text-align: center;
+    transition: background .2s, transform .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--en-teal);
+  }
+  .stat-card:hover { background: rgba(255,255,255,.07); transform: translateY(-3px); }
+  .stat-number {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: var(--en-teal);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -.02em;
+  }
+  .stat-label {
+    font-size: .8125rem;
+    color: rgba(255,255,255,.55);
+    line-height: 1.4;
+  }
+  .features-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    background: rgba(34,186,160,.08);
+    border: 1px solid rgba(34,186,160,.2);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: background .2s;
+  }
+  .feature-card:hover { background: rgba(34,186,160,.14); }
+  .feature-icon {
+    width: 40px; height: 40px;
+    background: rgba(34,186,160,.15);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+  }
+  .feature-card h4 { color: white; font-size: .875rem; margin-bottom: 2px; }
+  .feature-card p { font-size: .8125rem; color: rgba(255,255,255,.5); line-height: 1.4; }
+
+  /* ══════════════════════════════════════════
+     SECTION 4 — COMPONENTES
+  ══════════════════════════════════════════ */
+  #componentes { background: var(--en-surface); }
+  .comp-section-header { margin-bottom: 40px; }
+  .comp-section-header h2 { margin-bottom: 8px; }
+  .comp-categories { display: flex; flex-direction: column; gap: 32px; }
+  .comp-category {}
+  .comp-category-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .comp-category-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .comp-category h3 { font-size: 1rem; color: var(--en-text); }
+  .comp-count {
+    font-size: .75rem;
+    color: var(--en-muted);
+    background: var(--en-border);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+  }
+  .comp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  /* ══════════════════════════════════════════
+     SECTION 5 — FIGMA TO CODE
+  ══════════════════════════════════════════ */
+  #figma { background: var(--en-white); }
+  .figma-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    align-items: center;
+    gap: 8px;
+    margin: 48px 0 32px;
+  }
+  .flow-step {
+    background: var(--en-surface);
+    border: 1px solid var(--en-border);
+    border-radius: var(--radius-lg);
+    padding: 24px 16px;
+    text-align: center;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .flow-step:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--en-teal);
+  }
+  .flow-num {
+    width: 32px; height: 32px;
+    background: var(--en-teal);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8125rem;
+    font-weight: 700;
+    margin: 0 auto 12px;
+  }
+  .flow-step h4 { font-size: .875rem; color: var(--en-text); margin-bottom: 4px; }
+  .flow-step p { font-size: .75rem; color: var(--en-muted); line-height: 1.5; }
+  .flow-arrow {
+    font-size: 1.25rem;
+    color: var(--en-teal);
+    opacity: .6;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .figma-banner {
+    background: var(--en-teal-light);
+    border: 1.5px solid #A7EBE0;
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .figma-banner-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .figma-banner p { font-size: .9375rem; color: var(--en-teal-dark); font-weight: 500; line-height: 1.5; }
+
+  /* ══════════════════════════════════════════
+     SECTION 6 — TOKENS
+  ══════════════════════════════════════════ */
+  #tokens { background: var(--en-surface); }
+  .tokens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+  }
+  .token-group h3 { font-size: .9375rem; margin-bottom: 16px; color: var(--en-text); }
+  .color-swatches {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .swatch {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--en-border);
+    transition: transform .15s;
+  }
+  .swatch:hover { transform: scale(1.03); }
+  .swatch-color {
+    height: 48px;
+  }
+  .swatch-label {
+    background: white;
+    padding: 8px 10px;
+  }
+  .swatch-name { font-size: .75rem; font-weight: 600; color: var(--en-text); display: block; }
+  .swatch-value { font-size: .6875rem; color: var(--en-muted); font-family: 'SF Mono', 'Fira Code', monospace; }
+  .spacing-scale { display: flex; flex-direction: column; gap: 10px; }
+  .spacing-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .spacing-name {
+    font-size: .75rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--en-muted);
+    min-width: 96px;
+  }
+  .spacing-bar {
+    height: 10px;
+    background: var(--en-teal);
+    border-radius: var(--radius-full);
+    opacity: .7;
+    transition: opacity .2s;
+  }
+  .spacing-item:hover .spacing-bar { opacity: 1; }
+  .spacing-val {
+    font-size: .75rem;
+    color: var(--en-muted);
+    min-width: 32px;
+  }
+  .tokens-note {
+    margin-top: 24px;
+    padding: 14px 18px;
+    background: var(--en-teal-light);
+    border-left: 3px solid var(--en-teal);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-size: .875rem;
+    color: var(--en-teal-dark);
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION 7 — COSMOS ROADMAP
+  ══════════════════════════════════════════ */
+  #cosmos { background: var(--en-dark); }
+  #cosmos h2 { color: white; margin-bottom: 8px; }
+  #cosmos .section-label { color: var(--en-teal); }
+  #cosmos .sub-headline { color: rgba(255,255,255,.5); margin-bottom: 48px; }
+  .cosmos-phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .phase-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    position: relative;
+    transition: background .2s, transform .2s;
+  }
+  .phase-card:hover { background: rgba(255,255,255,.07); transform: translateY(-3px); }
+  .phase-card.active {
+    border-color: rgba(34,186,160,.4);
+    background: rgba(34,186,160,.07);
+  }
+  .phase-label {
+    font-size: .6875rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .phase-card.active .phase-label { color: var(--en-teal); }
+  .phase-card:not(.active) .phase-label { color: rgba(255,255,255,.35); }
+  .phase-card h3 { color: white; font-size: .9375rem; margin-bottom: 14px; }
+  .phase-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .phase-list li {
+    font-size: .8125rem;
+    color: rgba(255,255,255,.55);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.45;
+  }
+  .phase-list li::before { content: '—'; color: rgba(255,255,255,.2); flex-shrink: 0; }
+  .phase-card.active .phase-list li { color: rgba(255,255,255,.75); }
+  .cosmos-note {
+    background: rgba(34,186,160,.08);
+    border: 1px solid rgba(34,186,160,.2);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    font-size: .875rem;
+    color: rgba(255,255,255,.6);
+    line-height: 1.6;
+  }
+  .cosmos-note strong { color: var(--en-teal); }
+
+  /* ══════════════════════════════════════════
+     SECTION 8 — PRÓXIMOS PASSOS
+  ══════════════════════════════════════════ */
+  #proximos { background: var(--en-white); }
+  .proximos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .proximo-card {
+    background: var(--en-surface);
+    border: 1px solid var(--en-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .proximo-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .proximo-num {
+    font-size: .6875rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    color: var(--en-muted);
+    margin-bottom: 12px;
+    display: block;
+  }
+  .proximo-card h3 { font-size: 1rem; margin-bottom: 6px; }
+  .proximo-card p { font-size: .875rem; color: var(--en-muted); line-height: 1.6; margin-bottom: 16px; }
+  .proximo-footer { display: flex; align-items: center; justify-content: space-between; }
+
+  /* ══════════════════════════════════════════
+     SECTION 9 — FOOTER
+  ══════════════════════════════════════════ */
+  footer {
+    background: var(--en-dark);
+    padding: 56px 0 40px;
+  }
+  .footer-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+  .footer-brand {}
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .footer-logo-mark {
+    width: 36px; height: 36px;
+    background: var(--en-teal);
+    border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .75rem;
+    font-weight: 900;
+    color: white;
+    letter-spacing: .04em;
+  }
+  .footer-logo-text { font-size: 1rem; font-weight: 700; color: white; }
+  .footer-logo-text span { color: var(--en-teal); }
+  .footer-tagline { font-size: .8125rem; color: rgba(255,255,255,.35); }
+  .footer-links { display: flex; flex-direction: column; gap: 10px; }
+  .footer-links h4 { font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 4px; }
+  .footer-links a {
+    font-size: .875rem;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color .15s;
+  }
+  .footer-links a:hover { color: var(--en-teal); }
+  .footer-links a svg { width: 14px; height: 14px; opacity: .6; }
+  .footer-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,.06);
+    margin-bottom: 24px;
+  }
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-copy { font-size: .8125rem; color: rgba(255,255,255,.3); }
+  .footer-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .75rem;
+    color: rgba(255,255,255,.3);
+  }
+  .footer-badge span {
+    width: 8px; height: 8px;
+    background: var(--en-teal);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════════ */
+  @media (max-width: 768px) {
+    section { padding: 56px 0; }
+
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-visual { display: none; }
+
+    .problema-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .features-row { grid-template-columns: 1fr; }
+
+    .figma-flow {
+      grid-template-columns: 1fr;
+    }
+    .flow-arrow { transform: rotate(90deg); justify-self: center; }
+
+    .tokens-grid { grid-template-columns: 1fr; }
+    .color-swatches { grid-template-columns: repeat(2, 1fr); }
+
+    .cosmos-phases { grid-template-columns: 1fr 1fr; }
+    .proximos-grid { grid-template-columns: 1fr; }
+
+    .footer-top { flex-direction: column; gap: 24px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .cosmos-phases { grid-template-columns: 1fr; }
+  }
+
+  /* ══════════════════════════════════════════
+     SECTION — CLAUDE CODE NO PROCESSO
+  ══════════════════════════════════════════ */
+  #claude { background: var(--en-dark); }
+  #claude .section-label { color: rgba(34,186,160,.9); }
+  #claude h2 { color: white; }
+  #claude .sub-headline { color: rgba(255,255,255,.5); font-size: .9375rem; margin-bottom: 48px; }
+
+  /* System map */
+  .system-map {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 48px 0;
+  }
+  .sysnode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 16px;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--radius-lg);
+    min-width: 110px;
+    text-align: center;
+    transition: background .2s, transform .2s;
+    position: relative;
+  }
+  .sysnode:hover { background: rgba(255,255,255,.08); transform: translateY(-3px); }
+  .sysnode.highlight {
+    border-color: rgba(34,186,160,.35);
+    background: rgba(34,186,160,.07);
+  }
+  .sysnode-icon {
+    width: 36px; height: 36px;
+    border-radius: var(--radius-md);
+    background: rgba(34,186,160,.12);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sysnode-label {
+    font-size: .75rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1.3;
+  }
+  .sysnode-sub {
+    font-size: .6875rem;
+    color: rgba(255,255,255,.35);
+    line-height: 1.3;
+  }
+  .sysarrow {
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    flex-shrink: 0;
+  }
+  .sysarrow-line {
+    width: 28px;
+    height: 1px;
+    background: rgba(34,186,160,.4);
+    position: relative;
+  }
+  .sysarrow-label {
+    font-size: .6rem;
+    color: rgba(34,186,160,.6);
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--en-dark);
+    padding: 0 4px;
+  }
+
+  /* Tasks list */
+  .claude-tasks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .claude-task {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    transition: background .2s;
+  }
+  .claude-task:hover { background: rgba(255,255,255,.07); }
+  .claude-task-cat {
+    font-size: .6875rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--en-teal);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .claude-task h4 {
+    font-size: .875rem;
+    color: white;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .claude-task p {
+    font-size: .8125rem;
+    color: rgba(255,255,255,.45);
+    line-height: 1.55;
+  }
+
+  /* PD Manifesto */
+  .pd-manifesto {
+    background: rgba(34,186,160,.08);
+    border: 1px solid rgba(34,186,160,.2);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  .pd-manifesto blockquote {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.45;
+    margin: 0 0 16px;
+    font-style: italic;
+  }
+  .pd-manifesto blockquote span { color: var(--en-teal); font-style: normal; }
+  .pd-manifesto cite {
+    font-size: .875rem;
+    color: rgba(255,255,255,.4);
+    font-style: normal;
+  }
+
+  /* Speed comparison */
+  .speed-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .speed-card {
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+  .speed-card.manual {
+    background: rgba(239,68,68,.06);
+    border: 1px solid rgba(239,68,68,.15);
+  }
+  .speed-card.claude {
+    background: rgba(34,186,160,.07);
+    border: 1px solid rgba(34,186,160,.2);
+  }
+  .speed-card h3 {
+    font-size: .875rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .speed-card.manual h3 { color: rgba(239,68,68,.8); }
+  .speed-card.claude h3 { color: var(--en-teal); }
+  .speed-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    font-size: .8125rem;
+    gap: 12px;
+  }
+  .speed-item:last-child { border-bottom: none; }
+  .speed-item .task { color: rgba(255,255,255,.55); flex: 1; }
+  .speed-item .time-manual { color: rgba(239,68,68,.7); font-weight: 600; white-space: nowrap; }
+  .speed-item .time-claude { color: var(--en-teal); font-weight: 600; white-space: nowrap; }
+
+  @media (max-width: 768px) {
+    .claude-tasks { grid-template-columns: 1fr; }
+    .speed-compare { grid-template-columns: 1fr; }
+    .system-map { gap: 8px; flex-direction: column; }
+    .sysarrow { transform: rotate(90deg); }
+  }
+
+  /* ── USE CASE TABLES ── */
+  .use-case-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 14px;
+    background: var(--en-white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--en-border);
+  }
+  .use-case-table td {
+    padding: 9px 13px;
+    font-size: .8125rem;
+    border-bottom: 1px solid var(--en-border);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .use-case-table tr:last-child td { border-bottom: none; }
+  .use-case-table tr:hover td { background: var(--en-surface); }
+  .use-case-table td:first-child {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--en-teal-dark);
+    white-space: nowrap;
+    font-weight: 600;
+    width: 160px;
+    font-size: .75rem;
+  }
+  .use-case-table td:last-child { color: var(--en-muted); }
+
+  /* ── CODE SNIPPETS ── */
+  .code-block {
+    background: #0D1117;
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin: 12px 0;
+    overflow-x: auto;
+    border: 1px solid rgba(255,255,255,.06);
+  }
+  .code-block pre {
+    margin: 0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: .75rem;
+    color: rgba(255,255,255,.75);
+    line-height: 1.8;
+    white-space: pre;
+  }
+  .code-block .cmt  { color: rgba(255,255,255,.3); }
+  .code-block .kw   { color: #FF7B72; }
+  .code-block .tag  { color: #79C0FF; }
+  .code-block .attr { color: #D2A8FF; }
+  .code-block .val  { color: #A5D6FF; }
+  .code-block .str  { color: #A5D6FF; }
+  .code-block .prop { color: #22BAA0; }
+  .etapa-block { margin-bottom: 28px; }
+  .etapa-label {
+    font-size: .6875rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.4);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .etapa-label.current { color: var(--en-teal); }
+  .etapa-title { color: white; font-size: .9375rem; font-weight: 600; margin-bottom: 8px; }
+  .etapa-desc { font-size: .875rem; color: rgba(255,255,255,.55); margin-bottom: 10px; line-height: 1.6; }
+
+  /* ── TOKEN ARCHITECTURE TABLE ── */
+  .token-arch-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 32px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--en-border);
+  }
+  .token-arch-table th {
+    padding: 11px 16px;
+    font-size: .8125rem;
+    font-weight: 700;
+    text-align: left;
+    background: var(--en-surface);
+    border-bottom: 2px solid var(--en-border);
+    color: var(--en-text);
+  }
+  .token-arch-table th:first-child { width: 130px; }
+  .token-arch-table td {
+    padding: 11px 16px;
+    font-size: .875rem;
+    border-bottom: 1px solid var(--en-border);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+  .token-arch-table tr:last-child td { border-bottom: none; }
+  .token-arch-table tr:hover td { background: var(--en-surface); }
+  .token-arch-table td:first-child { font-weight: 600; color: var(--en-text); }
+  .token-arch-table td:nth-child(2) {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: .75rem;
+    color: var(--en-teal-dark);
+    background: #F0FDFA;
+  }
+  .token-arch-table td:last-child { color: var(--en-muted); }
+  .token-arch-section-title { font-size: .9375rem; font-weight: 600; color: var(--en-text); margin: 32px 0 8px; }
+
+  /* ── GOVERNANCE SECTION ── */
+  #governanca { background: var(--en-white); }
+  .governa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+  .governa-steps { display: flex; flex-direction: column; gap: 0; }
+  .governa-step {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--en-border);
+  }
+  .governa-step:last-child { border-bottom: none; }
+  .governa-step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--en-teal);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8125rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .governa-step-content h4 { font-size: .9375rem; margin-bottom: 3px; }
+  .governa-step-content p { font-size: .875rem; color: var(--en-muted); line-height: 1.6; }
+  .governa-note {
+    margin-top: 20px;
+    padding: 14px 18px;
+    background: var(--en-teal-light);
+    border-left: 3px solid var(--en-teal);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    font-size: .875rem;
+    color: var(--en-teal-dark);
+    line-height: 1.6;
+  }
+
+  /* ── SUMMARY TABLE SECTION ── */
+  #resumo { background: var(--en-surface); }
+  .summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--en-border);
+  }
+  .summary-table thead th {
+    padding: 12px 16px;
+    font-size: .8125rem;
+    font-weight: 700;
+    text-align: left;
+  }
+  .summary-table thead th:first-child { background: var(--en-surface); color: var(--en-muted); width: 18%; }
+  .summary-table thead th.before-h  { background: #FFF9F9; color: #991B1B; }
+  .summary-table thead th.after-h   { background: #F0FDFA; color: var(--en-teal-dark); }
+  .summary-table tbody td {
+    padding: 14px 16px;
+    font-size: .875rem;
+    border-top: 1px solid var(--en-border);
+    line-height: 1.55;
+    vertical-align: top;
+  }
+  .summary-table tbody td:first-child { font-weight: 600; background: var(--en-surface); color: var(--en-text); }
+  .summary-table tbody td.before-c { background: #FFF9F9; color: #7F1D1D; }
+  .summary-table tbody td.after-c  { background: #F0FDFA; color: #065F46; }
+
+  @media (max-width: 768px) {
+    .governa-grid { grid-template-columns: 1fr; }
+    .summary-table { font-size: .8125rem; }
+    .use-case-table td:first-child { width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<nav style="
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,17,23,.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:0 24px;
+">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;height:48px;gap:4px;overflow-x:auto;scrollbar-width:none;">
+    <span style="font-size:.75rem;font-weight:700;color:#22BAA0;letter-spacing:.06em;margin-right:12px;white-space:nowrap;">eNotas DS</span>
+    <a href="#problema" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Contexto</a>
+    <a href="#numeros" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Números</a>
+    <a href="#componentes" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Componentes</a>
+    <a href="#figma" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Figma → Código</a>
+    <a href="#tokens" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Tokens</a>
+    <a href="#cosmos" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Cosmos</a>
+    <a href="#claude" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;border:1px solid rgba(34,186,160,.3);" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Claude Code</a>
+    <a href="#resumo" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Resumo</a>
+    <a href="#governanca" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Governança</a>
+    <a href="#proximos" style="font-size:.75rem;color:rgba(255,255,255,.45);text-decoration:none;padding:4px 10px;border-radius:4px;white-space:nowrap;transition:color .15s;" onmouseover="this.style.color='#22BAA0'" onmouseout="this.style.color='rgba(255,255,255,.45)'">Próximos passos</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 1 — HERO
+════════════════════════════════════════════════════ -->
+<header id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="fade-in">
+        <div class="hero-tag">Atualização de Projeto</div>
+        <h1>eNotas<br><span>Design System</span></h1>
+        <p class="hero-subtitle">
+          30 componentes entregues · CI/CD configurado · Figma integrado com Code Connect · Alinhado com Cosmos DS da Hotmart
+        </p>
+        <div class="hero-meta">
+          <span class="en-badge positive" style="font-size:.8rem;padding:5px 12px;">Em produção</span>
+          <span class="hero-date">Maio 2026</span>
+        </div>
+        <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:20px;">
+          <div style="font-size:.8125rem;color:rgba(255,255,255,.35);">
+            <span style="color:rgba(255,255,255,.2);font-size:.6875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px;">Responsável</span>
+            Mariano Vale
+          </div>
+          <div style="font-size:.8125rem;color:rgba(255,255,255,.35);">
+            <span style="color:rgba(255,255,255,.2);font-size:.6875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px;">Última atualização</span>
+            5 de maio de 2026
+          </div>
+          <div style="font-size:.8125rem;color:rgba(255,255,255,.35);">
+            <span style="color:rgba(255,255,255,.2);font-size:.6875rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:2px;">Status</span>
+            <span style="color:var(--en-teal);">Aberto a comentários</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual fade-in fade-in-delay-2">
+        <div class="hero-stat-pill">
+          <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg></div>
+          <div class="num">30</div>
+          <div class="label">Componentes Web<br>prontos para uso</div>
+        </div>
+        <div class="hero-stat-pill">
+          <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="#22BAA0"/><circle cx="17.5" cy="10.5" r=".5" fill="#22BAA0"/><circle cx="8.5" cy="7.5" r=".5" fill="#22BAA0"/><circle cx="6.5" cy="12.5" r=".5" fill="#22BAA0"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
+          <div class="num">27</div>
+          <div class="label">Mapeamentos<br>Code Connect ativos</div>
+        </div>
+        <div class="hero-stat-pill">
+          <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="10" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="14" y2="21"/></svg></div>
+          <div class="num">36</div>
+          <div class="label">Tokens de espaçamento<br>alinhados Tailwind/Cosmos</div>
+        </div>
+        <div class="hero-stat-pill">
+          <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+          <div class="num">100%</div>
+          <div class="label">Cobertura de stories<br>no Storybook</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 2 — PROBLEMA / SOLUÇÃO
+════════════════════════════════════════════════════ -->
+<section id="problema" class="light">
+  <div class="container">
+    <span class="section-label fade-in">Contexto</span>
+    <h2 class="fade-in">O problema que resolvemos</h2>
+    <p class="text-muted fade-in" style="margin-top:8px;max-width:560px;">
+      Antes do DS, cada view era uma ilha. Estilos duplicados, interações inconsistentes e zero rastreabilidade de design.
+    </p>
+    <div class="problema-grid">
+      <div class="problema-card before fade-in fade-in-delay-1">
+        <div class="problema-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+        <h3>Antes</h3>
+        <p class="sub">Sem design system · Razor Views sem padrão</p>
+        <ul class="problema-list">
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>CSS duplicado em cada .cshtml — sem tokens compartilhados</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Botões e badges reescritos à mão em cada view</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Nenhuma ligação entre Figma e o código implementado</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Mudança de cor exigia buscar arquivo por arquivo</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Sem cobertura de acessibilidade ou estados de foco</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Onboarding de devs dependia de alguém explicar os padrões</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>Deploy manual, sem pipeline de versionamento</li>
+        </ul>
+      </div>
+      <div class="problema-card after fade-in fade-in-delay-2">
+        <div class="problema-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Agora</h3>
+        <p class="sub">eNotas DS · Web Components + tokens centralizados</p>
+        <ul class="problema-list">
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Tokens CSS centralizados com prefixo <code style="font-size:.75em;background:#e6fff9;padding:1px 5px;border-radius:3px;">--en-*</code></li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><code style="font-size:.75em;background:#e6fff9;padding:1px 5px;border-radius:3px;">&lt;en-button&gt;</code> roda em qualquer .cshtml via script tag</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Code Connect: Dev Mode do Figma entrega o código real</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Mudança de cor em 1 arquivo → propaga em toda a app</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Shadow DOM garante encapsulamento e sem colisão de estilos</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Storybook documenta estados, props e exemplos de uso</li>
+          <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>CI/CD no GitHub Actions — build e preview automáticos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION — CLAUDE CODE NO PROCESSO
+════════════════════════════════════════════════════ -->
+<section id="claude" class="dark">
+  <div class="container">
+    <span class="section-label fade-in">IA no processo de design</span>
+    <h2 class="fade-in">Como o Claude Code foi parte do time</h2>
+    <p class="sub-headline fade-in">
+      O eNotas DS não foi construído por um time de engenharia com meses de runway. Foi construído por um PD — sem background de desenvolvimento — que usou o Claude Code para entender os sistemas existentes, fazer escolhas técnicas fundamentadas e entregar infraestrutura de produto real.
+    </p>
+
+    <!-- PD Manifesto -->
+    <div class="pd-manifesto fade-in">
+      <blockquote>
+        "Você não precisa saber programar para <span>construir infraestrutura de produto</span>.<br>
+        Você precisa entender os problemas — e saber fazer as perguntas certas."
+      </blockquote>
+      <cite>— O que aprendemos construindo o eNotas DS com Claude Code</cite>
+    </div>
+
+    <!-- System Map -->
+    <div style="margin-top:56px;" class="fade-in">
+      <span class="section-label" style="color:rgba(34,186,160,.6);margin-bottom:20px;display:block;">Os sistemas que foram conectados</span>
+      <div class="system-map">
+        <div class="sysnode highlight">
+          <div class="sysnode-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.019 3.019 3.019h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zm-4.587-7.509c-1.665 0-3.019 1.354-3.019 3.019s1.354 3.019 3.019 3.019h3.117v-6.038H8.148zm0 13.019c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v4.49c0 2.476-2.014 4.49-4.588 4.49zm0-7.509c-1.665 0-3.019 1.354-3.019 3.019s1.354 3.019 3.019 3.019c1.665 0 3.019-1.354 3.019-3.019v-3.019H8.148zm7.704 7.509c-2.476 0-4.49-2.014-4.49-4.49v-4.49h4.49c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm0-7.509h-3.019v3.019c0 1.665 1.354 3.019 3.019 3.019s3.019-1.354 3.019-3.019-1.354-3.019-3.019-3.019z"/></svg>
+          </div>
+          <span class="sysnode-label">Figma</span>
+          <span class="sysnode-sub">Variáveis e<br>componentes</span>
+        </div>
+        <div class="sysarrow">
+          <div class="sysarrow-line" style="position:relative;">
+            <span class="sysarrow-label">tokens</span>
+            <svg style="position:absolute;right:-7px;top:-6px;" width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M8 1l5 5-5 5M1 6h12" stroke="#22BAA0" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="sysnode highlight">
+          <div class="sysnode-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <span class="sysnode-label">Style Dictionary</span>
+          <span class="sysnode-sub">JSON → CSS<br>--en-*</span>
+        </div>
+        <div class="sysarrow">
+          <div class="sysarrow-line" style="position:relative;">
+            <span class="sysarrow-label">build</span>
+            <svg style="position:absolute;right:-7px;top:-6px;" width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M8 1l5 5-5 5M1 6h12" stroke="#22BAA0" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="sysnode highlight">
+          <div class="sysnode-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <span class="sysnode-label">Stencil.js</span>
+          <span class="sysnode-sub">Web Components<br>+ wrappers React</span>
+        </div>
+        <div class="sysarrow">
+          <div class="sysarrow-line" style="position:relative;">
+            <span class="sysarrow-label">roda em</span>
+            <svg style="position:absolute;right:-7px;top:-6px;" width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M8 1l5 5-5 5M1 6h12" stroke="#22BAA0" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="sysnode highlight">
+          <div class="sysnode-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M6 20V10M10 20V4M14 20V10M18 20V4"/></svg>
+          </div>
+          <span class="sysnode-label">.NET / Razor</span>
+          <span class="sysnode-sub">Produto hoje<br>jQuery + C#</span>
+        </div>
+        <div class="sysarrow">
+          <div class="sysarrow-line" style="position:relative;">
+            <span class="sysarrow-label">futuro</span>
+            <svg style="position:absolute;right:-7px;top:-6px;" width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M8 1l5 5-5 5M1 6h12" stroke="rgba(34,186,160,.4)" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="sysnode" style="opacity:.6;">
+          <div class="sysnode-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <span class="sysnode-label">Cosmos DS</span>
+          <span class="sysnode-sub">React · Hotmart<br>convergência</span>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:.8125rem;color:rgba(255,255,255,.3);margin-top:12px;">
+        Cada seta representa uma decisão técnica que o Claude Code ajudou a entender, implementar e documentar.
+      </p>
+    </div>
+
+    <!-- O que o Claude fez -->
+    <div style="margin-top:56px;" class="fade-in">
+      <span class="section-label" style="color:rgba(34,186,160,.6);margin-bottom:20px;display:block;">O que foi delegado ao Claude Code</span>
+      <div class="claude-tasks">
+
+        <div class="claude-task">
+          <span class="claude-task-cat">Entendimento técnico</span>
+          <h4>Leu a stack do eNotas e explicou as opções</h4>
+          <p>Analisou o contexto .NET + jQuery e propôs Web Components como a única solução que funcionaria sem reescrita — com a justificativa técnica completa</p>
+        </div>
+
+        <div class="claude-task">
+          <span class="claude-task-cat">Pipeline de tokens</span>
+          <h4>Configurou o Style Dictionary do zero</h4>
+          <p>Estruturou os arquivos JSON de tokens globais e semânticos, configurou o build que gera o <code style="font-size:.8em;background:rgba(34,186,160,.15);padding:1px 5px;border-radius:3px;">tokens.css</code> com prefixo <code style="font-size:.8em;background:rgba(34,186,160,.15);padding:1px 5px;border-radius:3px;">--en-*</code></p>
+        </div>
+
+        <div class="claude-task">
+          <span class="claude-task-cat">30 componentes</span>
+          <h4>Gerou cada componente Stencil</h4>
+          <p>Criou .tsx, .css, .stories.ts e .figma.tsx para todos os 30 componentes — incluindo ARIA, estados de foco e acessibilidade por padrão</p>
+        </div>
+
+        <div class="claude-task">
+          <span class="claude-task-cat">Figma MCP</span>
+          <h4>Conectou Figma ao código via MCP Server</h4>
+          <p>Leu variáveis e componentes direto do Figma, extraiu a escala de espaçamento do Cosmos DS e alinhou os tokens — tudo via conversa</p>
+        </div>
+
+        <div class="claude-task">
+          <span class="claude-task-cat">Code Connect</span>
+          <h4>Publicou 27 mapeamentos no Figma Dev Mode</h4>
+          <p>Cada componente no Figma agora gera o código HTML real quando inspecionado — não divs genéricas. Isso foi configurado inteiramente pelo Claude</p>
+        </div>
+
+        <div class="claude-task">
+          <span class="claude-task-cat">CI/CD</span>
+          <h4>Configurou GitHub Actions sem DevOps</h4>
+          <p>Build automático a cada push, deploy do Storybook, lint e typecheck — infraestrutura que normalmente requer um engenheiro de plataforma</p>
+        </div>
+
+        <div class="claude-task">
+          <span class="claude-task-cat">Decisão estratégica</span>
+          <h4>Espelhou a API do Cosmos DS desde o início</h4>
+          <p>Entendeu que <code style="font-size:.8em;background:rgba(34,186,160,.15);padding:1px 5px;border-radius:3px;">variant</code>, <code style="font-size:.8em;background:rgba(34,186,160,.15);padding:1px 5px;border-radius:3px;">size</code>, <code style="font-size:.8em;background:rgba(34,186,160,.15);padding:1px 5px;border-radius:3px;">intent</code> precisavam estar alinhados com o Cosmos para que a migração futura seja um find-and-replace</p>
+        </div>
+
+        <div class="claude-task">
+          <span class="claude-task-cat">Documentação</span>
+          <h4>Escreveu stories, READMEs e este documento</h4>
+          <p>Storybook com Controls, README técnico para devs, documentação de tokens, e este relatório para stakeholders — tudo gerado em conjunto</p>
+        </div>
+
+        <div class="claude-task">
+          <span class="claude-task-cat">Segurança</span>
+          <h4>Protegeu tokens sensíveis do repositório</h4>
+          <p>Identificou que o Figma API token estava sendo exposto no Git, adicionou ao .gitignore e removeu do histórico antes do push</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Comparação de velocidade -->
+    <div class="fade-in">
+      <div class="speed-compare">
+        <div class="speed-card manual">
+          <h3>Sem IA — abordagem tradicional</h3>
+          <div class="speed-item"><span class="task">Pesquisa e decisão técnica (Web Components vs React)</span><span class="time-manual">2–3 semanas</span></div>
+          <div class="speed-item"><span class="task">Configurar monorepo pnpm + Style Dictionary</span><span class="time-manual">1 semana</span></div>
+          <div class="speed-item"><span class="task">30 componentes Stencil com stories</span><span class="time-manual">3–4 meses</span></div>
+          <div class="speed-item"><span class="task">Code Connect para 27 componentes</span><span class="time-manual">2–3 semanas</span></div>
+          <div class="speed-item"><span class="task">CI/CD GitHub Actions</span><span class="time-manual">3–5 dias</span></div>
+          <div class="speed-item"><span class="task">Alinhamento de tokens com Cosmos DS</span><span class="time-manual">1–2 semanas</span></div>
+          <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(239,68,68,.2);display:flex;justify-content:space-between;">
+            <span style="font-size:.875rem;color:rgba(255,255,255,.55);">Total estimado</span>
+            <span style="font-size:1rem;font-weight:800;color:rgba(239,68,68,.8);">5–6 meses · 2+ devs</span>
+          </div>
+        </div>
+        <div class="speed-card claude">
+          <h3>Com Claude Code</h3>
+          <div class="speed-item"><span class="task">Pesquisa e decisão técnica (conversa guiada)</span><span class="time-claude">1 sessão</span></div>
+          <div class="speed-item"><span class="task">Configurar monorepo pnpm + Style Dictionary</span><span class="time-claude">2–3 horas</span></div>
+          <div class="speed-item"><span class="task">30 componentes Stencil com stories</span><span class="time-claude">3–4 semanas</span></div>
+          <div class="speed-item"><span class="task">Code Connect para 27 componentes</span><span class="time-claude">1–2 dias</span></div>
+          <div class="speed-item"><span class="task">CI/CD GitHub Actions</span><span class="time-claude">2 horas</span></div>
+          <div class="speed-item"><span class="task">Alinhamento de tokens com Cosmos DS</span><span class="time-claude">1 sessão + Figma MCP</span></div>
+          <div style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(34,186,160,.2);display:flex;justify-content:space-between;">
+            <span style="font-size:.875rem;color:rgba(255,255,255,.55);">Total real</span>
+            <span style="font-size:1rem;font-weight:800;color:var(--en-teal);">4–5 semanas · 1 PD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mensagem para PDs -->
+    <div style="margin-top:40px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:var(--radius-lg);padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;" class="fade-in">
+      <div>
+        <span class="section-label" style="color:rgba(34,186,160,.7);">O que isso muda para PDs</span>
+        <h3 style="color:white;font-size:1.0625rem;margin-bottom:12px;line-height:1.4;">A barreira entre "design" e "implementação" não existe mais da mesma forma</h3>
+        <p style="font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.7;">
+          O Claude Code não substitui engenheiros — ele reduz a dependência de ter um engenheiro disponível para cada decisão de infraestrutura. Um PD com contexto do produto pode agora fazer perguntas técnicas, receber respostas compreensíveis, e executar mudanças que antes ficavam na fila de backlog.
+        </p>
+      </div>
+      <div>
+        <span class="section-label" style="color:rgba(34,186,160,.7);">O que o Claude não fez</span>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+          <li style="display:flex;gap:10px;font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.5;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(239,68,68,.6)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-top:2px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Decidiu quais componentes o eNotas precisava — isso veio do entendimento do produto
+          </li>
+          <li style="display:flex;gap:10px;font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.5;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(239,68,68,.6)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-top:2px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Definiu a estratégia de migração para o Cosmos — isso exigiu entender o roadmap da Hotmart
+          </li>
+          <li style="display:flex;gap:10px;font-size:.875rem;color:rgba(255,255,255,.5);line-height:1.5;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(239,68,68,.6)" stroke-width="2" stroke-linecap="round" style="flex-shrink:0;margin-top:2px;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Escolheu alinhar com o Cosmos desde o início — essa foi uma decisão de negócio, não técnica
+          </li>
+        </ul>
+        <p style="font-size:.8125rem;color:rgba(255,255,255,.3);margin-top:16px;line-height:1.6;">
+          A IA executa. O PD decide o que, por que e para quem.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 3 — BIG NUMBERS
+════════════════════════════════════════════════════ -->
+<section id="numeros" class="dark">
+  <div class="container">
+    <span class="section-label fade-in">Números</span>
+    <h2 class="fade-in">O que foi entregue</h2>
+    <p class="sub-headline fade-in">Tudo construído do zero, alinhado com os padrões da Hotmart.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card fade-in fade-in-delay-1">
+        <div class="stat-number">30</div>
+        <div class="stat-label">Componentes Web<br>prontos para uso</div>
+      </div>
+      <div class="stat-card fade-in fade-in-delay-2">
+        <div class="stat-number">36</div>
+        <div class="stat-label">Tokens de<br>espaçamento</div>
+      </div>
+      <div class="stat-card fade-in fade-in-delay-3">
+        <div class="stat-number">27</div>
+        <div class="stat-label">Mapeamentos<br>Code Connect</div>
+      </div>
+      <div class="stat-card fade-in fade-in-delay-4">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Cobertura de<br>stories</div>
+      </div>
+    </div>
+
+    <div class="features-row">
+      <div class="feature-card fade-in fade-in-delay-1">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </div>
+        <div>
+          <h4>CI/CD Configurado</h4>
+          <p>GitHub Actions · build automático a cada push · deploy do Storybook via gh-pages</p>
+        </div>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-2">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div>
+          <h4>Monorepo pnpm</h4>
+          <p>tokens · components · icons · storybook em workspaces independentes com versionamento coordenado</p>
+        </div>
+      </div>
+      <div class="feature-card fade-in fade-in-delay-3">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <div>
+          <h4>Figma Integrado</h4>
+          <p>MCP Server + Code Connect — agentes geram código real, não pseudo-código</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 4 — COMPONENTES
+════════════════════════════════════════════════════ -->
+<section id="componentes" class="surface">
+  <div class="container">
+    <div class="comp-section-header fade-in">
+      <span class="section-label">Catálogo</span>
+      <h2>Os 30 componentes</h2>
+      <p class="text-muted" style="margin-top:8px;max-width:560px;">
+        Organizados em quatro categorias de complexidade crescente, todos disponíveis como Web Components nativos.
+      </p>
+    </div>
+
+    <div class="comp-categories">
+
+      <div class="comp-category fade-in">
+        <div class="comp-category-header">
+          <div class="comp-category-dot" style="background:#22BAA0;"></div>
+          <h3>Primitivos</h3>
+          <span class="comp-count">11 componentes</span>
+        </div>
+        <table class="use-case-table">
+          <tr><td>&lt;en-button&gt;</td><td>CTAs de emissão, cancelamento, ações em tabelas</td></tr>
+          <tr><td>&lt;en-input&gt;</td><td>CNPJ, e-mail, razão social, campos de formulário</td></tr>
+          <tr><td>&lt;en-textarea&gt;</td><td>Motivo de cancelamento, observações</td></tr>
+          <tr><td>&lt;en-select&gt;</td><td>Regime tributário, tipo de NF, filtros</td></tr>
+          <tr><td>&lt;en-checkbox&gt;</td><td>Configurações, filtros, toggles</td></tr>
+          <tr><td>&lt;en-input-tag&gt;</td><td>Filtros por múltiplos valores, tags de busca</td></tr>
+          <tr><td>&lt;en-tab&gt;</td><td>Navegação entre NFS-e / NF-e / NF-e de devolução — badge de contagem e modo link</td></tr>
+          <tr><td>&lt;en-icon&gt;</td><td>110+ ícones do Figma disponíveis</td></tr>
+          <tr><td>&lt;en-badge&gt;</td><td>Labels de status em listagens</td></tr>
+          <tr><td>&lt;en-nf-status&gt;</td><td>Status semântico de notas (emitida, falha, cancelada…)</td></tr>
+          <tr><td>&lt;en-spinner&gt;</td><td>Loading states em ações assíncronas</td></tr>
+        </table>
+      </div>
+
+      <div class="comp-category fade-in fade-in-delay-1">
+        <div class="comp-category-header">
+          <div class="comp-category-dot" style="background:#3B82F6;"></div>
+          <h3>Compostos</h3>
+          <span class="comp-count">7 componentes</span>
+        </div>
+        <table class="use-case-table">
+          <tr><td>&lt;en-card&gt;</td><td>Resumos de notas, dashboards, painéis de métricas</td></tr>
+          <tr><td>&lt;en-search&gt;</td><td>Busca global de notas fiscais</td></tr>
+          <tr><td>&lt;en-filter&gt;</td><td>Filtros por tipo de NF, status, período</td></tr>
+          <tr><td>&lt;en-faq&gt;</td><td>Central de ajuda, perguntas frequentes</td></tr>
+          <tr><td>&lt;en-stepper&gt;</td><td>Fluxo de onboarding e configuração inicial</td></tr>
+          <tr><td>&lt;en-popover&gt;</td><td>Menus de perfil, notificações, ações contextuais</td></tr>
+          <tr><td>&lt;en-header&gt;</td><td>Header principal da aplicação eNotas</td></tr>
+        </table>
+      </div>
+
+      <div class="comp-category fade-in fade-in-delay-2">
+        <div class="comp-category-header">
+          <div class="comp-category-dot" style="background:#8B5CF6;"></div>
+          <h3>Avançados</h3>
+          <span class="comp-count">7 componentes</span>
+        </div>
+        <table class="use-case-table">
+          <tr><td>&lt;en-tooltip&gt;</td><td>Explicações contextuais, hints em campos de formulário</td></tr>
+          <tr><td>&lt;en-input-number&gt;</td><td>Quantidade de notas, alíquotas, valores numéricos</td></tr>
+          <tr><td>&lt;en-progress&gt;</td><td>Progresso de importação em lote, onboarding</td></tr>
+          <tr><td>&lt;en-modal&gt;</td><td>Confirmação de cancelamento, detalhes de NF, alertas críticos</td></tr>
+          <tr><td>&lt;en-nav-item&gt;</td><td>Menu lateral de navegação (NFS-e, NF-e, Configurações…)</td></tr>
+          <tr><td>&lt;en-footer&gt;</td><td>Rodapé da aplicação com versão e copyright</td></tr>
+          <tr><td>&lt;en-tour&gt;</td><td>Tour guiado para novos usuários, apresentação de features</td></tr>
+        </table>
+      </div>
+
+      <div class="comp-category fade-in fade-in-delay-3">
+        <div class="comp-category-header">
+          <div class="comp-category-dot" style="background:#F97316;"></div>
+          <h3>Adicionais</h3>
+          <span class="comp-count">2 componentes</span>
+        </div>
+        <table class="use-case-table">
+          <tr><td>&lt;en-segmented&gt;</td><td>Seleção de visualização (lista / grade), alternância entre modos de exibição</td></tr>
+          <tr><td>&lt;en-loading-bar&gt;</td><td>Progresso de carregamento de página, upload de arquivos, operações em lote</td></tr>
+        </table>
+      </div>
+
+      <div class="comp-category fade-in fade-in-delay-4">
+        <div class="comp-category-header">
+          <div class="comp-category-dot" style="background:#F59E0B;"></div>
+          <h3>Cosmos Align</h3>
+          <span class="comp-count">3 componentes</span>
+        </div>
+        <table class="use-case-table">
+          <tr><td>&lt;en-lookup&gt;</td><td>Busca de tomador de serviço, seleção de município/prestador, campos com autocomplete</td></tr>
+          <tr><td>&lt;en-tag&gt;</td><td>Categorização de notas, marcadores editáveis, filtros visuais por cor</td></tr>
+          <tr><td>&lt;en-switch&gt;</td><td>Ativar/desativar emissão automática, toggles de configuração</td></tr>
+        </table>
+        <p style="font-size:.8125rem;color:var(--en-muted);margin-top:12px;">
+          Props e variants já espelham o Cosmos DS — migração será um find-and-replace.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 5 — FIGMA TO CODE
+════════════════════════════════════════════════════ -->
+<section id="figma" class="light">
+  <div class="container">
+    <span class="section-label fade-in">Workflow</span>
+    <h2 class="fade-in">Do Figma ao código</h2>
+    <p class="text-muted fade-in" style="margin-top:8px;max-width:560px;">
+      Com o Code Connect configurado, o dev não precisa interpretar o design — o código certo aparece direto no Dev Mode.
+    </p>
+
+    <div class="figma-flow fade-in">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <h4>Designer ajusta no Figma</h4>
+        <p>Variants, props e tokens já conectados aos componentes reais</p>
+      </div>
+      <div class="flow-arrow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <h4>Dev abre Dev Mode</h4>
+        <p>Inspeciona o componente no painel lateral do Figma</p>
+      </div>
+      <div class="flow-arrow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <h4>Copia o código</h4>
+        <p>Aparece o HTML real com as props corretas já preenchidas</p>
+      </div>
+      <div class="flow-arrow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22BAA0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <h4>Cola no .cshtml</h4>
+        <p>Funciona imediatamente — zero configuração extra</p>
+      </div>
+    </div>
+
+    <div class="figma-banner fade-in">
+      <div class="figma-banner-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A9485" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
+      <p>
+        <strong>Resultado:</strong> zero tempo de interpretação de design → menos erros, mais velocidade.
+        O código que o dev copia no Figma é exatamente o código que roda na view.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 6 — TOKENS
+════════════════════════════════════════════════════ -->
+<section id="tokens" class="surface">
+  <div class="container">
+    <span class="section-label fade-in">Fundação</span>
+    <h2 class="fade-in">Tokens de design</h2>
+    <p class="text-muted fade-in" style="margin-top:8px;max-width:560px;">
+      Uma única fonte de verdade para cores, espaçamentos, tipografia e sombras — gerada via Style Dictionary a partir do Figma.
+    </p>
+
+    <div class="fade-in" style="margin-top:40px;">
+      <h3 class="token-arch-section-title" style="margin-top:0;">Arquitetura de dois níveis</h3>
+      <p style="font-size:.875rem;color:var(--en-muted);margin-bottom:0;line-height:1.7;">
+        Uma mudança de cor primária — de teal para qualquer outro tom — acontece em <strong>um único lugar</strong> e se propaga automaticamente para todos os componentes.
+      </p>
+      <table class="token-arch-table">
+        <thead>
+          <tr>
+            <th>Nível</th>
+            <th>Exemplo</th>
+            <th>Função</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Global (primitivo)</td>
+            <td>--en-color-teal-500: #22baa0</td>
+            <td>Valor bruto, sem semântica — base da escala de cores</td>
+          </tr>
+          <tr>
+            <td>Semântico (alias)</td>
+            <td>--en-action-primary-background: var(--en-color-teal-500)</td>
+            <td>Intenção de uso — o que os componentes consomem</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tokens-grid">
+      <div class="token-group fade-in fade-in-delay-1">
+        <h3>Cores semânticas</h3>
+        <div class="color-swatches">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#22BAA0;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">action-primary</span>
+              <span class="swatch-value">--en-action-primary-bg</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#10B981;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">feedback-positive</span>
+              <span class="swatch-value">--en-feedback-positive</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F59E0B;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">feedback-attention</span>
+              <span class="swatch-value">--en-feedback-attention</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#EF4444;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">feedback-negative</span>
+              <span class="swatch-value">--en-feedback-negative</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#3B82F6;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">feedback-info</span>
+              <span class="swatch-value">--en-feedback-info</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0D1117;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">surface-dark</span>
+              <span class="swatch-value">--en-surface-dark</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F8FAFC;border-bottom:1px solid #E2E8F0;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">surface-base</span>
+              <span class="swatch-value">--en-surface-base</span>
+            </div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#1E293B;"></div>
+            <div class="swatch-label">
+              <span class="swatch-name">text-primary</span>
+              <span class="swatch-value">--en-text-primary</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="token-group fade-in fade-in-delay-2">
+        <h3>Escala de espaçamento</h3>
+        <div class="spacing-scale">
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-1</span>
+            <div class="spacing-bar" style="width:4px;"></div>
+            <span class="spacing-val">4px</span>
+          </div>
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-2</span>
+            <div class="spacing-bar" style="width:8px;"></div>
+            <span class="spacing-val">8px</span>
+          </div>
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-3</span>
+            <div class="spacing-bar" style="width:12px;"></div>
+            <span class="spacing-val">12px</span>
+          </div>
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-4</span>
+            <div class="spacing-bar" style="width:16px;"></div>
+            <span class="spacing-val">16px</span>
+          </div>
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-6</span>
+            <div class="spacing-bar" style="width:24px;"></div>
+            <span class="spacing-val">24px</span>
+          </div>
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-8</span>
+            <div class="spacing-bar" style="width:32px;"></div>
+            <span class="spacing-val">32px</span>
+          </div>
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-12</span>
+            <div class="spacing-bar" style="width:48px;"></div>
+            <span class="spacing-val">48px</span>
+          </div>
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-16</span>
+            <div class="spacing-bar" style="width:64px;"></div>
+            <span class="spacing-val">64px</span>
+          </div>
+          <div class="spacing-item">
+            <span class="spacing-name">--en-space-24</span>
+            <div class="spacing-bar" style="width:96px;"></div>
+            <span class="spacing-val">96px</span>
+          </div>
+        </div>
+        <div class="tokens-note" style="margin-top:20px;">
+          Escala completa com 36 tokens alinhada com Tailwind/Cosmos — ao mergear, apenas o mapeamento semântico muda.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 7 — COSMOS ROADMAP
+════════════════════════════════════════════════════ -->
+<section id="cosmos" class="dark">
+  <div class="container">
+    <span class="section-label fade-in">Roadmap</span>
+    <h2 class="fade-in">Caminho para o Cosmos</h2>
+    <p class="sub-headline fade-in">A estratégia de migração já está embutida na arquitetura do DS.</p>
+
+    <div class="cosmos-phases">
+      <div class="phase-card active fade-in fade-in-delay-1">
+        <span class="phase-label">Hoje
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-left:3px"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <h3>.NET / Razor Views</h3>
+        <ul class="phase-list">
+          <li>Web Components via script tag</li>
+          <li>Shadow DOM — zero colisão de CSS</li>
+          <li>jQuery/legacy compatível</li>
+          <li>Code Connect + Figma MCP ativos</li>
+          <li>CI/CD + Storybook online</li>
+        </ul>
+      </div>
+      <div class="phase-card fade-in fade-in-delay-2">
+        <span class="phase-label">Curto prazo</span>
+        <h3>Alinhamento + React</h3>
+        <ul class="phase-list">
+          <li>Wrappers React gerados pelo Stencil</li>
+          <li>Publicar no npm (hotmart-org)</li>
+          <li>Alinhar tokens restantes com Cosmos</li>
+          <li>Testes de acessibilidade (a11y)</li>
+        </ul>
+      </div>
+      <div class="phase-card fade-in fade-in-delay-3">
+        <span class="phase-label">Médio prazo</span>
+        <h3>npm + Adoção</h3>
+        <ul class="phase-list">
+          <li>Pacote público no npm da Hotmart</li>
+          <li>Integração com Chromatic para visual regression</li>
+          <li>Documentação expandida no Storybook</li>
+          <li>Onboarding de outros squads</li>
+        </ul>
+      </div>
+      <div class="phase-card fade-in fade-in-delay-4">
+        <span class="phase-label">Futuro</span>
+        <h3>Merge Cosmos DS</h3>
+        <ul class="phase-list">
+          <li>Substituição por componentes Cosmos</li>
+          <li>Find-and-replace nas views .cshtml</li>
+          <li>Tokens semânticos remapeados</li>
+          <li>Contribuição upstream para Cosmos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cosmos-note fade-in">
+      <strong>Nota arquitetural:</strong> A API dos componentes já está alinhada com o Cosmos DS desde o início — props como <code style="background:rgba(34,186,160,.15);padding:1px 6px;border-radius:3px;font-size:.875em;">variant</code>, <code style="background:rgba(34,186,160,.15);padding:1px 6px;border-radius:3px;font-size:.875em;">size</code>, <code style="background:rgba(34,186,160,.15);padding:1px 6px;border-radius:3px;font-size:.875em;">intent</code> e <code style="background:rgba(34,186,160,.15);padding:1px 6px;border-radius:3px;font-size:.875em;">disabled</code> seguem os mesmos nomes. Migrar será um <strong>find-and-replace</strong>, não uma reescrita.
+    </div>
+
+    <div style="margin-top:40px;" class="fade-in">
+      <span class="section-label" style="color:rgba(34,186,160,.7);">Como a migração acontecerá na prática</span>
+      <div style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="etapa-cols">
+
+        <div class="etapa-block">
+          <div class="etapa-label current">Etapa 1 — Hoje (concluída)</div>
+          <div class="etapa-title">.NET / Razor via &lt;script&gt; tag</div>
+          <div class="etapa-desc">O DS roda no .NET via script tag. 30 componentes disponíveis. O HTML das views permanece intacto.</div>
+          <div class="code-block">
+<pre><span class="cmt">&lt;!-- _Layout.cshtml — uma vez no layout base --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"/dist/tokens.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;script</span> <span class="attr">type</span>=<span class="str">"module"</span>
+  <span class="attr">src</span>=<span class="str">"/dist/enotas-ds/enotas-ds.esm.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+
+<span class="cmt">&lt;!-- Em qualquer .cshtml --&gt;</span>
+<span class="tag">&lt;en-button</span> <span class="attr">variant</span>=<span class="str">"primary"</span><span class="tag">&gt;</span>Emitir Nota<span class="tag">&lt;/en-button&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="etapa-block">
+          <div class="etapa-label">Etapa 2 — Alinhamento de tokens</div>
+          <div class="etapa-title">Arquivo de compatibilidade</div>
+          <div class="etapa-desc">Quando o time Cosmos definir o mapeamento semântico, basta um arquivo de alias. O HTML das views não muda nada.</div>
+          <div class="code-block">
+<pre><span class="cmt">/* arquivo de compatibilidade */</span>
+<span class="prop">--en-action-primary-background</span>:
+  var(<span class="prop">--cosmos-action-primary</span>);
+
+<span class="prop">--en-feedback-positive</span>:
+  var(<span class="prop">--cosmos-feedback-success</span>);</pre>
+          </div>
+        </div>
+
+        <div class="etapa-block">
+          <div class="etapa-label">Etapa 3 — Migração gradual para React</div>
+          <div class="etapa-title">Views .cshtml → React</div>
+          <div class="etapa-desc">Views migradas para React simplesmente trocam a tag HTML pelo wrapper React. A lógica de negócio continua idêntica.</div>
+          <div class="code-block">
+<pre><span class="cmt">&lt;!-- Razor (continua funcionando) --&gt;</span>
+<span class="tag">&lt;en-button</span> <span class="attr">variant</span>=<span class="str">"primary"</span><span class="tag">&gt;</span>
+  Emitir
+<span class="tag">&lt;/en-button&gt;</span>
+
+<span class="cmt">// React/Cosmos (novo — mesmo componente)</span>
+<span class="tag">&lt;EnButton</span> <span class="attr">variant</span>=<span class="str">"primary"</span><span class="tag">&gt;</span>
+  Emitir
+<span class="tag">&lt;/EnButton&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="etapa-block">
+          <div class="etapa-label">Etapa 4 — Unificação (opcional)</div>
+          <div class="etapa-title">Merge com o Cosmos DS</div>
+          <div class="etapa-desc">Se o Cosmos absorver os componentes, a API de props já está alinhada. Toda a migração se resume a um find-and-replace de tags.</div>
+          <div class="code-block">
+<pre><span class="cmt">// O que NÃO precisará ser refeito:</span>
+
+<span class="cmt">// ✓ Tokens (só o mapeamento semântico muda)</span>
+<span class="cmt">// ✓ API de props (variant, size, intent)</span>
+<span class="cmt">// ✓ Stories do Storybook</span>
+<span class="cmt">// ✓ Code Connect no Figma</span></pre>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 768px) { .etapa-cols { grid-template-columns: 1fr !important; } }
+</style>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION — RESUMO EXECUTIVO
+════════════════════════════════════════════════════ -->
+<section id="resumo" class="surface">
+  <div class="container">
+    <span class="section-label fade-in">Antes × Agora</span>
+    <h2 class="fade-in">Resumo executivo</h2>
+    <p class="text-muted fade-in" style="margin-top:8px;max-width:600px;">
+      O eNotas DS não é um projeto paralelo ao produto — é a infraestrutura que permite que qualquer evolução de interface aconteça mais rápido, com mais consistência e com menos risco de regressão visual.
+    </p>
+
+    <div class="fade-in">
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>Dimensão</th>
+            <th class="before-h">Situação antes</th>
+            <th class="after-h">Situação agora</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Consistência visual</td>
+            <td class="before-c">Componentes ad-hoc por view — cada tela reinventava botões, badges e inputs</td>
+            <td class="after-c">30 componentes unificados, baseados nos tokens do Figma</td>
+          </tr>
+          <tr>
+            <td>Velocidade de desenvolvimento</td>
+            <td class="before-c">Dev interpretava o design manualmente e reescrevia HTML a cada sprint</td>
+            <td class="after-c">Code Connect gera o código do componente certo direto no Dev Mode do Figma</td>
+          </tr>
+          <tr>
+            <td>Compatibilidade com .NET</td>
+            <td class="before-c">Não havia camada de componentes — CSS solto em cada .cshtml</td>
+            <td class="after-c">Web Components nativos — funcionam via &lt;script&gt; tag, zero configuração</td>
+          </tr>
+          <tr>
+            <td>Dívida técnica</td>
+            <td class="before-c">Qualquer componente React criaria uma bifurcação do stack — reescrita inevitável</td>
+            <td class="after-c">Stencil gera wrappers React automaticamente — sem bifurcação</td>
+          </tr>
+          <tr>
+            <td>Merge com Cosmos</td>
+            <td class="before-c">Dependia de reescrever o frontend completo para React antes de convergir</td>
+            <td class="after-c">Troca de mapeamento de tokens + find-and-replace nas tags das views</td>
+          </tr>
+          <tr>
+            <td>Documentação</td>
+            <td class="before-c">Inexistente — onboarding dependia de alguém explicar os padrões</td>
+            <td class="after-c">Storybook com Controls, acessibilidade e Code Connect publicado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION — GOVERNANÇA E EVOLUÇÃO
+════════════════════════════════════════════════════ -->
+<section id="governanca" class="light">
+  <div class="container">
+    <span class="section-label fade-in">Processo</span>
+    <h2 class="fade-in">Governança e evolução</h2>
+    <p class="text-muted fade-in" style="margin-top:8px;max-width:560px;">
+      O DS é vivo. Qualquer dev do time pode evoluir componentes ou tokens seguindo o processo abaixo.
+    </p>
+
+    <div class="governa-grid">
+
+      <div class="fade-in fade-in-delay-1">
+        <h3 style="font-size:1rem;margin-bottom:20px;color:var(--en-text);">Para adicionar um novo componente</h3>
+        <div class="governa-steps">
+          <div class="governa-step">
+            <div class="governa-step-num">1</div>
+            <div class="governa-step-content">
+              <h4>Inspecionar no Figma Dev Mode</h4>
+              <p>Verificar variants, props e estados disponíveis antes de implementar</p>
+            </div>
+          </div>
+          <div class="governa-step">
+            <div class="governa-step-num">2</div>
+            <div class="governa-step-content">
+              <h4>Criar <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">en-[nome].tsx</code> + <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">.css</code></h4>
+              <p>Lógica Stencil com props tipadas + estilos usando exclusivamente tokens <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">--en-*</code></p>
+            </div>
+          </div>
+          <div class="governa-step">
+            <div class="governa-step-num">3</div>
+            <div class="governa-step-content">
+              <h4>Criar <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">en-[nome].stories.ts</code></h4>
+              <p>Documentação interativa no Storybook com Controls e casos de uso</p>
+            </div>
+          </div>
+          <div class="governa-step">
+            <div class="governa-step-num">4</div>
+            <div class="governa-step-content">
+              <h4>Criar <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">en-[nome].figma.tsx</code></h4>
+              <p>Mapeamento Code Connect — conecta o componente Figma ao código real</p>
+            </div>
+          </div>
+          <div class="governa-step">
+            <div class="governa-step-num">5</div>
+            <div class="governa-step-content">
+              <h4>Build e publicação</h4>
+              <p><code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">pnpm build:components && pnpm figma:connect</code></p>
+            </div>
+          </div>
+          <div class="governa-step">
+            <div class="governa-step-num">6</div>
+            <div class="governa-step-content">
+              <h4>Atualizar STATUS.md</h4>
+              <p>Registrar o novo componente, sua tag, casos de uso e data de entrega</p>
+            </div>
+          </div>
+        </div>
+        <div class="governa-note" style="margin-top:20px;">
+          O Stencil gera documentação de props automaticamente — sem esforço manual de manutenção de docs.
+        </div>
+      </div>
+
+      <div class="fade-in fade-in-delay-2">
+        <h3 style="font-size:1rem;margin-bottom:20px;color:var(--en-text);">Para atualizar tokens do Figma</h3>
+        <div class="governa-steps">
+          <div class="governa-step">
+            <div class="governa-step-num">1</div>
+            <div class="governa-step-content">
+              <h4>Exportar variáveis do Figma</h4>
+              <p>Usar o plugin de exportação ou o Figma MCP para extrair as variáveis atualizadas</p>
+            </div>
+          </div>
+          <div class="governa-step">
+            <div class="governa-step-num">2</div>
+            <div class="governa-step-content">
+              <h4>Atualizar <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">packages/tokens/src/</code></h4>
+              <p>Editar <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">global/</code> para valores primitivos ou <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">semantic/</code> para aliases de intenção</p>
+            </div>
+          </div>
+          <div class="governa-step">
+            <div class="governa-step-num">3</div>
+            <div class="governa-step-content">
+              <h4>Rodar o build de tokens</h4>
+              <p><code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">pnpm build:tokens</code> — Style Dictionary regenera o <code style="font-size:.85em;background:#f1f5f9;padding:1px 5px;border-radius:3px;">tokens.css</code></p>
+            </div>
+          </div>
+          <div class="governa-step">
+            <div class="governa-step-num">4</div>
+            <div class="governa-step-content">
+              <h4>Propagação automática</h4>
+              <p>Os componentes já refletem a mudança — CSS custom properties se propagam automaticamente via Shadow DOM</p>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--en-surface);border:1px solid var(--en-border);border-radius:var(--radius-lg);padding:20px;margin-top:20px;">
+          <h4 style="font-size:.875rem;margin-bottom:12px;color:var(--en-text);">Integração com jQuery — zero adaptação</h4>
+          <pre style="font-family:'SF Mono','Fira Code',monospace;font-size:.75rem;color:var(--en-muted);line-height:1.7;margin:0;overflow-x:auto;white-space:pre;">$('en-button').on('enClick', function() {
+  // lógica jQuery existente intacta
+});</pre>
+          <p style="font-size:.8125rem;color:var(--en-muted);margin-top:10px;line-height:1.5;">
+            Os eventos dos Web Components funcionam com jQuery como qualquer evento DOM nativo.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 8 — PRÓXIMOS PASSOS
+════════════════════════════════════════════════════ -->
+<section id="proximos" class="light">
+  <div class="container">
+    <span class="section-label fade-in">Ações</span>
+    <h2 class="fade-in">Próximos passos</h2>
+    <p class="text-muted fade-in" style="margin-top:8px;max-width:560px;">
+      Quatro ações imediatas para consolidar o DS e expandir o alcance na Hotmart.
+    </p>
+
+    <div class="proximos-grid">
+      <div class="proximo-card fade-in fade-in-delay-1">
+        <span class="proximo-num">01</span>
+        <h3>Storybook online via Chromatic</h3>
+        <p>
+          Publicar o Storybook na plataforma Chromatic para habilitar visual regression testing automático e compartilhar documentação viva com todo o time.
+        </p>
+        <div class="proximo-footer">
+          <span class="en-badge positive">Pronto para executar</span>
+        </div>
+      </div>
+
+      <div class="proximo-card fade-in fade-in-delay-2">
+        <span class="proximo-num">02</span>
+        <h3>Wrappers React</h3>
+        <p>
+          Ativar a geração automática de wrappers React via Stencil. Isso permite usar os mesmos componentes em projetos React/Next.js da Hotmart sem reescrita.
+        </p>
+        <div class="proximo-footer">
+          <span class="en-badge positive">Pronto para executar</span>
+        </div>
+      </div>
+
+      <div class="proximo-card fade-in fade-in-delay-3">
+        <span class="proximo-num">03</span>
+        <h3>Transferir repositório para hotmart-org</h3>
+        <p>
+          Mover o repositório do GitHub pessoal para a organização da Hotmart. Necessário para integrar com o CI/CD da empresa e abrir o pacote npm no escopo correto.
+        </p>
+        <div class="proximo-footer">
+          <span class="en-badge attention">Aguardando permissão</span>
+        </div>
+      </div>
+
+      <div class="proximo-card fade-in fade-in-delay-4">
+        <span class="proximo-num">04</span>
+        <h3>Code Connect do en-lookup</h3>
+        <p>
+          Finalizar o mapeamento Code Connect do componente en-lookup — aguardando definição final das variants no arquivo Figma antes de publicar.
+        </p>
+        <div class="proximo-footer">
+          <span class="en-badge informative">Aguardando design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════
+     SECTION 9 — FOOTER
+════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-mark">EN</div>
+          <span class="footer-logo-text">eNotas <span>DS</span></span>
+        </div>
+        <p class="footer-tagline">Design System · Hotmart eNotas</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Links</h4>
+        <a href="https://github.com/marianovale666/enotas-design-system" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          Repositório — GitHub
+        </a>
+        <a href="https://www.figma.com/design/iFAa3FeBNKmLusnzurPsdH/eNotas-DS" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.852 8.981h-4.588V0h4.588c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.491-4.49 4.491zM12.735 7.51h3.117c1.665 0 3.019-1.355 3.019-3.019s-1.354-3.019-3.019-3.019h-3.117V7.51zm0 1.471H8.148c-2.476 0-4.49-2.014-4.49-4.49S5.672 0 8.148 0h4.588v8.981zm-4.587-7.51c-1.665 0-3.019 1.355-3.019 3.019s1.354 3.019 3.019 3.019h3.117V1.471H8.148zm4.587 15.019H8.148c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v8.98zm-4.587-7.509c-1.665 0-3.019 1.354-3.019 3.019s1.354 3.019 3.019 3.019h3.117v-6.038H8.148zm0 13.019c-2.476 0-4.49-2.014-4.49-4.49s2.014-4.49 4.49-4.49h4.588v4.49c0 2.476-2.014 4.49-4.588 4.49zm0-7.509c-1.665 0-3.019 1.354-3.019 3.019s1.354 3.019 3.019 3.019c1.665 0 3.019-1.354 3.019-3.019v-3.019H8.148zm7.704 7.509c-2.476 0-4.49-2.014-4.49-4.49v-4.49h4.49c2.476 0 4.49 2.014 4.49 4.49s-2.014 4.49-4.49 4.49zm0-7.509h-3.019v3.019c0 1.665 1.354 3.019 3.019 3.019s3.019-1.354 3.019-3.019-1.354-3.019-3.019-3.019z"/></svg>
+          Figma — eNotas DS
+        </a>
+        <a href="https://stenciljs.com/docs/introduction" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Stencil.js — docs
+        </a>
+        <a href="https://www.figma.com/developers/code-connect" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          Code Connect — docs
+        </a>
+        <a href="https://styledictionary.style" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Style Dictionary — docs
+        </a>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="footer-bottom">
+      <span class="footer-copy">eNotas Design System · Hotmart · 2026</span>
+      <div class="footer-badge">
+        <span></span>
+        Em produção
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // IntersectionObserver para animações de entrada
+  (function() {
+    var elements = document.querySelectorAll('.fade-in');
+    if (!window.IntersectionObserver) {
+      elements.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    elements.forEach(function(el) { observer.observe(el); });
+  })();
+
+  // Smooth scroll para links internos
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      var target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

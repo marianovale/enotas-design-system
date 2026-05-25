@@ -58,6 +58,32 @@ Figma Variables → `packages/tokens/src/global/*.json` + `src/semantic/*.json` 
 - Prefixo CSS: `--en-*` (ex: `--en-action-primary-background`)
 - Ao mergear com Cosmos: só o mapeamento semântico muda, o HTML/Razor permanece intacto
 
+### Estratégia de Tokens — eNotas → Identidade Hotmart
+
+**Decisão de produto**: o eNotas será, no futuro, 100% Cosmos DS — sem tokens diferenciados.
+eNotas adotará a identidade visual da Hotmart (cores, tipografia, espaçamentos do Cosmos).
+
+Hoje os tokens divergem intencionalmente:
+
+| Token | eNotas atual | Cosmos/Hotmart |
+|---|---|---|
+| `primary` | `#22BAA0` (teal eNotas) | cor primária Hotmart |
+| outros | valores próprios eNotas | referência Cosmos |
+
+**Por que não usar os tokens do Cosmos agora?**
+O Cosmos ainda não tem um pacote consumível pelo ambiente .NET/Razor (sem npm, sem bundler).
+Manter `--en-*` próprio evita acoplamento prematuro e permite entregas independentes.
+
+**Plano de migração (quando o merge acontecer):**
+1. Substituir os valores em `src/global/color.json` pelos valores do Cosmos
+2. O CSS gerado (`dist/tokens.css`) passa a refletir a identidade Hotmart
+3. HTML/Razor Views **não mudam** — só os valores visuais mudam
+4. Componentes Stencil viram wrappers dos componentes React do Cosmos (ou são aposentados)
+
+**O que NÃO fazer enquanto isso:**
+- Não criar tokens exclusivos eNotas sem necessidade real — cada novo token é dívida de migração
+- Não divergir prop names / variant names do Cosmos — alinhamento é a proteção para a migração
+
 ### Componentes (Stencil.js)
 
 Cada componente fica em `packages/components/src/components/<tag>/`:
