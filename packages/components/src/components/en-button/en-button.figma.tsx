@@ -3,19 +3,11 @@ import figma from '@figma/code-connect';
 figma.connect('https://www.figma.com/design/KeXcEZ17XRl5yxs8vJEQeh/eNotas-Design-System?node-id=290-3105&m=dev', {
   props: {
     variant: figma.enum('variant', {
-      primary:     'default',
-      default:     'default',
-      outline:     'secondary',
-      link:        'link',
-      Simple:      'ghost',
-      tab:         'ghost',
-      danger:      'negative',
-      negative:    'negative',
-      positive:    'positive',
-      attention:   'attention',
-      informative: 'informative',
-      cta:         'cta',
-      white:       'white',
+      primary: 'default',
+      outline: 'secondary',
+      link:    'link',
+      Simple:  'ghost',
+      tab:     'ghost',
     }),
     size: figma.enum('size', {
       sm: 'sm',
