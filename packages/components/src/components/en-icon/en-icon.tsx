@@ -44,6 +44,8 @@ export class EnIcon {
 
   render() {
     const px = parseInt(this.size);
+    // IDs cannot have spaces; slug matches the sprite symbol id
+    const slug = this.name.replace(/\s+/g, '-');
     return (
       <Host
         class={`size-${this.size.replace('px', '')}`}
@@ -51,9 +53,17 @@ export class EnIcon {
         aria-label={this.label}
         aria-hidden={!this.label ? 'true' : undefined}
       >
-        {/* Ícones carregados via sprite SVG externo — substitua /icons/sprite.svg pelo path do seu bundle */}
-        <svg width={px} height={px} viewBox={`0 0 ${px} ${px}`} fill="currentColor">
-          <use href={`/icons/sprite.svg#${this.name}`} />
+        <svg
+          width={px}
+          height={px}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <use href={`/icons/sprite.svg#${slug}`} />
         </svg>
       </Host>
     );

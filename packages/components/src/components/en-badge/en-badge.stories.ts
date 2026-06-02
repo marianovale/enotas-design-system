@@ -5,22 +5,54 @@ import type { BadgeVariant, BadgeSize } from './en-badge';
 const meta: Meta = {
   title: 'Primitives/EnBadge',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+**en-badge** exibe um rótulo de status curto e compacto. Use-o para comunicar o estado de um
+objeto (nota fiscal, pedido, tarefa) de forma imediata e escaneável.
+
+**Badge vs Tag**
+- Use **badge** para estados de sistema gerados automaticamente — ex: "Autorizada", "Rejeitada", "Em análise".
+- Use **tag** para categorias ou atributos escolhidos pelo usuário — ex: "Imposto retido", "Serviço", "NFS-e".
+  A tag normalmente é interativa (clicável/removível); o badge é puramente informativo.
+
+**Slot**
+O conteúdo é passado via slot padrão (\`<en-badge>Texto</en-badge>\`), não por prop.
+
+**Retrocompatibilidade**
+A prop \`intent\` (valores legados: neutral, success, warning, danger, info) ainda é aceita e mapeada
+internamente para os valores Cosmos. Prefira sempre \`variant\`.
+        `.trim(),
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: 'select',
       options: ['default', 'positive', 'negative', 'attention', 'informative', 'brand'] satisfies BadgeVariant[],
-      description: 'Variante visual (alinhado com Cosmos DS)',
+      description:
+        'Variante visual (alinhado com Cosmos DS). Define cor de fundo, texto e borda de acordo com a semântica da informação.',
+      table: { defaultValue: { summary: 'default' } },
     },
     size: {
       control: 'select',
       options: ['sm', 'md'] satisfies BadgeSize[],
-      description: 'Tamanho do badge',
+      description: 'Tamanho do badge. `sm` = 1.25rem de altura; `md` = 1.5rem (padrão).',
+      table: { defaultValue: { summary: 'md' } },
     },
     outline: {
       control: 'boolean',
-      description: 'Contorno em vez de fundo sólido',
+      description:
+        'Quando `true`, exibe apenas a borda colorida sem fundo sólido. Útil em fundos coloridos para manter contraste.',
+      table: { defaultValue: { summary: 'false' } },
     },
-    label: { control: 'text' },
+    label: {
+      control: 'text',
+      description:
+        'Conteúdo exibido no badge. Passado via **slot** — não é uma prop do componente. Use este controle apenas nas stories interativas do Storybook.',
+      table: { category: 'Slot (Storybook only)' },
+    },
   },
   args: {
     variant: 'default',
@@ -33,13 +65,36 @@ export default meta;
 
 type Story = StoryObj<{ variant: BadgeVariant; size: BadgeSize; outline: boolean; label: string }>;
 
+// ---------------------------------------------------------------------------
+// Default — controle interativo
+// ---------------------------------------------------------------------------
 export const Default: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Playground interativo. Use os controles do painel para explorar todas as combinações de variant, size e outline.',
+      },
+    },
+  },
   render: ({ variant, size, outline, label }) =>
     html`<en-badge variant=${variant} size=${size} ?outline=${outline}>${label}</en-badge>`,
 };
 
+// ---------------------------------------------------------------------------
+// AllVariants — todas as 6 variantes solid
+// ---------------------------------------------------------------------------
 export const AllVariants: Story = {
   name: 'Todas as variantes',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'As 6 variantes semânticas no estilo sólido (padrão). Cada cor mapeia para um estado de negócio específico dentro do eNotas.',
+      },
+    },
+    controls: { disable: true },
+  },
   render: () => html`
     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
       <en-badge variant="default">Default</en-badge>
@@ -52,8 +107,56 @@ export const AllVariants: Story = {
   `,
 };
 
+// ---------------------------------------------------------------------------
+// AllStates — grid 6 variantes × solid + outline
+// ---------------------------------------------------------------------------
+export const AllStates: Story = {
+  name: 'Todos os estados (solid + outline)',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Visão completa: as 6 variantes em modo sólido (linha superior) e em modo outline (linha inferior). Use para QA visual e validação de contraste.',
+      },
+    },
+    controls: { disable: true },
+  },
+  render: () => html`
+    <div style="display:flex;flex-direction:column;gap:0.75rem">
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
+        <en-badge variant="default">Default</en-badge>
+        <en-badge variant="positive">Autorizada</en-badge>
+        <en-badge variant="negative">Rejeitada</en-badge>
+        <en-badge variant="attention">Pendente</en-badge>
+        <en-badge variant="informative">Em análise</en-badge>
+        <en-badge variant="brand">eNotas</en-badge>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
+        <en-badge variant="default" outline>Default</en-badge>
+        <en-badge variant="positive" outline>Autorizada</en-badge>
+        <en-badge variant="negative" outline>Rejeitada</en-badge>
+        <en-badge variant="attention" outline>Pendente</en-badge>
+        <en-badge variant="informative" outline>Em análise</en-badge>
+        <en-badge variant="brand" outline>eNotas</en-badge>
+      </div>
+    </div>
+  `,
+};
+
+// ---------------------------------------------------------------------------
+// Outline — foco no estilo de borda
+// ---------------------------------------------------------------------------
 export const Outline: Story = {
   name: 'Variante outline',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Todas as variantes em modo outline. Prefira este estilo quando o badge estiver sobre um fundo colorido ou em contextos de menor destaque.',
+      },
+    },
+    controls: { disable: true },
+  },
   render: () => html`
     <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
       <en-badge variant="default" outline>Default</en-badge>
@@ -66,8 +169,20 @@ export const Outline: Story = {
   `,
 };
 
+// ---------------------------------------------------------------------------
+// Sizes — comparação de tamanhos
+// ---------------------------------------------------------------------------
 export const Sizes: Story = {
   name: 'Tamanhos',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          '`sm` é indicado para tabelas densas e campos compactos. `md` é o padrão para a maioria dos contextos.',
+      },
+    },
+    controls: { disable: true },
+  },
   render: () => html`
     <div style="display:flex;gap:0.75rem;align-items:center">
       <en-badge variant="positive" size="sm">sm</en-badge>
@@ -76,8 +191,20 @@ export const Sizes: Story = {
   `,
 };
 
+// ---------------------------------------------------------------------------
+// InContext — listagem de notas fiscais (não alterar)
+// ---------------------------------------------------------------------------
 export const InContext: Story = {
   name: 'Em contexto — listagem de notas',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Uso real do badge em uma listagem de notas fiscais. Demonstra como cada variante comunica o estado de processamento de uma NFS-e.',
+      },
+    },
+    controls: { disable: true },
+  },
   render: () => html`
     <div style="display:flex;flex-direction:column;gap:12px;max-width:480px;font-family:sans-serif;font-size:14px">
       ${[

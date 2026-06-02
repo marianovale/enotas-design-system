@@ -39,8 +39,8 @@
   width: 20px;
   height: 20px;
   border-radius: var(--en-radius-full, 9999px);
-  background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: var(--en-action-primary-foreground, #ffffff);
+  box-shadow: var(--en-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.2));
   transition: transform 150ms ease;
   flex-shrink: 0;
 }

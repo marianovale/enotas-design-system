@@ -15,12 +15,12 @@
       "background":        { "value": "transparent",                "type": "color" },
       "background-hover":  { "value": "{color.neutral.50}",         "type": "color" },
       "border":            { "value": "{color.neutral.300}",        "type": "color" },
-      "foreground":        { "value": "{color.neutral.700}",        "type": "color" }
+      "foreground":        { "value": "{color.neutral.900}",        "type": "color" }
     },
     "ghost": {
       "background":        { "value": "transparent",                "type": "color" },
       "background-hover":  { "value": "{color.neutral.100}",        "type": "color" },
-      "foreground":        { "value": "{color.neutral.700}",        "type": "color" }
+      "foreground":        { "value": "{color.neutral.900}",        "type": "color" }
     },
     "danger": {
       "background":        { "value": "{color.danger.500}",         "type": "color" },

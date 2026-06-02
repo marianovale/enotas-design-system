@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "description": "eNotas Design System — Web Components escaláveis para Hotmart eNotas",
   "scripts": {
-    "build": "pnpm --recursive --filter './packages/**' build",
+    "build": "pnpm build:icons && pnpm --recursive --filter './packages/**' build",
+    "build:icons": "node scripts/build-icons.mjs",
     "build:tokens": "pnpm --filter @enotas-ds/tokens build",
     "build:components": "pnpm --filter @enotas-ds/components build",
     "build:components:react": "pnpm --filter @enotas-ds/components build:react",

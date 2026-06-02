@@ -104,7 +104,56 @@ Acompanhamento do progresso de implementação do DS. Atualizado a cada componen
 | Gerar wrappers React | ⏳ Planejado | `pnpm build:components:react` — pacote `@enotas-ds/components-react` |
 | Mapear tokens para Cosmos | ✅ Pronto | `dist/cosmos-bridge.css` — redireciona `--en-*` → `--cds-*`; tokens de brand eNotas (teal/purple) são extensão permanente, não mapeados |
 | Guia de migração | ⏳ Planejado | Doc: Razor → React, passo a passo |
-| Nodes Figma p/ en-lookup, en-tag | ⏳ Planejado | Criar componentes no Figma e atualizar Code Connect |
+| Code Connect en-lookup | ✅ Pronto | 5 connects (default, loading, multiple, with-value, error) — figma.tsx publicado |
+| Code Connect en-tag | ✅ Pronto | 9 connects (8 variants + dismissible) — figma.tsx publicado |
+
+---
+
+## Fase 6 — Handoff Quality (Code Connect multi-connects + stories + tokens CSS)
+
+> Objetivo: elevar cada componente ao padrão do `en-lookup` — N connects por estado/variante, stories com AllStates, CSS com `var(--en-*)`.
+
+| Componente | Code Connect | Stories | CSS Tokens | Observações |
+|---|---|---|---|---|
+| `en-lookup` | ✅ 5 connects | ✅ | ✅ | Padrão de referência |
+| `en-checkbox` | ✅ 8 connects | ✅ AllStates 3×5 | ✅ | square/round/switch × states |
+| `en-input` | ✅ 6 connects | ✅ Filled/WithHint/AllStates | ✅ | shadow-focus tokenizado |
+| `en-select` | ✅ 7 connects | ✅ Filled/WithHint/AllStates | ✅ | options via JS (não HTML attr) |
+| `en-input-number` | ✅ 6 connects | ✅ WithHint/WithError/AllStates | ✅ | botões +/- não existem como component set no Figma (design debt) |
+| `en-textarea` | ✅ 8 connects | ✅ Filled/Required/Sizes/AllStates | ✅ | edit→hover e edit→focus mapeados |
+| `en-switch` | ✅ 6 connects | ✅ AllStates 2×3 | ✅ | thumb → `var(--en-action-primary-foreground)` |
+| `en-input-tag` | ✅ 4 connects | ✅ AllStates + WithHint | ✅ | shadow-focus-danger tokenizado |
+| `en-badge` | ✅ 16 connects | ✅ AllStates 2×6 | ✅ | solid + outline + sm |
+| `en-tag` | ✅ 9 connects | ✅ AllStates 2×8 | ✅ | novo namespace `--en-tag-{variant}-background/foreground` |
+| `en-nf-status` | ✅ 8 connects | ✅ AllTypesAndStatuses + InContext | ✅ | 1 genérico + 7 por status |
+| `en-progress` | ✅ 7 connects | ✅ AllStates 4×3 | ✅ | Figma debt: faltam variants intent/size |
+| `en-spinner` | ✅ 4 connects | ✅ InContext + AllSizesLabeled | ✅ | bug corrigido: frames animation ≠ size prop |
+| `en-button` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-tooltip` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-loading-bar` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-tab` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-segmented` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-filter` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-search` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-nav-item` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-card` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-modal` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-popover` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-stepper` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-tour` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-faq` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-header` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-footer` | ⏳ Pendente | ⏳ | ⏳ | |
+| `en-icon` | ⏳ Pendente | ⏳ | ⏳ | |
+
+**Novos tokens criados nesta fase:**
+- `--en-shadow-focus` — shadow do campo no estado focus (azul/teal)
+- `--en-shadow-focus-danger` — shadow do campo no estado error (vermelho)
+- `--en-shadow-sm` — shadow sutil (checkbox, switch)
+- `--en-action-primary-foreground` — cor do texto/ícone sobre fundo primário (branco)
+- `--en-action-primary-foreground-muted` — variante com opacidade
+- `--en-tag-{neutral|red|orange|yellow|green|teal|blue|purple}-background` — background por variante
+- `--en-tag-{neutral|red|orange|yellow|green|teal|blue|purple}-foreground` — foreground por variante
 
 ---
 

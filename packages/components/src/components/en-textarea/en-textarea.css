@@ -19,7 +19,7 @@ textarea {
   padding: var(--en-spacing-3, 0.75rem) var(--en-spacing-4, 1rem);
   background: var(--en-surface-default, #ffffff);
   border: 1px solid var(--en-border-strong, #8f8f8f);
-  border-radius: var(--en-radius-md, 0.5rem);
+  border-radius: var(--en-radius-md, 0.375rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-textarea-font-size, var(--en-font-size-sm, 0.875rem));
   color: var(--en-text-primary, #1f1f1f);
@@ -44,7 +44,7 @@ textarea::placeholder { color: var(--en-text-secondary, #6b6b6b); }
 
 :host(.state-focus) textarea {
   border-color: var(--en-border-focus, #22baa0);
-  box-shadow: 0 0 0 3px rgba(34, 186, 160, 0.15);
+  box-shadow: var(--en-shadow-focus, 0 0 0 3px rgba(34, 186, 160, 0.15));
 }
 
 :host(.state-inactived) textarea {

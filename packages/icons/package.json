@@ -1,0 +1,13 @@
+{
+  "name": "@enotas-ds/icons",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SVG icon sprites for eNotas DS",
+  "scripts": {
+    "build": "node ../../scripts/build-icons.mjs",
+    "clean": "rm -rf dist"
+  },
+  "files": [
+    "dist"
+  ]
+}

@@ -4,6 +4,16 @@ import { html } from 'lit';
 const meta: Meta = {
   title: 'Components/EnSwitch',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Switch toggle para ativar/desativar uma configuração com efeito imediato. ' +
+          'Use `<en-switch>` quando a ação tem efeito imediato (ex: ligar emissão automática). ' +
+          'Prefira `<en-checkbox>` quando a seleção faz parte de um formulário com botão de confirmação.',
+      },
+    },
+  },
   argTypes: {
     label:    { control: 'text',    description: 'Label visível ao lado do switch' },
     checked:  { control: 'boolean', description: 'Estado ligado/desligado' },
@@ -55,6 +65,45 @@ export const WithoutLabel: Story = {
     <div style="display:flex;gap:16px;padding:16px;align-items:center">
       <en-switch></en-switch>
       <en-switch checked></en-switch>
+    </div>
+  `,
+};
+
+export const AllStates: Story = {
+  name: 'Todos os estados',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Grid 2×3 mostrando as combinações de off/on com sem label, com label e disabled.',
+      },
+    },
+  },
+  render: () => html`
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:16px;font-family:sans-serif;font-size:12px;color:#6b7280;text-align:center">
+      <div>
+        <div style="margin-bottom:8px;font-weight:600">Sem label</div>
+        <en-switch></en-switch>
+      </div>
+      <div>
+        <div style="margin-bottom:8px;font-weight:600">Com label</div>
+        <en-switch label="Label"></en-switch>
+      </div>
+      <div>
+        <div style="margin-bottom:8px;font-weight:600">Disabled</div>
+        <en-switch label="Label" disabled></en-switch>
+      </div>
+      <div>
+        <en-switch checked></en-switch>
+        <div style="margin-top:8px">Sem label (on)</div>
+      </div>
+      <div>
+        <en-switch checked label="Label"></en-switch>
+        <div style="margin-top:8px">Com label (on)</div>
+      </div>
+      <div>
+        <en-switch checked disabled label="Label"></en-switch>
+        <div style="margin-top:8px">Disabled (on)</div>
+      </div>
     </div>
   `,
 };

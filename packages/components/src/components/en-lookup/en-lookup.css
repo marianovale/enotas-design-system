@@ -21,10 +21,10 @@
   flex-wrap: wrap;
   gap: var(--en-spacing-1, 0.25rem);
   min-height: 40px;
-  padding: 4px var(--en-spacing-3, 0.75rem);
+  padding: var(--en-spacing-1, 0.25rem) var(--en-spacing-3, 0.75rem);
   background: var(--en-surface-default, #ffffff);
   border: 1px solid var(--en-border-strong, #8f8f8f);
-  border-radius: var(--en-radius-md, 0.5rem);
+  border-radius: var(--en-radius-md, 0.375rem);
   transition: border-color 150ms ease, box-shadow 150ms ease;
   cursor: text;
 }
@@ -101,11 +101,11 @@
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: var(--en-spacing-1, 0.25rem);
   padding: 0 var(--en-spacing-2, 0.5rem);
   height: 24px;
   background: var(--en-action-primary-background, #22baa0);
-  color: #ffffff;
+  color: var(--en-action-primary-foreground, #ffffff);
   border-radius: var(--en-radius-full, 9999px);
   font-size: var(--en-font-size-xs, 0.75rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
@@ -120,7 +120,8 @@
   width: 14px;
   height: 14px;
   border: none;
-  background: rgba(255, 255, 255, 0.3);
+  /* Overlay semitransparente sobre a cor primária — sem token equivalente, fallback intencional */
+  background: color-mix(in srgb, var(--en-action-primary-foreground, #ffffff) 30%, transparent);
   border-radius: var(--en-radius-full, 9999px);
   padding: 0;
   cursor: pointer;
@@ -128,19 +129,19 @@
 }
 
 .chip-remove:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: color-mix(in srgb, var(--en-action-primary-foreground, #ffffff) 50%, transparent);
 }
 
 /* --- Dropdown --- */
 .dropdown {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + var(--en-spacing-1, 0.25rem));
   left: 0;
   right: 0;
   z-index: 1000;
   background: var(--en-surface-default, #ffffff);
   border: 1px solid var(--en-border-default, #e1e3e6);
-  border-radius: var(--en-radius-md, 0.5rem);
+  border-radius: var(--en-radius-md, 0.375rem);
   box-shadow: var(--en-shadow-md, 0 4px 12px rgba(0, 0, 0, 0.1));
   padding: var(--en-spacing-1, 0.25rem) 0;
   margin: 0;
@@ -205,7 +206,7 @@
 .option-check.is-checked {
   background: var(--en-action-primary-background, #22baa0);
   border-color: var(--en-action-primary-background, #22baa0);
-  color: #ffffff;
+  color: var(--en-action-primary-foreground, #ffffff);
 }
 
 /* --- Messages --- */

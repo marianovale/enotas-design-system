@@ -7,12 +7,12 @@
     "sunken":   { "value": "{color.neutral.100}", "type": "color" }
   },
   "border": {
-    "default": { "value": "{color.neutral.200}", "type": "color" },
+    "default": { "value": "{color.neutral.300}", "type": "color" },
     "strong":  { "value": "{color.neutral.400}", "type": "color" },
     "focus":   { "value": "{color.brand.teal.500}", "type": "color" }
   },
   "text": {
-    "primary":   { "value": "{color.neutral.800}", "type": "color" },
+    "primary":   { "value": "{color.neutral.900}", "type": "color" },
     "secondary":  { "value": "{color.neutral.500}", "type": "color" },
     "disabled":  { "value": "{color.neutral.300}", "type": "color" },
     "inverse":   { "value": "{color.neutral.0}",   "type": "color" },

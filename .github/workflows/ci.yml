@@ -40,6 +40,9 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Build icons
+        run: pnpm build:icons
+
       - name: Build tokens
         run: pnpm build:tokens
 

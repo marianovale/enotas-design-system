@@ -15,3 +15,10 @@ storybook-static/
 
 # Figma token export (gerado, não versionado)
 packages/tokens/.figma-export/*.json
+
+# Mockups e protótipos locais
+mockups/
+
+# Contextos de sessão Claude
+cosmos-ds-new-project-context.md
+

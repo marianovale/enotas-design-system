@@ -43,13 +43,13 @@
 :host(.type-square.is-checked) .control {
   background: var(--en-action-primary-background, #22baa0);
   border-color: var(--en-action-primary-background, #22baa0);
-  color: #ffffff;
+  color: var(--en-action-primary-foreground, #ffffff);
 }
 :host(.type-square) .control svg { width: 12px; height: 10px; }
 :host(.type-square.is-indeterminate) .control {
   background: var(--en-action-primary-background, #22baa0);
   border-color: var(--en-action-primary-background, #22baa0);
-  color: #ffffff;
+  color: var(--en-action-primary-foreground, #ffffff);
 }
 :host(.type-square.is-indeterminate) .control svg { width: 12px; height: 2px; }
 
@@ -65,13 +65,13 @@
 :host(.type-round.is-checked) .control {
   background: var(--en-action-primary-background, #22baa0);
   border-color: var(--en-action-primary-background, #22baa0);
-  color: #ffffff;
+  color: var(--en-action-primary-foreground, #ffffff);
 }
 :host(.type-round) .control svg { width: 12px; height: 10px; }
 :host(.type-round.is-indeterminate) .control {
   background: var(--en-action-primary-background, #22baa0);
   border-color: var(--en-action-primary-background, #22baa0);
-  color: #ffffff;
+  color: var(--en-action-primary-foreground, #ffffff);
 }
 :host(.type-round.is-indeterminate) .control svg { width: 12px; height: 2px; }
 
@@ -92,7 +92,7 @@
   width: 20px;
   height: 20px;
   border-radius: var(--en-radius-full, 9999px);
-  background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  background: var(--en-action-primary-foreground, #ffffff);
+  box-shadow: var(--en-shadow-sm, 0 1px 3px rgba(0,0,0,0.2));
   transition: transform 150ms ease;
 }
