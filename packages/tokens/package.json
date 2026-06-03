@@ -11,13 +11,14 @@
       "require": "./dist/tokens.cjs"
     },
     "./css": "./dist/tokens.css",
+    "./fonts": "./dist/fonts/fonts.css",
     "./json": "./dist/tokens.json",
     "./tailwind-preset": "./dist/tailwind-preset.js",
     "./tailwind-theme": "./dist/tailwind-theme.css"
   },
   "files": ["dist"],
   "scripts": {
-    "build": "node style-dictionary.config.js",
+    "build": "node style-dictionary.config.js && cp -r src/fonts dist/fonts",
     "clean": "rm -rf dist",
     "typecheck": "echo 'No TS in tokens package'"
   },

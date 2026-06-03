@@ -2,7 +2,8 @@ import type { StorybookConfig } from '@storybook/web-components-vite';
 
 const config: StorybookConfig = {
   staticDirs: [
-    { from: '../../../packages/icons/dist', to: '/icons' },
+    { from: '../../../packages/icons/dist',        to: '/icons' },
+    { from: '../../../packages/tokens/dist/fonts', to: '/fonts' },
   ],
   stories: [
     '../../../packages/components/src/**/*.stories.@(ts|tsx)',

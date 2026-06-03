@@ -10,7 +10,7 @@ const preview: Preview = {
     backgrounds: {
       default: 'surface',
       values: [
-        { name: 'surface', value: '#f7f7f7' },
+        { name: 'surface', value: '#f5f3ef' },
         { name: 'white', value: '#ffffff' },
         { name: 'dark', value: '#1f1f1f' },
       ],
