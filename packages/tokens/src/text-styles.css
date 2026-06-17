@@ -14,7 +14,14 @@
  *   <span class="en-title-md-overline">Competência</span>
  *   <p class="en-text-sm">Detalhes do documento fiscal.</p>
  *
- * Pesos disponíveis na Hotmart Sans: light (300), normal (400), bold (700).
+ * ┌─ REGRA DE PESO (type spec) ───────────────────────────────────────────┐
+ * │ Use SÓ Regular (normal/400) e Bold (700).                              │
+ * │ • Corpo de texto = Regular · ênfase/links/títulos fortes = Bold        │
+ * │ • NÃO use Medium (500) nem Semibold (600): não existem em arquivo      │
+ * │   (Hotmart Sans só tem Light/Regular/Bold) e renderizam como faux.     │
+ * │ • "MD/SM/LG" é TAMANHO (--en-font-size-*), nunca peso.                 │
+ * │ Light (300) existe, mas reserve para uso pontual (não corpo).          │
+ * └────────────────────────────────────────────────────────────────────────┘
  * Overline usa tracking wide (2px) e caixa alta, como no Cosmos.
  */
 
