@@ -17,6 +17,8 @@
     "tokens:pull": "node scripts/tokens-pull.mjs",
     "tokens:sync": "node scripts/tokens-sync.mjs",
     "tokens:sync:dry": "node scripts/tokens-sync.mjs --dry-run",
+    "tokens:check-fallbacks": "node scripts/tokens-check-fallbacks.mjs",
+    "tokens:check-fallbacks:ci": "node scripts/tokens-check-fallbacks.mjs --check",
     "lint": "eslint 'packages/*/src/**/*.{ts,tsx}'",
     "typecheck": "pnpm --recursive typecheck",
     "clean": "pnpm --recursive clean"
