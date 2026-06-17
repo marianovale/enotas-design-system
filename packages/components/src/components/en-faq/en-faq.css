@@ -32,8 +32,8 @@
 
 .question-text {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: var(--en-font-size-md, 1rem);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-size: var(--en-font-size-base, 1rem);
+  font-weight: var(--en-font-weight-normal, 400);
   color: var(--en-text-primary, #1f1f1f);
   flex: 1;
 }
@@ -63,7 +63,7 @@
   overflow: hidden;
   padding-bottom: var(--en-spacing-4, 1rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: var(--en-font-size-md, 1rem);
+  font-size: var(--en-font-size-base, 1rem);
   color: var(--en-text-secondary, #6b6b6b);
   line-height: 1.6;
 }

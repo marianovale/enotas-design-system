@@ -6,7 +6,7 @@ span {
   display: inline-flex;
   align-items: center;
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-weight: var(--en-font-weight-normal, 400);
   border-radius: var(--en-radius-full, 9999px);
   border: 1px solid transparent;
   white-space: nowrap;

@@ -86,7 +86,7 @@
 .description {
   margin: 0;
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: var(--en-font-size-md, 1rem);
+  font-size: var(--en-font-size-base, 1rem);
   color: var(--en-text-secondary, #6b6b6b);
   line-height: 1.6;
 }
@@ -108,8 +108,8 @@
   border: none;
   border-radius: var(--en-radius-md, 0.375rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: var(--en-font-size-md, 1rem);
-  font-weight: var(--en-font-weight-semibold, 600);
+  font-size: var(--en-font-size-base, 1rem);
+  font-weight: var(--en-font-weight-bold, 700);
   cursor: pointer;
   transition: opacity 150ms ease;
 }
@@ -124,7 +124,7 @@
   border: 1.5px solid var(--en-border-default, #e1e3e6);
   border-radius: var(--en-radius-md, 0.375rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: var(--en-font-size-md, 1rem);
+  font-size: var(--en-font-size-base, 1rem);
   cursor: pointer;
   transition: border-color 150ms ease;
 }

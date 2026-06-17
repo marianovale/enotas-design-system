@@ -98,13 +98,30 @@ function normalizeAlias(value) {
 /**
  * Normaliza um valor de token para comparação:
  *   - Cores hex → lowercase  (#22BAA0 → #22baa0)
+ *   - Números (peso 400) → string ("400")  — Figma exporta number, nosso JSON usa string
  *   - Alias refs → sem mudança (já tratados pelo normalizeAlias)
  */
 function normalizeValue(value) {
   if (typeof value === 'string' && /^#[0-9a-fA-F]+$/.test(value)) {
     return value.toLowerCase();
   }
+  if (typeof value === 'number') return String(value);
   return value;
+}
+
+/**
+ * Converte px (unidade do Figma) → rem (base 16px), unidade do eNotas DS.
+ * Aceita "16px", "16", 16 → "1rem". Passa rem/0/outros adiante sem tocar.
+ *   pxToRem("14px") → "0.875rem"   ·   pxToRem(20) → "1.25rem"
+ */
+function pxToRem(value) {
+  if (typeof value === 'number') return `${value / 16}rem`;
+  if (typeof value !== 'string') return value;
+  const px = value.match(/^(-?\d*\.?\d+)px$/);
+  if (px) return `${parseFloat(px[1]) / 16}rem`;
+  const bare = value.match(/^(-?\d*\.?\d+)$/);
+  if (bare) return `${parseFloat(bare[1]) / 16}rem`;
+  return value; // já é rem, "0", "2px" (tracking), etc.
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -242,6 +259,41 @@ function syncSemantic() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 3. Core / Typography  →  src/global/typography.json
+//
+// Export Figma (px) → token (rem). Mapeamento de naming já alinhado ao Cosmos:
+//   family/{sans,serif,mono}   →  font.family.*   (Hotmart Sans/Display — NÃO Inter)
+//   size/{xs..9xl, base}       →  font.size.*     (px→rem; 16px = `base`)
+//   weight/{light,normal,bold} →  font.weight.*   (rebaixado: só 300/400/700)
+//   leading/{3..10}            →  font.leading.*  (px→rem; escala numérica Tailwind)
+//   tracking/{normal,wide}     →  font.tracking.* (mantém px: wide = 2px)
+//
+// Conversão px→rem só em `size` e `leading`. `weight` é unitless, `tracking` em px.
+// ─────────────────────────────────────────────────────────────────────────────
+function syncCoreTypography() {
+  const exportFile = join(EXPORT_DIR, 'core-typography.sd.json');
+  if (!existsSync(exportFile)) {
+    console.warn('  ⚠️  core-typography.sd.json não encontrado — pulando Core/Typography');
+    return;
+  }
+
+  const figmaRaw = readJSON(exportFile);
+
+  // Figma: { family:{}, size:{}, weight:{}, leading:{}, tracking:{} }
+  // Nosso: { font: { family:{}, size:{}, ... } }
+  const conv = JSON.parse(JSON.stringify(figmaRaw));
+  for (const group of ['size', 'leading']) {
+    if (!conv[group]) continue;
+    for (const key of Object.keys(conv[group])) {
+      conv[group][key].value = pxToRem(conv[group][key].value);
+    }
+  }
+
+  const figmaWrapped = { font: conv };
+  syncFile(figmaWrapped, join(TOKENS_SRC, 'global/typography.json'), 'global/typography.json (Core/Typography)');
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Main
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -268,6 +320,7 @@ if (!existsSync(EXPORT_DIR)) {
 
 syncCoreColor();
 syncSemantic();
+syncCoreTypography();
 
 console.log('');
 console.log('─'.repeat(52));

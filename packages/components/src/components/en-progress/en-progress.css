@@ -16,7 +16,7 @@
   color: var(--en-text-secondary, #6b6b6b);
 }
 
-.pct { font-weight: var(--en-font-weight-semibold, 600); color: var(--en-text-primary, #1f1f1f); }
+.pct { font-weight: var(--en-font-weight-bold, 700); color: var(--en-text-primary, #1f1f1f); }
 
 .track {
   width: 100%;

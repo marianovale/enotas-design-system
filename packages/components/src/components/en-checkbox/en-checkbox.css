@@ -27,7 +27,7 @@
 
 .label {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: var(--en-font-size-md, 1rem);
+  font-size: var(--en-font-size-base, 1rem);
   color: var(--en-text-primary, #1f1f1f);
 }
 

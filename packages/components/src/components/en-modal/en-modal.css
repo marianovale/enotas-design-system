@@ -51,7 +51,7 @@
   margin: 0;
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-lg, 1.125rem);
-  font-weight: var(--en-font-weight-semibold, 600);
+  font-weight: var(--en-font-weight-bold, 700);
   color: var(--en-text-primary, #1f1f1f);
 }
 

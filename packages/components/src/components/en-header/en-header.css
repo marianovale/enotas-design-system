@@ -102,9 +102,9 @@
   background: var(--en-color-danger-500, #f13838);
   color: #ffffff;
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: 10px;
+  font-size: var(--en-font-size-xs, 0.75rem);
   font-weight: var(--en-font-weight-bold, 700);
-  line-height: 16px;
+  line-height: var(--en-font-leading-4, 1rem);
   text-align: center;
 }
 
@@ -126,7 +126,7 @@
   color: #ffffff;
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
-  font-weight: var(--en-font-weight-semibold, 600);
+  font-weight: var(--en-font-weight-bold, 700);
   display: flex;
   align-items: center;
   justify-content: center;

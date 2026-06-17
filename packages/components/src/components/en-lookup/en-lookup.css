@@ -10,7 +10,7 @@
 .label {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-weight: var(--en-font-weight-normal, 400);
   color: var(--en-text-primary, #1f1f1f);
 }
 
@@ -109,7 +109,7 @@
   border-radius: var(--en-radius-full, 9999px);
   font-size: var(--en-font-size-xs, 0.75rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-weight: var(--en-font-weight-normal, 400);
   white-space: nowrap;
 }
 
@@ -182,7 +182,7 @@
 
 .option.is-selected {
   color: var(--en-action-primary-background, #22baa0);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-weight: var(--en-font-weight-normal, 400);
 }
 
 .option.is-disabled {

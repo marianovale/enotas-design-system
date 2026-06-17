@@ -153,7 +153,7 @@ export const AllTypesAndStatuses: StoryObj = {
     layout: 'padded',
   },
   render: () => html`
-    <table style="border-collapse:collapse;font-family:var(--en-font-family-base,sans-serif);font-size:0.75rem">
+    <table style="border-collapse:collapse;font-family:var(--en-font-family-sans,sans-serif);font-size:0.75rem">
       <thead>
         <tr>
           <th style="padding:0.5rem 0.75rem;text-align:left;color:var(--en-color-neutral-500,#6b7280);font-weight:600;border-bottom:1px solid var(--en-color-neutral-200,#e5e7eb)">
@@ -219,7 +219,7 @@ export const InContext: StoryObj = {
     ];
 
     return html`
-      <table style="width:100%;border-collapse:collapse;font-family:var(--en-font-family-base,sans-serif);font-size:0.875rem">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--en-font-family-sans,sans-serif);font-size:0.875rem">
         <thead>
           <tr style="border-bottom:2px solid var(--en-color-neutral-200,#e5e7eb)">
             <th style="padding:0.75rem;text-align:left;color:var(--en-color-neutral-500,#6b7280);font-weight:600">Número</th>

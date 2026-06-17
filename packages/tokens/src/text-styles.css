@@ -1,0 +1,74 @@
+/**
+ * eNotas DS — Type Styles (camada semântica de tipografia)
+ *
+ * Replica os text styles compostos do Cosmos DS (Cosmos Global - Tokens):
+ *   - .en-text-*       → texto de corpo (size + leading pareados)
+ *   - .en-title-*      → títulos (header / overline / sub-heading)
+ *   - .en-display-*    → display (hero)
+ *
+ * Cada classe referencia os primitivos --en-font-* de tokens.css.
+ * Variante serif (Hotmart Display): adicione a classe .en-serif.
+ *
+ * Uso em Razor/HTML:
+ *   <h2 class="en-title-md">Emissão de notas</h2>
+ *   <span class="en-title-md-overline">Competência</span>
+ *   <p class="en-text-sm">Detalhes do documento fiscal.</p>
+ *
+ * Pesos disponíveis na Hotmart Sans: light (300), normal (400), bold (700).
+ * Overline usa tracking wide (2px) e caixa alta, como no Cosmos.
+ */
+
+/* ── Modificador de família ──────────────────────────────────────────────── */
+.en-serif { font-family: var(--en-font-family-serif); }
+
+/* ── Body text (text-*) — size + leading pareados ────────────────────────── */
+.en-text-xs   { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-xs);   line-height: var(--en-font-leading-4); }
+.en-text-sm   { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-sm);   line-height: var(--en-font-leading-5); }
+.en-text-base { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-base); line-height: var(--en-font-leading-6); }
+.en-text-lg   { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-lg);   line-height: var(--en-font-leading-7); }
+.en-text-xl   { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-xl);   line-height: var(--en-font-leading-7); }
+.en-text-2xl  { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-2xl);  line-height: var(--en-font-leading-8); }
+.en-text-3xl  { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-3xl);  line-height: var(--en-font-leading-9); }
+.en-text-4xl  { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-4xl);  line-height: var(--en-font-leading-10); }
+.en-text-5xl  { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-5xl);  line-height: var(--en-font-size-5xl); }
+.en-text-6xl  { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-6xl);  line-height: var(--en-font-size-6xl); }
+.en-text-7xl  { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-7xl);  line-height: var(--en-font-size-7xl); }
+.en-text-8xl  { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-8xl);  line-height: var(--en-font-size-8xl); }
+.en-text-9xl  { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-9xl);  line-height: var(--en-font-size-9xl); }
+
+/* ── Title — header (escala title-xs … title-xl) ─────────────────────────── */
+.en-title-xs { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-base); line-height: var(--en-font-leading-6); }
+.en-title-sm { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-xl);   line-height: var(--en-font-leading-7); }
+.en-title-md { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-2xl);  line-height: var(--en-font-leading-8); }
+.en-title-lg { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-3xl);  line-height: var(--en-font-leading-9); }
+.en-title-xl { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-4xl);  line-height: var(--en-font-leading-10); }
+
+/* ── Title — sub-heading ─────────────────────────────────────────────────── */
+.en-title-xs-subheading { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-sm);   line-height: var(--en-font-leading-5); }
+.en-title-sm-subheading { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-sm);   line-height: var(--en-font-leading-5); }
+.en-title-md-subheading { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-base); line-height: var(--en-font-leading-6); }
+.en-title-lg-subheading { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-xl);   line-height: var(--en-font-leading-7); }
+.en-title-xl-subheading { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-2xl);  line-height: var(--en-font-leading-8); }
+
+/* ── Title — overline (caixa alta, tracking wide) ────────────────────────── */
+/* Overline usa tamanhos abaixo do piso da escala (Cosmos define inline);
+   por isso alguns valores são literais rem, não tokens. */
+.en-title-xs-overline,
+.en-title-sm-overline,
+.en-title-md-overline,
+.en-title-lg-overline,
+.en-title-xl-overline {
+  font-family: var(--en-font-family-sans);
+  letter-spacing: var(--en-font-tracking-wide);
+  text-transform: uppercase;
+}
+.en-title-xs-overline { font-size: 0.625rem;                line-height: 0.875rem; }  /* 10 / 14 */
+.en-title-sm-overline { font-size: var(--en-font-size-xs);  line-height: var(--en-font-leading-4); }  /* 12 / 16 */
+.en-title-md-overline { font-size: var(--en-font-size-sm);  line-height: var(--en-font-leading-5); }  /* 14 / 20 */
+.en-title-lg-overline { font-size: var(--en-font-size-base);line-height: var(--en-font-leading-6); }  /* 16 / 24 */
+.en-title-xl-overline { font-size: var(--en-font-size-lg);  line-height: var(--en-font-leading-7); }  /* 18 / 28 */
+
+/* ── Display (hero) ──────────────────────────────────────────────────────── */
+.en-display-sm { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-3xl); line-height: var(--en-font-leading-9);  letter-spacing: var(--en-font-tracking-wide); }
+.en-display-md { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-4xl); line-height: var(--en-font-leading-10); letter-spacing: var(--en-font-tracking-wide); }
+.en-display-lg { font-family: var(--en-font-family-sans); font-size: var(--en-font-size-5xl); line-height: var(--en-font-size-5xl); }

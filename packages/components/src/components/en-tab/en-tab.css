@@ -15,8 +15,8 @@
 
 .label {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: var(--en-font-size-md, 1rem);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-size: var(--en-font-size-base, 1rem);
+  font-weight: var(--en-font-weight-normal, 400);
   color: var(--en-text-secondary, #6b6b6b);
   transition: color 150ms ease;
   white-space: nowrap;
@@ -34,7 +34,7 @@
 }
 
 /* Ativo */
-:host(.status-active) .label { color: var(--en-action-primary-background, #22baa0); font-weight: var(--en-font-weight-semibold, 600); }
+:host(.status-active) .label { color: var(--en-action-primary-background, #22baa0); font-weight: var(--en-font-weight-bold, 700); }
 :host(.status-active) .indicator { background: var(--en-action-primary-background, #22baa0); }
 
 /* Hover */
@@ -65,7 +65,7 @@
   background: var(--en-color-neutral-200, #d6d6d6);
   color: var(--en-text-primary, #1f1f1f);
   font-size: var(--en-font-size-xs, 0.75rem);
-  font-weight: var(--en-font-weight-semibold, 600);
+  font-weight: var(--en-font-weight-bold, 700);
   transition: background 150ms ease;
 }
 

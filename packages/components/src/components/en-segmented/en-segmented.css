@@ -20,7 +20,7 @@
   color: var(--en-text-secondary, #6b6b6b);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-weight: var(--en-font-weight-normal, 400);
   cursor: pointer;
   white-space: nowrap;
   transition: background 150ms ease, color 150ms ease, box-shadow 150ms ease;
@@ -34,7 +34,7 @@
 .segment--active {
   background: var(--en-color-neutral-0, #ffffff);
   color: var(--en-text-primary, #1f1f1f);
-  font-weight: var(--en-font-weight-semibold, 600);
+  font-weight: var(--en-font-weight-bold, 700);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 

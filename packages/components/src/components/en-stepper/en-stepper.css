@@ -42,7 +42,7 @@
 .step-number {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
-  font-weight: var(--en-font-weight-semibold, 600);
+  font-weight: var(--en-font-weight-bold, 700);
 }
 
 /* Passo ativo */
@@ -85,8 +85,8 @@
 
 .step-label {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: var(--en-font-size-md, 1rem);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-size: var(--en-font-size-base, 1rem);
+  font-weight: var(--en-font-weight-normal, 400);
   color: var(--en-text-secondary, #6b6b6b);
   transition: color 200ms ease;
 }

@@ -7,7 +7,7 @@
   border: 1px solid transparent;
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-weight: var(--en-font-weight-normal, 400);
   white-space: nowrap;
 }
 

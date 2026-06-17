@@ -38,6 +38,6 @@
   padding: 2px var(--en-spacing-2, 0.5rem);
   background: var(--en-surface-sunken, #ebebeb);
   border-radius: var(--en-radius-full, 9999px);
-  font-size: 11px;
-  font-weight: var(--en-font-weight-medium, 500);
+  font-size: var(--en-font-size-xs, 0.75rem);
+  font-weight: var(--en-font-weight-normal, 400);
 }

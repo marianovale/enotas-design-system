@@ -37,7 +37,7 @@
 .label {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
-  font-weight: var(--en-font-weight-medium, 500);
+  font-weight: var(--en-font-weight-normal, 400);
   color: inherit;
   white-space: nowrap;
 }
@@ -52,8 +52,8 @@
   border-radius: var(--en-radius-full, 9999px);
   background: rgba(255,255,255,0.25);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
-  font-size: 11px;
-  font-weight: var(--en-font-weight-semibold, 600);
+  font-size: var(--en-font-size-xs, 0.75rem);
+  font-weight: var(--en-font-weight-bold, 700);
   color: inherit;
   line-height: 1;
 }
