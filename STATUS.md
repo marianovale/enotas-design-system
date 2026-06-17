@@ -102,7 +102,7 @@ Acompanhamento do progresso de implementação do DS. Atualizado a cada componen
 | Tarefa | Status | Descrição |
 |---|---|---|
 | Gerar wrappers React | ⏳ Planejado | `pnpm build:components:react` — pacote `@enotas-ds/components-react` |
-| Mapear tokens para Cosmos | ✅ Pronto | `dist/cosmos-bridge.css` — redireciona `--en-*` → `--cds-*`; tokens de brand eNotas (teal/purple) são extensão permanente, não mapeados |
+| Mapear tokens para Cosmos | ⏳ Planejado | Bridge `--en-*` → `--cds-*` precisa ser um artefato **gerado** pelo build (o `cosmos-bridge.css` anterior era um arquivo local não versionado e foi descartado). Gerar a partir do mapeamento real do Cosmos quando o merge avançar |
 | Guia de migração | ⏳ Planejado | Doc: Razor → React, passo a passo |
 | Code Connect en-lookup | ✅ Pronto | 5 connects (default, loading, multiple, with-value, error) — figma.tsx publicado |
 | Code Connect en-tag | ✅ Pronto | 9 connects (8 variants + dismissible) — figma.tsx publicado |

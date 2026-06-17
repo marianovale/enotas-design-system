@@ -13,9 +13,8 @@
     "./css": "./dist/tokens.css",
     "./text-styles": "./dist/text-styles.css",
     "./fonts": "./dist/fonts/fonts.css",
-    "./json": "./dist/tokens.json",
-    "./tailwind-preset": "./dist/tailwind-preset.js",
-    "./tailwind-theme": "./dist/tailwind-theme.css"
+    "./fonts-cdn": "./dist/fonts.css",
+    "./json": "./dist/tokens.json"
   },
   "files": ["dist"],
   "scripts": {

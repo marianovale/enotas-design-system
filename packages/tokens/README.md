@@ -15,10 +15,11 @@ src/
 
 dist/
   tokens.css          → CSS vars --en-* (global + semântico)
-  tokens.js           → objeto JS com todos os tokens
-  tailwind-preset.js  → preset para Tailwind v3
-  tailwind-theme.css  → @theme bridge para Tailwind v4
-  cosmos-bridge.css   → --en-* → --cds-* (compatibilidade com Cosmos DS)
+  tokens.js / .cjs    → objeto JS com todos os tokens
+  tokens.json         → tokens em JSON aninhado
+  fonts.css           → @import das fontes via CDN Hotmart + Font Awesome
+  fonts/              → fontes self-hosted (woff2) + fonts.css local
+  text-styles.css     → type styles .en-text-* / .en-title-* / .en-display-*
 ```
 
 ## Camadas
