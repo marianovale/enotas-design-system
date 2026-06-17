@@ -17,7 +17,7 @@
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-base, 1rem);
   font-weight: var(--en-font-weight-normal, 400);
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
   transition: color 150ms ease;
   white-space: nowrap;
 }
@@ -39,7 +39,7 @@
 
 /* Hover */
 :host(.status-hovered) .label,
-:host(:hover:not([disabled])) .label { color: var(--en-text-primary, #1f1f1f); }
+:host(:hover:not([disabled])) .label { color: var(--en-text-primary, #0d0d0d); }
 
 .inner {
   display: inline-flex;
@@ -62,8 +62,8 @@
   height: 18px;
   padding: 0 var(--en-spacing-1, 0.25rem);
   border-radius: var(--en-radius-full, 9999px);
-  background: var(--en-color-neutral-200, #d6d6d6);
-  color: var(--en-text-primary, #1f1f1f);
+  background: var(--en-color-neutral-200, #dcdad6);
+  color: var(--en-text-primary, #0d0d0d);
   font-size: var(--en-font-size-xs, 0.75rem);
   font-weight: var(--en-font-weight-bold, 700);
   transition: background 150ms ease;

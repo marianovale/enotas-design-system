@@ -25,17 +25,17 @@ span {
 }
 
 /* --- Variantes — preenchido --- */
-:host(.variant-default) span    { background: var(--en-color-neutral-100, #ebebeb); color: var(--en-color-neutral-700, #333333); }
+:host(.variant-default) span    { background: var(--en-color-neutral-100, #eae9e7); color: var(--en-color-neutral-700, #464542); }
 :host(.variant-brand) span      { background: var(--en-color-brand-orange-100, #ffe6d0); color: var(--en-color-brand-orange-700, #a82a00); }
 :host(.variant-positive) span   { background: var(--en-feedback-success-background, #e6f7ec); color: var(--en-feedback-success-foreground, #0e5c27); }
 :host(.variant-attention) span  { background: var(--en-feedback-warning-background, #fff8e1); color: var(--en-feedback-warning-foreground, #92600a); }
-:host(.variant-negative) span   { background: var(--en-feedback-danger-background, #fde8e8); color: var(--en-feedback-danger-foreground, #991b1b); }
-:host(.variant-informative) span { background: var(--en-feedback-info-background, #e0f0ff); color: var(--en-feedback-info-foreground, #004f8a); }
+:host(.variant-negative) span   { background: var(--en-feedback-danger-background, #fde8e8); color: var(--en-feedback-danger-foreground, #c01f1f); }
+:host(.variant-informative) span { background: var(--en-feedback-info-background, #ebe1fc); color: var(--en-feedback-info-foreground, #38178f); }
 
 /* --- Variantes — outline --- */
-:host(.is-outline.variant-default) span    { background: transparent; border-color: var(--en-color-neutral-300, #b3b3b3); color: var(--en-color-neutral-700, #333333); }
+:host(.is-outline.variant-default) span    { background: transparent; border-color: var(--en-color-neutral-300, #c3bfb8); color: var(--en-color-neutral-700, #464542); }
 :host(.is-outline.variant-brand) span      { background: transparent; border-color: var(--en-color-brand-orange-500, #f04f00); color: var(--en-color-brand-orange-500, #f04f00); }
 :host(.is-outline.variant-positive) span   { background: transparent; border-color: var(--en-color-success-500, #1a8a3c); color: var(--en-color-success-700, #0e5c27); }
 :host(.is-outline.variant-attention) span  { background: transparent; border-color: var(--en-color-warning-500, #f59e0b); color: var(--en-color-warning-700, #92600a); }
-:host(.is-outline.variant-negative) span   { background: transparent; border-color: var(--en-color-danger-500, #dc2626); color: var(--en-color-danger-700, #991b1b); }
-:host(.is-outline.variant-informative) span { background: transparent; border-color: var(--en-color-info-500, #0077cc); color: var(--en-color-info-700, #004f8a); }
+:host(.is-outline.variant-negative) span   { background: transparent; border-color: var(--en-color-danger-500, #f13838); color: var(--en-color-danger-700, #c01f1f); }
+:host(.is-outline.variant-informative) span { background: transparent; border-color: var(--en-color-info-500, #a475ff); color: var(--en-color-info-700, #38178f); }

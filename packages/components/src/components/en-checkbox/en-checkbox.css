@@ -28,14 +28,14 @@
 .label {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-base, 1rem);
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
 }
 
 /* --- Square --- */
 :host(.type-square) .control {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--en-border-strong, #8f8f8f);
+  border: 2px solid var(--en-border-strong, #96938d);
   border-radius: var(--en-radius-sm, 0.25rem);
   background: var(--en-surface-default, #ffffff);
   color: transparent;
@@ -57,7 +57,7 @@
 :host(.type-round) .control {
   width: 20px;
   height: 20px;
-  border: 2px solid var(--en-border-strong, #8f8f8f);
+  border: 2px solid var(--en-border-strong, #96938d);
   border-radius: var(--en-radius-full, 9999px);
   background: var(--en-surface-default, #ffffff);
   color: transparent;
@@ -80,7 +80,7 @@
   width: 44px;
   height: 24px;
   border-radius: var(--en-radius-full, 9999px);
-  background: var(--en-color-neutral-300, #b3b3b3);
+  background: var(--en-color-neutral-300, #c3bfb8);
   padding: 2px;
   justify-content: flex-start;
 }

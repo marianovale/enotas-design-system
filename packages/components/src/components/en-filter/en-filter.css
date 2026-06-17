@@ -5,7 +5,7 @@
   padding: var(--en-spacing-1, 0.25rem) var(--en-spacing-3, 0.75rem);
   height: 36px;
   background: var(--en-surface-default, #ffffff);
-  border: 1.5px solid var(--en-border-default, #e1e3e6);
+  border: 1.5px solid var(--en-border-default, #c3bfb8);
   border-radius: var(--en-radius-full, 9999px);
   cursor: pointer;
   user-select: none;

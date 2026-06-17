@@ -29,12 +29,12 @@
   width: 32px;
   height: 32px;
   border-radius: var(--en-radius-full, 9999px);
-  border: 2px solid var(--en-border-default, #e1e3e6);
+  border: 2px solid var(--en-border-default, #c3bfb8);
   background: var(--en-surface-default, #ffffff);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
   flex-shrink: 0;
   transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
 }
@@ -64,7 +64,7 @@
   width: 2px;
   flex: 1;
   min-height: 24px;
-  background: var(--en-border-default, #e1e3e6);
+  background: var(--en-border-default, #c3bfb8);
   margin: 4px 0;
   transition: background-color 200ms ease;
 }
@@ -87,17 +87,17 @@
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-base, 1rem);
   font-weight: var(--en-font-weight-normal, 400);
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
   transition: color 200ms ease;
 }
 
 .step-active .step-label,
 .step-done .step-label {
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
 }
 
 .step-description {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
 }

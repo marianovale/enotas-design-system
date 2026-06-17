@@ -101,6 +101,7 @@ Mudar o valor em um lugar propaga para todos os componentes.
 1. **Cores estão congeladas.** Há uma PoC em andamento mantendo a **identidade teal** do eNotas (`--en-text-brand`/`primary` ainda teal `#22baa0`). **Não migrar para o laranja/preto do Cosmos agora.**
 2. **Neutros são quentes** (warm gray: `#f5f3ef`, `#eae9e7`, `#96938d`, `#0d0d0d`) — já alinhados ao Cosmos.
 3. **`info` = purple** (`#a475ff`), não azul. (Doc antigo do Emissor cita azul — está desatualizado.)
+   - ⚠️ **Carregue sempre o `tokens.css` atual (pós-alinhamento `09a0661`).** Os fallbacks embutidos nos componentes já foram corrigidos para warm/purple, mas um bundle `/dist/` antigo servido pela app pode renderizar a paleta velha (neutros frios `#f7f7f7…`, info azul `#004f8a`). Se vir cor fria/azul, o bundle está defasado — peça rebuild/redeploy.
 4. **Não criar tokens novos exclusivos do eNotas** sem necessidade real — cada token novo é dívida de migração para o Cosmos.
 5. **Não divergir de prop/variant/token naming do Cosmos** — o alinhamento é a proteção da migração.
 

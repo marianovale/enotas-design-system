@@ -28,7 +28,7 @@ button {
 }
 
 button:focus-visible {
-  outline: 2px solid var(--en-border-focus, #f04f00);
+  outline: 2px solid var(--en-border-focus, #22baa0);
   outline-offset: 2px;
 }
 
@@ -65,20 +65,20 @@ button:focus-visible {
 /* secondary */
 :host(.variant-secondary) button {
   background-color: var(--en-action-secondary-background, transparent);
-  color: var(--en-action-secondary-foreground, #333333);
-  border-color: var(--en-action-secondary-border, #b3b3b3);
+  color: var(--en-action-secondary-foreground, #0d0d0d);
+  border-color: var(--en-action-secondary-border, #c3bfb8);
 }
 :host(.variant-secondary) button:hover:not(:disabled) {
-  background-color: var(--en-action-secondary-background-hover, #f7f7f7);
+  background-color: var(--en-action-secondary-background-hover, #f5f3ef);
 }
 
 /* ghost */
 :host(.variant-ghost) button {
   background-color: var(--en-action-ghost-background, transparent);
-  color: var(--en-action-ghost-foreground, #333333);
+  color: var(--en-action-ghost-foreground, #0d0d0d);
 }
 :host(.variant-ghost) button:hover:not(:disabled) {
-  background-color: var(--en-action-ghost-background-hover, #ebebeb);
+  background-color: var(--en-action-ghost-background-hover, #eae9e7);
 }
 
 /* negative (= danger) */
@@ -102,7 +102,7 @@ button:focus-visible {
 /* attention */
 :host(.variant-attention) button {
   background-color: var(--en-color-warning-500, #f59e0b);
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
 }
 :host(.variant-attention) button:hover:not(:disabled) {
   background-color: var(--en-color-warning-600, #d97706);
@@ -110,7 +110,7 @@ button:focus-visible {
 
 /* informative */
 :host(.variant-informative) button {
-  background-color: var(--en-color-info-500, #0077cc);
+  background-color: var(--en-color-info-500, #a475ff);
   color: #ffffff;
 }
 :host(.variant-informative) button:hover:not(:disabled) {
@@ -129,11 +129,11 @@ button:focus-visible {
 /* white */
 :host(.variant-white) button {
   background-color: #ffffff;
-  color: var(--en-text-primary, #1f1f1f);
-  border-color: var(--en-border-default, #e1e3e6);
+  color: var(--en-text-primary, #0d0d0d);
+  border-color: var(--en-border-default, #c3bfb8);
 }
 :host(.variant-white) button:hover:not(:disabled) {
-  background-color: var(--en-color-neutral-50, #f7f7f7);
+  background-color: var(--en-color-neutral-50, #f5f3ef);
 }
 
 /* link */

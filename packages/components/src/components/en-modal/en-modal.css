@@ -43,7 +43,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--en-spacing-5, 1.25rem) var(--en-spacing-6, 1.5rem) var(--en-spacing-4, 1rem);
-  border-bottom: 1px solid var(--en-border-default, #e1e3e6);
+  border-bottom: 1px solid var(--en-border-default, #c3bfb8);
   flex-shrink: 0;
 }
 
@@ -52,7 +52,7 @@
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-lg, 1.125rem);
   font-weight: var(--en-font-weight-bold, 700);
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
 }
 
 .close-btn {
@@ -64,13 +64,13 @@
   border: none;
   border-radius: var(--en-radius-sm, 0.25rem);
   background: transparent;
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
   cursor: pointer;
   flex-shrink: 0;
   transition: background-color 100ms ease;
 }
 
-.close-btn:hover { background: var(--en-surface-hover, #f5f5f5); color: var(--en-text-primary, #1f1f1f); }
+.close-btn:hover { background: var(--en-surface-hover, #f5f5f5); color: var(--en-text-primary, #0d0d0d); }
 
 .dialog-body {
   flex: 1;
@@ -83,7 +83,7 @@
   justify-content: flex-end;
   gap: var(--en-spacing-3, 0.75rem);
   padding: var(--en-spacing-4, 1rem) var(--en-spacing-6, 1.5rem);
-  border-top: 1px solid var(--en-border-default, #e1e3e6);
+  border-top: 1px solid var(--en-border-default, #c3bfb8);
   flex-shrink: 0;
 }
 

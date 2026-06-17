@@ -24,7 +24,7 @@
   width: 44px;
   height: 24px;
   border-radius: var(--en-radius-full, 9999px);
-  background: var(--en-color-neutral-300, #b3b3b3);
+  background: var(--en-color-neutral-300, #c3bfb8);
   padding: 2px;
   transition: background-color 150ms ease;
   flex-shrink: 0;
@@ -53,7 +53,7 @@
 .label {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-base, 1rem);
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
 }
 
 /* --- Hidden native input --- */

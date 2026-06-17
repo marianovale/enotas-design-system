@@ -11,7 +11,7 @@
   gap: var(--en-spacing-3, 0.75rem);
   padding: var(--en-spacing-4, 1rem) var(--en-spacing-6, 1.5rem);
   background: var(--en-surface-default, #ffffff);
-  border-top: 1px solid var(--en-border-default, #e1e3e6);
+  border-top: 1px solid var(--en-border-default, #c3bfb8);
 }
 
 .col-left {
@@ -31,12 +31,12 @@
 .copyright, .version {
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
 }
 
 .version {
   padding: 2px var(--en-spacing-2, 0.5rem);
-  background: var(--en-surface-sunken, #ebebeb);
+  background: var(--en-surface-sunken, #eae9e7);
   border-radius: var(--en-radius-full, 9999px);
   font-size: var(--en-font-size-xs, 0.75rem);
   font-weight: var(--en-font-weight-normal, 400);

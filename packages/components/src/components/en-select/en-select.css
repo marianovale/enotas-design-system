@@ -9,7 +9,7 @@
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
   font-weight: var(--en-font-weight-normal, 400);
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
 }
 
 .required { color: var(--en-color-danger-500, #f13838); }
@@ -27,11 +27,11 @@ select {
   padding: 0 40px 0 var(--en-spacing-4, 1rem);
   appearance: none;
   background: var(--en-surface-default, #ffffff);
-  border: 1px solid var(--en-border-strong, #8f8f8f);
+  border: 1px solid var(--en-border-strong, #96938d);
   border-radius: var(--en-radius-md, 0.375rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-base, 1rem);
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
   outline: none;
   cursor: pointer;
   transition: border-color 150ms ease, box-shadow 150ms ease;
@@ -41,7 +41,7 @@ select {
   position: absolute;
   right: var(--en-spacing-3, 0.75rem);
   pointer-events: none;
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
   display: flex;
   align-items: center;
 }
@@ -52,12 +52,12 @@ select {
 }
 
 :host(.state-inactived) select {
-  background: var(--en-surface-sunken, #ebebeb);
+  background: var(--en-surface-sunken, #eae9e7);
   cursor: not-allowed;
-  color: var(--en-text-disabled, #b3b3b3);
+  color: var(--en-text-disabled, #c3bfb8);
 }
 
 :host(.has-error) select { border-color: var(--en-color-danger-500, #f13838); }
 
 .error-msg { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-color-danger-500, #f13838); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }
-.hint-msg  { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-text-secondary, #6b6b6b); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }
+.hint-msg  { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-text-secondary, #7a7773); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }

@@ -9,7 +9,7 @@
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-sm, 0.875rem);
   font-weight: var(--en-font-weight-normal, 400);
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
 }
 
 .required { color: var(--en-color-danger-500, #f13838); }
@@ -18,11 +18,11 @@ textarea {
   width: 100%;
   padding: var(--en-spacing-3, 0.75rem) var(--en-spacing-4, 1rem);
   background: var(--en-surface-default, #ffffff);
-  border: 1px solid var(--en-border-strong, #8f8f8f);
+  border: 1px solid var(--en-border-strong, #96938d);
   border-radius: var(--en-radius-md, 0.375rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-textarea-font-size, var(--en-font-size-sm, 0.875rem));
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
   resize: vertical;
   outline: none;
   transition: border-color 150ms ease, box-shadow 150ms ease;
@@ -40,7 +40,7 @@ textarea {
   --en-textarea-font-size: var(--en-font-size-base, 1rem);
 }
 
-textarea::placeholder { color: var(--en-text-secondary, #6b6b6b); }
+textarea::placeholder { color: var(--en-text-secondary, #7a7773); }
 
 :host(.state-focus) textarea {
   border-color: var(--en-border-focus, #22baa0);
@@ -48,12 +48,12 @@ textarea::placeholder { color: var(--en-text-secondary, #6b6b6b); }
 }
 
 :host(.state-inactived) textarea {
-  background: var(--en-surface-sunken, #ebebeb);
+  background: var(--en-surface-sunken, #eae9e7);
   cursor: not-allowed;
-  color: var(--en-text-disabled, #b3b3b3);
+  color: var(--en-text-disabled, #c3bfb8);
 }
 
 :host(.has-error) textarea { border-color: var(--en-color-danger-500, #f13838); }
 
 .error-msg { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-color-danger-500, #f13838); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }
-.hint-msg  { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-text-secondary, #6b6b6b); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }
+.hint-msg  { font-size: var(--en-font-size-sm, 0.875rem); color: var(--en-text-secondary, #7a7773); font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif); }

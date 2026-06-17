@@ -5,10 +5,10 @@
 }
 
 .faq-item {
-  border-bottom: 1px solid var(--en-border-default, #e1e3e6);
+  border-bottom: 1px solid var(--en-border-default, #c3bfb8);
 }
 
-.faq-item:first-child { border-top: 1px solid var(--en-border-default, #e1e3e6); }
+.faq-item:first-child { border-top: 1px solid var(--en-border-default, #c3bfb8); }
 
 .faq-question {
   display: flex;
@@ -34,14 +34,14 @@
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-base, 1rem);
   font-weight: var(--en-font-weight-normal, 400);
-  color: var(--en-text-primary, #1f1f1f);
+  color: var(--en-text-primary, #0d0d0d);
   flex: 1;
 }
 
 .chevron {
   display: flex;
   align-items: center;
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
   flex-shrink: 0;
   transition: transform 200ms ease;
 }
@@ -64,6 +64,6 @@
   padding-bottom: var(--en-spacing-4, 1rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
   font-size: var(--en-font-size-base, 1rem);
-  color: var(--en-text-secondary, #6b6b6b);
+  color: var(--en-text-secondary, #7a7773);
   line-height: 1.6;
 }

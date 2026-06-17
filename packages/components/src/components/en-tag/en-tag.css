@@ -19,8 +19,8 @@
 
 /* --- Variantes (background suave + texto escuro) --- */
 :host(.variant-neutral) {
-  background: var(--en-color-neutral-100, #ebebeb);
-  color: var(--en-color-neutral-700, #333333);
+  background: var(--en-color-neutral-100, #eae9e7);
+  color: var(--en-color-neutral-700, #464542);
 }
 
 :host(.variant-red) {
