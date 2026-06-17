@@ -62,7 +62,6 @@ jobs:
           # CSS consumíveis
           cp packages/tokens/dist/tokens.css        "${DEST}/"
           cp packages/tokens/dist/text-styles.css   "${DEST}/"
-          cp packages/tokens/dist/cosmos-bridge.css "${DEST}/"
 
           # Fontes — CDN (fonts.css na raiz) + self-hosted (fonts/)
           cp packages/tokens/dist/fonts.css         "${DEST}/"

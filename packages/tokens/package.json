@@ -19,7 +19,7 @@
   },
   "files": ["dist"],
   "scripts": {
-    "build": "node style-dictionary.config.js && cp -r src/fonts dist/fonts && cp src/text-styles.css dist/text-styles.css",
+    "build": "node style-dictionary.config.js && cp -r src/fonts dist/fonts && cp src/fonts.css dist/fonts.css && cp src/text-styles.css dist/text-styles.css",
     "clean": "rm -rf dist",
     "typecheck": "echo 'No TS in tokens package'"
   },

@@ -1,0 +1,9 @@
+/* eNotas DS — Font loading (CDN). Include before tokens.css in your layout.
+ *
+ * Carrega Hotmart Sans, Hotmart Display e Font Awesome via CDN da Hotmart.
+ * Alternativa self-hosted (woff2 locais): dist/fonts/fonts.css.
+ */
+
+@import url('https://static.hotmart.com/fonts/v1/css/hotmart-sans.min.css');
+@import url('https://static.hotmart.com/fonts/v1/css/hotmart-display.min.css');
+@import url('https://kit.fontawesome.com/d4567fa4f9.css');
