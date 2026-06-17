@@ -1,0 +1,100 @@
+name: Release dist bundle
+
+# Dispara ao criar uma tag de versão (ex: git tag v0.2.0 && git push origin v0.2.0).
+# Builda o DS na nuvem e anexa o bundle consumível (tokens.css, fonts, text-styles,
+# enotas-ds/) como asset .zip baixável no GitHub Release — sem acoplar npm/CDN/infra.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Versão do bundle (ex: v0.2.0) — usado só em run manual'
+        required: true
+        default: v0.0.0-manual
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & publish dist bundle
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build icons
+        run: pnpm build:icons
+
+      - name: Build tokens
+        run: pnpm build:tokens
+
+      - name: Check token fallbacks
+        run: pnpm tokens:check-fallbacks:ci
+
+      - name: Build components
+        run: pnpm build:components
+
+      - name: Assemble bundle
+        run: |
+          VERSION="${{ github.event.inputs.version || github.ref_name }}"
+          OUT="enotas-ds-${VERSION}"
+          DEST="bundle/${OUT}/dist"
+          mkdir -p "${DEST}"
+
+          # CSS consumíveis
+          cp packages/tokens/dist/tokens.css        "${DEST}/"
+          cp packages/tokens/dist/text-styles.css   "${DEST}/"
+          cp packages/tokens/dist/cosmos-bridge.css "${DEST}/"
+
+          # Fontes — CDN (fonts.css na raiz) + self-hosted (fonts/)
+          cp packages/tokens/dist/fonts.css         "${DEST}/"
+          cp -r packages/tokens/dist/fonts          "${DEST}/fonts"
+
+          # Web Components (bundle lazy-loaded)
+          cp -r packages/components/dist/enotas-ds   "${DEST}/enotas-ds"
+
+          # Guia de uso junto
+          cp GUIA-ENOTAS-DS.md "bundle/${OUT}/"
+
+          cd bundle && zip -rq "../${OUT}.zip" "${OUT}"
+          echo "Gerado: ${OUT}.zip"
+          ls -lh ../"${OUT}.zip"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: enotas-ds-*.zip
+          generate_release_notes: true
+          body: |
+            Bundle consumível do **eNotas DS** — descompacte e sirva a pasta `dist/`.
+
+            **Uso no layout (Razor / HTML):**
+            ```html
+            <link rel="stylesheet" href="/dist/fonts.css">        <!-- fontes via CDN Hotmart -->
+            <link rel="stylesheet" href="/dist/tokens.css">       <!-- variáveis --en-* -->
+            <link rel="stylesheet" href="/dist/text-styles.css">  <!-- .en-text-* / .en-title-* -->
+            <script type="module" src="/dist/enotas-ds/enotas-ds.esm.js"></script>
+            ```
+
+            Teste rápido da paleta: superfície bege quente + info roxo = atualizado.
+            Cinza frio + info azul = bundle defasado.
+
+            Detalhes de consumo: ver `GUIA-ENOTAS-DS.md` incluído no zip.
