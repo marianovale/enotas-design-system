@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { AlertIntent, AlertVariant } from "./components/en-alert/en-alert";
 import { BadgeIntent, BadgeSize, BadgeVariant } from "./components/en-badge/en-badge";
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from "./components/en-button/en-button";
 import { CardSize } from "./components/en-card/en-card";
@@ -26,6 +27,7 @@ import { TagVariant } from "./components/en-tag/en-tag";
 import { TextareaVariantSize } from "./components/en-textarea/en-textarea";
 import { TooltipAlign, TooltipPlacement } from "./components/en-tooltip/en-tooltip";
 import { TourStep } from "./components/en-tour/en-tour";
+export { AlertIntent, AlertVariant } from "./components/en-alert/en-alert";
 export { BadgeIntent, BadgeSize, BadgeVariant } from "./components/en-badge/en-badge";
 export { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from "./components/en-button/en-button";
 export { CardSize } from "./components/en-card/en-card";
@@ -48,6 +50,37 @@ export { TextareaVariantSize } from "./components/en-textarea/en-textarea";
 export { TooltipAlign, TooltipPlacement } from "./components/en-tooltip/en-tooltip";
 export { TourStep } from "./components/en-tour/en-tour";
 export namespace Components {
+    /**
+     * en-alert — aviso persistente inline (banner).
+     * Para pendências, avisos e confirmações que ficam na tela (não somem sozinhos).
+     * Para confirmações efêmeras flutuantes, use `en-toast` (quando disponível).
+     * Status é comunicado por **ícone + cor** (nunca só cor — WCAG 1.4.1).
+     */
+    interface EnAlert {
+        /**
+          * Exibe o botão de fechar (X)
+          * @default false
+         */
+        "dismissible": boolean;
+        /**
+          * Título (opcional, exibido em bold acima da descrição)
+         */
+        "heading": string | undefined;
+        /**
+          * Exibe o ícone de status à esquerda. Padrão `true`.
+          * @default true
+         */
+        "icon": boolean;
+        /**
+          * @deprecated Use `variant`. Mantido por retrocompatibilidade — se informado, sobrescreve `variant`.
+         */
+        "intent": AlertIntent | undefined;
+        /**
+          * Variante semântica (alinhado com Cosmos). Aceita também os valores legados de `intent` por retrocompatibilidade.
+          * @default 'informative'
+         */
+        "variant": AlertVariant | AlertIntent;
+    }
     interface EnBadge {
         /**
           * @deprecated Use `variant`. Mantido por retrocompatibilidade — se informado, sobrescreve `variant`.
@@ -809,6 +842,10 @@ export namespace Components {
         "steps": TourStep[];
     }
 }
+export interface EnAlertCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLEnAlertElement;
+}
 export interface EnButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLEnButtonElement;
@@ -894,6 +931,29 @@ export interface EnTourCustomEvent<T> extends CustomEvent<T> {
     target: HTMLEnTourElement;
 }
 declare global {
+    interface HTMLEnAlertElementEventMap {
+        "enAlertDismiss": void;
+    }
+    /**
+     * en-alert — aviso persistente inline (banner).
+     * Para pendências, avisos e confirmações que ficam na tela (não somem sozinhos).
+     * Para confirmações efêmeras flutuantes, use `en-toast` (quando disponível).
+     * Status é comunicado por **ícone + cor** (nunca só cor — WCAG 1.4.1).
+     */
+    interface HTMLEnAlertElement extends Components.EnAlert, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLEnAlertElementEventMap>(type: K, listener: (this: HTMLEnAlertElement, ev: EnAlertCustomEvent<HTMLEnAlertElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLEnAlertElementEventMap>(type: K, listener: (this: HTMLEnAlertElement, ev: EnAlertCustomEvent<HTMLEnAlertElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLEnAlertElement: {
+        prototype: HTMLEnAlertElement;
+        new (): HTMLEnAlertElement;
+    };
     interface HTMLEnBadgeElement extends Components.EnBadge, HTMLStencilElement {
     }
     var HTMLEnBadgeElement: {
@@ -1375,6 +1435,7 @@ declare global {
         new (): HTMLEnTourElement;
     };
     interface HTMLElementTagNameMap {
+        "en-alert": HTMLEnAlertElement;
         "en-badge": HTMLEnBadgeElement;
         "en-button": HTMLEnButtonElement;
         "en-card": HTMLEnCardElement;
@@ -1410,6 +1471,41 @@ declare global {
 declare namespace LocalJSX {
     type OneOf<K extends string, PropT, AttrT = PropT> = { [P in K]: PropT } & { [P in `attr:${K}` | `prop:${K}`]?: never } | { [P in `attr:${K}`]: AttrT } & { [P in K | `prop:${K}`]?: never } | { [P in `prop:${K}`]: PropT } & { [P in K | `attr:${K}`]?: never };
 
+    /**
+     * en-alert — aviso persistente inline (banner).
+     * Para pendências, avisos e confirmações que ficam na tela (não somem sozinhos).
+     * Para confirmações efêmeras flutuantes, use `en-toast` (quando disponível).
+     * Status é comunicado por **ícone + cor** (nunca só cor — WCAG 1.4.1).
+     */
+    interface EnAlert {
+        /**
+          * Exibe o botão de fechar (X)
+          * @default false
+         */
+        "dismissible"?: boolean;
+        /**
+          * Título (opcional, exibido em bold acima da descrição)
+         */
+        "heading"?: string | undefined;
+        /**
+          * Exibe o ícone de status à esquerda. Padrão `true`.
+          * @default true
+         */
+        "icon"?: boolean;
+        /**
+          * @deprecated Use `variant`. Mantido por retrocompatibilidade — se informado, sobrescreve `variant`.
+         */
+        "intent"?: AlertIntent | undefined;
+        /**
+          * Emitido ao fechar o alerta
+         */
+        "onEnAlertDismiss"?: (event: EnAlertCustomEvent<void>) => void;
+        /**
+          * Variante semântica (alinhado com Cosmos). Aceita também os valores legados de `intent` por retrocompatibilidade.
+          * @default 'informative'
+         */
+        "variant"?: AlertVariant | AlertIntent;
+    }
     interface EnBadge {
         /**
           * @deprecated Use `variant`. Mantido por retrocompatibilidade — se informado, sobrescreve `variant`.
@@ -2225,6 +2321,13 @@ declare namespace LocalJSX {
         "steps"?: TourStep[];
     }
 
+    interface EnAlertAttributes {
+        "variant": AlertVariant | AlertIntent;
+        "intent": AlertIntent | undefined;
+        "heading": string | undefined;
+        "dismissible": boolean;
+        "icon": boolean;
+    }
     interface EnBadgeAttributes {
         "variant": BadgeVariant | BadgeIntent;
         "intent": BadgeIntent | undefined;
@@ -2432,6 +2535,7 @@ declare namespace LocalJSX {
     }
 
     interface IntrinsicElements {
+        "en-alert": Omit<EnAlert, keyof EnAlertAttributes> & { [K in keyof EnAlert & keyof EnAlertAttributes]?: EnAlert[K] } & { [K in keyof EnAlert & keyof EnAlertAttributes as `attr:${K}`]?: EnAlertAttributes[K] } & { [K in keyof EnAlert & keyof EnAlertAttributes as `prop:${K}`]?: EnAlert[K] };
         "en-badge": Omit<EnBadge, keyof EnBadgeAttributes> & { [K in keyof EnBadge & keyof EnBadgeAttributes]?: EnBadge[K] } & { [K in keyof EnBadge & keyof EnBadgeAttributes as `attr:${K}`]?: EnBadgeAttributes[K] } & { [K in keyof EnBadge & keyof EnBadgeAttributes as `prop:${K}`]?: EnBadge[K] };
         "en-button": Omit<EnButton, keyof EnButtonAttributes> & { [K in keyof EnButton & keyof EnButtonAttributes]?: EnButton[K] } & { [K in keyof EnButton & keyof EnButtonAttributes as `attr:${K}`]?: EnButtonAttributes[K] } & { [K in keyof EnButton & keyof EnButtonAttributes as `prop:${K}`]?: EnButton[K] };
         "en-card": Omit<EnCard, keyof EnCardAttributes> & { [K in keyof EnCard & keyof EnCardAttributes]?: EnCard[K] } & { [K in keyof EnCard & keyof EnCardAttributes as `attr:${K}`]?: EnCardAttributes[K] } & { [K in keyof EnCard & keyof EnCardAttributes as `prop:${K}`]?: EnCard[K] };
@@ -2468,6 +2572,13 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * en-alert — aviso persistente inline (banner).
+             * Para pendências, avisos e confirmações que ficam na tela (não somem sozinhos).
+             * Para confirmações efêmeras flutuantes, use `en-toast` (quando disponível).
+             * Status é comunicado por **ícone + cor** (nunca só cor — WCAG 1.4.1).
+             */
+            "en-alert": LocalJSX.IntrinsicElements["en-alert"] & JSXBase.HTMLAttributes<HTMLEnAlertElement>;
             "en-badge": LocalJSX.IntrinsicElements["en-badge"] & JSXBase.HTMLAttributes<HTMLEnBadgeElement>;
             "en-button": LocalJSX.IntrinsicElements["en-button"] & JSXBase.HTMLAttributes<HTMLEnButtonElement>;
             "en-card": LocalJSX.IntrinsicElements["en-card"] & JSXBase.HTMLAttributes<HTMLEnCardElement>;
