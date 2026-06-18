@@ -9,10 +9,10 @@
  *   @slot default     — descrição/corpo
  *   @slot action      — link/botão de ação
  *
- * ⚠️ NODE_ID pendente: substituir o placeholder abaixo pelo node-id real do
- * component set `en-alert` no Figma assim que ele for criado (ver página de
- * documentação do DS). Enquanto estiver como TODO, `pnpm figma:connect` deve
- * pular este arquivo.
+ * Mapeado para a página de documentação "Alert" do arquivo do DS (node 2438:1075).
+ * Quando existir um component set `en-alert` real (com variant properties) no
+ * Figma, trocar o node-id por ele e reativar o mapeamento por `figma.enum`
+ * (bloco comentado abaixo) para o Dev Mode popular a variante pela seleção.
  */
 
 import figma from '@figma/code-connect';
@@ -20,25 +20,31 @@ import figma from '@figma/code-connect';
 const BASE_URL =
   'https://www.figma.com/design/KeXcEZ17XRl5yxs8vJEQeh/eNotas-Design-System?node-id=';
 
-// TODO: trocar TODO-en-alert pelo node-id do component set no Figma.
-figma.connect(`${BASE_URL}TODO-en-alert`, {
-  props: {
-    variant: figma.enum('variant', {
-      positive:    'positive',
-      attention:   'attention',
-      negative:    'negative',
-      informative: 'informative',
-    }),
-    heading: figma.string('heading'),
-    dismissible: figma.boolean('dismissible'),
-    icon: figma.boolean('icon'),
-    body: figma.string('body'),
-  },
-  example: ({ variant, heading, dismissible, icon, body }) => {
-    const v = variant ?? 'informative';
-    const headingAttr = heading ? ` heading="${heading}"` : '';
-    const dismissAttr = dismissible ? ' dismissible' : '';
-    const iconAttr = icon === false ? ' icon="false"' : '';
-    return `<en-alert variant="${v}"${headingAttr}${dismissAttr}${iconAttr}>${body ?? 'Mensagem do alerta'}</en-alert>`;
-  },
+// Doc page "Alert" — mostra o snippet de uso no Dev Mode ao inspecionar a doc.
+figma.connect(`${BASE_URL}2438-1075`, {
+  example: () =>
+    `<en-alert variant="attention" heading="Certificado vencendo" dismissible>
+  O certificado digital A1 vence em 12 dias.
+  <en-button slot="action" variant="primary" size="sm">Renovar</en-button>
+</en-alert>`,
 });
+
+// Quando houver component set real, usar algo como:
+// figma.connect(`${BASE_URL}<COMPONENT_SET_ID>`, {
+//   props: {
+//     variant: figma.enum('variant', {
+//       positive: 'positive', attention: 'attention',
+//       negative: 'negative', informative: 'informative',
+//     }),
+//     heading: figma.string('heading'),
+//     dismissible: figma.boolean('dismissible'),
+//     icon: figma.boolean('icon'),
+//   },
+//   example: ({ variant, heading, dismissible, icon }) => {
+//     const v = variant ?? 'informative';
+//     const h = heading ? ` heading="${heading}"` : '';
+//     const d = dismissible ? ' dismissible' : '';
+//     const i = icon === false ? ' icon="false"' : '';
+//     return `<en-alert variant="${v}"${h}${d}${i}>Mensagem</en-alert>`;
+//   },
+// });
