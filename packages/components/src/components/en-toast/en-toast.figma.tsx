@@ -6,8 +6,7 @@
  * Por isso o Code Connect mostra o padrão de USO (chamada show), não props
  * de um nó instanciável.
  *
- * Aponta para a página de documentação "Toast" do arquivo do DS.
- * NODE_ID a preencher após criar a doc no Figma (ver abaixo).
+ * Aponta para a página de documentação "Toast" do arquivo do DS (node 2447:9446).
  */
 
 import figma from '@figma/code-connect';
@@ -15,8 +14,7 @@ import figma from '@figma/code-connect';
 const BASE_URL =
   'https://www.figma.com/design/KeXcEZ17XRl5yxs8vJEQeh/eNotas-Design-System?node-id=';
 
-// TODO: trocar TODO-en-toast pelo node-id da página de doc "Toast".
-figma.connect(`${BASE_URL}TODO-en-toast`, {
+figma.connect(`${BASE_URL}2447-9446`, {
   example: () =>
     `<!-- uma vez no layout -->
 <en-toast position="top-right"></en-toast>
