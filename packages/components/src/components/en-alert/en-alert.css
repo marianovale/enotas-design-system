@@ -7,7 +7,6 @@
   align-items: flex-start;
   gap: var(--en-spacing-3, 0.75rem);
   padding: var(--en-spacing-4, 1rem);
-  border: 1px solid transparent;
   border-radius: var(--en-radius-lg, 0.5rem);
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
 }
@@ -85,22 +84,18 @@
 :host(.variant-positive) .alert {
   background: var(--en-feedback-success-background, #e6f7ec);
   color: var(--en-feedback-success-foreground, #0e5c27);
-  border-color: var(--en-feedback-success-icon, #1a8a3c);
 }
 :host(.variant-attention) .alert {
   background: var(--en-feedback-warning-background, #fff8e1);
   color: var(--en-feedback-warning-foreground, #92600a);
-  border-color: var(--en-feedback-warning-icon, #f59e0b);
 }
 :host(.variant-negative) .alert {
   background: var(--en-feedback-danger-background, #fde8e8);
   color: var(--en-feedback-danger-foreground, #c01f1f);
-  border-color: var(--en-feedback-danger-icon, #f13838);
 }
 :host(.variant-informative) .alert {
   background: var(--en-feedback-info-background, #ebe1fc);
   color: var(--en-feedback-info-foreground, #38178f);
-  border-color: var(--en-feedback-info-icon, #a475ff);
 }
 
 /* Ícone usa a cor cheia (icon token) para destaque sobre o fundo claro */

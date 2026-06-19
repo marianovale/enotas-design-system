@@ -25,7 +25,6 @@
   align-items: flex-start;
   gap: var(--en-spacing-3, 0.75rem);
   padding: var(--en-spacing-3, 0.75rem) var(--en-spacing-4, 1rem);
-  border: 1px solid transparent;
   border-radius: var(--en-radius-lg, 0.5rem);
   box-shadow: var(--en-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.10));
   font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
@@ -70,11 +69,11 @@
 .close-btn:hover { opacity: 1; background: rgba(0,0,0,0.06); }
 .close-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 1px; }
 
-/* Variantes — superfície de feedback + borda; ícone na cor cheia */
-:host .variant-positive    { background: var(--en-feedback-success-background, #e6f7ec); color: var(--en-feedback-success-foreground, #0e5c27); border-color: var(--en-feedback-success-icon, #1a8a3c); }
-:host .variant-attention   { background: var(--en-feedback-warning-background, #fff8e1); color: var(--en-feedback-warning-foreground, #92600a); border-color: var(--en-feedback-warning-icon, #f59e0b); }
-:host .variant-negative    { background: var(--en-feedback-danger-background, #fde8e8);  color: var(--en-feedback-danger-foreground, #c01f1f);  border-color: var(--en-feedback-danger-icon, #f13838); }
-:host .variant-informative { background: var(--en-feedback-info-background, #ebe1fc);    color: var(--en-feedback-info-foreground, #38178f);    border-color: var(--en-feedback-info-icon, #a475ff); }
+/* Variantes — superfície de feedback; ícone na cor cheia */
+:host .variant-positive    { background: var(--en-feedback-success-background, #e6f7ec); color: var(--en-feedback-success-foreground, #0e5c27); }
+:host .variant-attention   { background: var(--en-feedback-warning-background, #fff8e1); color: var(--en-feedback-warning-foreground, #92600a); }
+:host .variant-negative    { background: var(--en-feedback-danger-background, #fde8e8);  color: var(--en-feedback-danger-foreground, #c01f1f); }
+:host .variant-informative { background: var(--en-feedback-info-background, #ebe1fc);    color: var(--en-feedback-info-foreground, #38178f); }
 
 :host .variant-positive .icon    { color: var(--en-feedback-success-icon, #1a8a3c); }
 :host .variant-attention .icon   { color: var(--en-feedback-warning-icon, #f59e0b); }
