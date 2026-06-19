@@ -54,12 +54,16 @@ Tokens lidos da coleção **Core / Typography** (Figma):
 
 ---
 
-## 🧩 4. Ícones
+## 🧩 4. Ícones — RESOLVIDO
 
-- Garantir/expor no `Icon` os de status usados pelo Emissor: `done-check(-circle)`, `refresh-rotate`, `alert(-circle)`, `closed`, `arrow-down`, `envelope`, `download`.
-- **Confirmar nomes** para: tipo "excedentes" (sem match óbvio — `add`/grid?), "menu" (hamburger), ícone de "info".
+- **✅ Ícones de status: todos já existem** no `<en-icon>` (sprite): `done-check`, `done-check-circle`, `refresh-rotate`, `alert`, `alert-circle`, `closed`, `arrow-down`, `envelope`, `download`. Nenhuma ação — só usar.
+- **✅ Nomes confirmados/adicionados (jun/2026):**
+  - **info** → adicionado `info` (alias limpo; o `infornation-info` tinha typo e fica como legado).
+  - **menu** → adicionado `menu` (hamburger, três linhas) — não existia.
+  - **excedentes** → adicionado `excedentes` (glifo de camadas/volume além do plano).
 - Estados de emissão (Emitida/Em emissão/Negada/Corrigida) devem usar **`<en-nf-status>`** (já existe), não Badge genérico.
-- Regra geral: ícone = componente, **nunca caractere de texto/emoji**.
+- Regra geral: ícone = componente `<en-icon>`, **nunca caractere de texto/emoji**.
+- _Nota: os ícones do DS são placeholders stroke-based; substituir por export real do Figma em `packages/icons/src/{nome}.svg` quando disponível._
 
 ---
 
@@ -82,5 +86,5 @@ O DS usa **neutros WARM** (`#f5f3ef`, `#eae9e7`, `#c3bfb8`, `#96938d`, `#7a7773`
 1. ✅ `<en-alert>` e `<en-toast>` criados (código + stories + página de doc no Figma). Pendente: virar **component set real** no Figma (hoje são páginas de doc) p/ Code Connect variant-aware.
 2. ✅ Cor de "info" resolvida: **purple unificado** (banner/alert/toast **e** status de fatura); teal do Emissor descontinuado. Sem token novo. Contraste ~9.6:1.
 3. ✅ Tipografia documentada: regra "Regular/Bold; MD/SM = tamanho" no `text-styles.css` + naming Cosmos (base/leading/tracking).
-4. Confirmar ícones faltantes (excedentes/menu/info).
+4. ✅ Ícones: status já existiam; adicionados `info` (alias), `menu` (hamburger), `excedentes`.
 5. (Opcional) Variantes de `RegistroFatura`/Badge a partir do catálogo de estados do Emissor.

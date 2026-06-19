@@ -25,7 +25,10 @@ export type IconName =
   | 'nota com cifra' | 'pen' | 'arrow-down-2' | 'faq' | 'robo' | 'archive' | 'house'
   | 'box' | 'key' | 'dual-arrow' | 'users-profile-group-2' | 'box-2' | 'box-and-star'
   | 'star' | 'done-check-circle-2' | 'clock-2' | 'padlock-unlock' | 'padlock-lock'
-  | 'grid' | 'shopping-cart' | 'arrow-up-2' | 'less';
+  | 'grid' | 'shopping-cart' | 'arrow-up-2' | 'less'
+  // Item 4 do feedback-do-emissor: info (alias limpo de 'infornation-info'),
+  // menu (hamburger, faltava) e excedentes (volume além do plano).
+  | 'info' | 'menu' | 'excedentes';
 
 @Component({
   tag: 'en-icon',
