@@ -67,13 +67,36 @@ Tokens lidos da coleção **Core / Typography** (Figma):
 
 ---
 
-## 🏷️ 5. Estados de fatura — spec pronta para o DS
+## 🏷️ 5. Estados de fatura — RESOLVIDO (mapeado para `en-badge`)
 
-O Emissor mapeou o ciclo completo de estados de linha de fatura (Assinatura + Excedentes), com badge + tratamento + CTA por estado. Pode virar **variantes de `RegistroFatura*` / `<en-badge>`** no DS:
-- Assinatura: Paga · Processando · Pendente · Vencida · Recusada · Suspensa · Cancelada
-- Excedentes: Dentro do plano · Em apuração · A pagar · Vencida · Importação pendente · Paga
-- Mapa Badge: positive · informative · attention · negative · default (+ "negative solid" reservado a Suspensa).
-- Catálogo visual no Figma (Emissor): nó `354:286`.
+O ciclo de estados (Assinatura + Excedentes) foi mapeado para variantes do `<en-badge>`. **Não vira componente novo** — o Emissor monta o `RegistroFatura` com `<en-badge>` usando este de-para. Catálogo visual: story **`Primitives/EnBadge → Status de fatura (Emissor)`** (Storybook).
+
+**Assinatura**
+
+| Estado | variant | outline | Racional |
+|---|---|---|---|
+| Paga | `positive` | — | concluído ok |
+| Processando | `informative` | — | em andamento (info = **purple**) |
+| Pendente | `attention` | — | aguarda ação |
+| Vencida | `negative` | ✅ | problema recuperável |
+| Recusada | `negative` | ✅ | problema recuperável |
+| Suspensa | `negative` | — (sólido) | estado mais severo |
+| Cancelada | `default` | — | terminal/inativo, neutro |
+
+**Excedentes**
+
+| Estado | variant | outline |
+|---|---|---|
+| Dentro do plano | `positive` | — |
+| Em apuração | `informative` | — |
+| A pagar | `attention` | — |
+| Vencida | `negative` | ✅ |
+| Importação pendente | `attention` | — |
+| Paga | `positive` | — |
+
+- **Interpretação de "negative solid reservado a Suspensa":** Vencida/Recusada usam `negative` **outline** (mais suave); Suspensa usa `negative` **sólido** (mais forte). Ajustável se a intenção for outra.
+- Catálogo original no Figma do Emissor: nó `354:286` (arquivo do Emissor, não o do DS).
+- Verificado no Storybook: todas as variantes renderizam com as cores corretas (info=purple, Suspensa sólido vs Vencida outline).
 
 ---
 
@@ -87,4 +110,4 @@ O DS usa **neutros WARM** (`#f5f3ef`, `#eae9e7`, `#c3bfb8`, `#96938d`, `#7a7773`
 2. ✅ Cor de "info" resolvida: **purple unificado** (banner/alert/toast **e** status de fatura); teal do Emissor descontinuado. Sem token novo. Contraste ~9.6:1.
 3. ✅ Tipografia documentada: regra "Regular/Bold; MD/SM = tamanho" no `text-styles.css` + naming Cosmos (base/leading/tracking).
 4. ✅ Ícones: status já existiam; adicionados `info` (alias), `menu` (hamburger), `excedentes`.
-5. (Opcional) Variantes de `RegistroFatura`/Badge a partir do catálogo de estados do Emissor.
+5. ✅ Estados de fatura mapeados para `en-badge` (de-para Assinatura + Excedentes) + story de catálogo. Sem componente novo.

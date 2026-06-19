@@ -224,3 +224,57 @@ export const InContext: Story = {
     </div>
   `,
 };
+
+// ---------------------------------------------------------------------------
+// StatusFatura — catálogo de estados de fatura (item 5 do feedback-do-emissor)
+// ---------------------------------------------------------------------------
+const ASSINATURA = [
+  { label: 'Paga',       variant: 'positive' },
+  { label: 'Processando', variant: 'informative' },
+  { label: 'Pendente',   variant: 'attention' },
+  { label: 'Vencida',    variant: 'negative', outline: true },
+  { label: 'Recusada',   variant: 'negative', outline: true },
+  { label: 'Suspensa',   variant: 'negative' },               // negative solid = mais severo
+  { label: 'Cancelada',  variant: 'default' },                // terminal/inativo
+] as const;
+
+const EXCEDENTES = [
+  { label: 'Dentro do plano',     variant: 'positive' },
+  { label: 'Em apuração',         variant: 'informative' },
+  { label: 'A pagar',             variant: 'attention' },
+  { label: 'Vencida',             variant: 'negative', outline: true },
+  { label: 'Importação pendente', variant: 'attention' },
+  { label: 'Paga',                variant: 'positive' },
+] as const;
+
+const row = (items: readonly { label: string; variant: string; outline?: boolean }[]) => html`
+  <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center">
+    ${items.map(s => html`<en-badge variant=${s.variant} ?outline=${(s as any).outline}>${s.label}</en-badge>`)}
+  </div>
+`;
+
+export const StatusFatura: Story = {
+  name: 'Status de fatura (Emissor)',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Catálogo dos estados de fatura do Emissor mapeados para variantes do `en-badge` (item 5 do feedback). ' +
+          '`info` = purple (decisão unificada). Vencida/Recusada usam `negative` outline; Suspensa usa `negative` sólido (estado mais severo); Cancelada usa `default`.',
+      },
+    },
+    controls: { disable: true },
+  },
+  render: () => html`
+    <div style="display:flex;flex-direction:column;gap:1.25rem;font-family:sans-serif">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#7a7773;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem">Assinatura</div>
+        ${row(ASSINATURA)}
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#7a7773;text-transform:uppercase;letter-spacing:1px;margin-bottom:0.5rem">Excedentes</div>
+        ${row(EXCEDENTES)}
+      </div>
+    </div>
+  `,
+};
