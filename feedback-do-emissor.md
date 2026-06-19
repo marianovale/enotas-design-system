@@ -73,30 +73,30 @@ O ciclo de estados (Assinatura + Excedentes) foi mapeado para variantes do `<en-
 
 **Assinatura**
 
-| Estado | variant | outline | Racional |
-|---|---|---|---|
-| Paga | `positive` | — | concluído ok |
-| Processando | `informative` | — | em andamento (info = **purple**) |
-| Pendente | `attention` | — | aguarda ação |
-| Vencida | `negative` | ✅ | problema recuperável |
-| Recusada | `negative` | ✅ | problema recuperável |
-| Suspensa | `negative` | — (sólido) | estado mais severo |
-| Cancelada | `default` | — | terminal/inativo, neutro |
+| Estado | variant | Racional |
+|---|---|---|
+| Paga | `positive` | concluído ok |
+| Processando | `informative` | em andamento (info = **purple**) |
+| Pendente | `attention` | aguarda ação |
+| Vencida | `negative` | problema |
+| Recusada | `negative` | problema |
+| Suspensa | `negative` | estado severo |
+| Cancelada | `default` | terminal/inativo, neutro |
 
 **Excedentes**
 
-| Estado | variant | outline |
-|---|---|---|
-| Dentro do plano | `positive` | — |
-| Em apuração | `informative` | — |
-| A pagar | `attention` | — |
-| Vencida | `negative` | ✅ |
-| Importação pendente | `attention` | — |
-| Paga | `positive` | — |
+| Estado | variant |
+|---|---|
+| Dentro do plano | `positive` |
+| Em apuração | `informative` |
+| A pagar | `attention` |
+| Vencida | `negative` |
+| Importação pendente | `attention` |
+| Paga | `positive` |
 
-- **Interpretação de "negative solid reservado a Suspensa":** Vencida/Recusada usam `negative` **outline** (mais suave); Suspensa usa `negative` **sólido** (mais forte). Ajustável se a intenção for outra.
+- **Negativos:** Vencida, Recusada e Suspensa usam `negative` **sólido** (decisão jun/2026 — sem distinção de outline). Cancelada usa `default`.
 - Catálogo original no Figma do Emissor: nó `354:286` (arquivo do Emissor, não o do DS).
-- Verificado no Storybook: todas as variantes renderizam com as cores corretas (info=purple, Suspensa sólido vs Vencida outline).
+- Verificado no Storybook: todas as variantes renderizam com as cores corretas (info=purple; Vencida/Recusada/Suspensa = negative sólido).
 
 ---
 

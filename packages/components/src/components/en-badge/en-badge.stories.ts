@@ -232,17 +232,17 @@ const ASSINATURA = [
   { label: 'Paga',       variant: 'positive' },
   { label: 'Processando', variant: 'informative' },
   { label: 'Pendente',   variant: 'attention' },
-  { label: 'Vencida',    variant: 'negative', outline: true },
-  { label: 'Recusada',   variant: 'negative', outline: true },
-  { label: 'Suspensa',   variant: 'negative' },               // negative solid = mais severo
-  { label: 'Cancelada',  variant: 'default' },                // terminal/inativo
+  { label: 'Vencida',    variant: 'negative' },
+  { label: 'Recusada',   variant: 'negative' },
+  { label: 'Suspensa',   variant: 'negative' },
+  { label: 'Cancelada',  variant: 'default' },   // terminal/inativo
 ] as const;
 
 const EXCEDENTES = [
   { label: 'Dentro do plano',     variant: 'positive' },
   { label: 'Em apuração',         variant: 'informative' },
   { label: 'A pagar',             variant: 'attention' },
-  { label: 'Vencida',             variant: 'negative', outline: true },
+  { label: 'Vencida',             variant: 'negative' },
   { label: 'Importação pendente', variant: 'attention' },
   { label: 'Paga',                variant: 'positive' },
 ] as const;
@@ -260,7 +260,7 @@ export const StatusFatura: Story = {
       description: {
         story:
           'Catálogo dos estados de fatura do Emissor mapeados para variantes do `en-badge` (item 5 do feedback). ' +
-          '`info` = purple (decisão unificada). Vencida/Recusada usam `negative` outline; Suspensa usa `negative` sólido (estado mais severo); Cancelada usa `default`.',
+          '`info` = purple (decisão unificada). Vencida/Recusada/Suspensa usam `negative` sólido; Cancelada usa `default`.',
       },
     },
     controls: { disable: true },
