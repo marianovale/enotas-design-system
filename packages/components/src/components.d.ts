@@ -25,6 +25,7 @@ import { StepperStep } from "./components/en-stepper/en-stepper";
 import { TabStatus } from "./components/en-tab/en-tab";
 import { TagVariant } from "./components/en-tag/en-tag";
 import { TextareaVariantSize } from "./components/en-textarea/en-textarea";
+import { ToastOptions, ToastPosition } from "./components/en-toast/en-toast";
 import { TooltipAlign, TooltipPlacement } from "./components/en-tooltip/en-tooltip";
 import { TourStep } from "./components/en-tour/en-tour";
 export { AlertIntent, AlertVariant } from "./components/en-alert/en-alert";
@@ -47,6 +48,7 @@ export { StepperStep } from "./components/en-stepper/en-stepper";
 export { TabStatus } from "./components/en-tab/en-tab";
 export { TagVariant } from "./components/en-tag/en-tag";
 export { TextareaVariantSize } from "./components/en-textarea/en-textarea";
+export { ToastOptions, ToastPosition } from "./components/en-toast/en-toast";
 export { TooltipAlign, TooltipPlacement } from "./components/en-tooltip/en-tooltip";
 export { TourStep } from "./components/en-tour/en-tour";
 export namespace Components {
@@ -782,6 +784,43 @@ export namespace Components {
         "variantSize": TextareaVariantSize;
     }
     /**
+     * en-toast — toaster: host de notificações efêmeras flutuantes.
+     * Coloque uma vez no layout e dispare via JS:
+     *   const t = document.querySelector('en-toast');
+     *   t.show({ variant: 'positive', heading: 'Pagamento recebido', message: 'Fatura de maio quitada.' });
+     * Empilha no canto (máx `max`), some sozinho após `duration`ms. Para avisos
+     * persistentes ancorados ao layout, use `en-alert`.
+     */
+    interface EnToast {
+        /**
+          * Remove todos os toasts
+         */
+        "clear": () => Promise<void>;
+        /**
+          * Remove um toast pelo id (com animação de saída)
+         */
+        "dismiss": (id: number) => Promise<void>;
+        /**
+          * Duração padrão (ms) até auto-dismiss. 0 desativa.
+          * @default 5000
+         */
+        "duration": number;
+        /**
+          * Máximo de toasts simultâneos (o mais antigo sai ao exceder)
+          * @default 3
+         */
+        "max": number;
+        /**
+          * Canto onde a pilha aparece
+          * @default 'top-right'
+         */
+        "position": ToastPosition;
+        /**
+          * Exibe um toast. Retorna o id (para dismiss programático).
+         */
+        "show": (opts?: ToastOptions) => Promise<number>;
+    }
+    /**
      * Tooltip exibido ao hover/focus no elemento filho.
      */
     interface EnTooltip {
@@ -925,6 +964,10 @@ export interface EnTagCustomEvent<T> extends CustomEvent<T> {
 export interface EnTextareaCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLEnTextareaElement;
+}
+export interface EnToastCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLEnToastElement;
 }
 export interface EnTourCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1402,6 +1445,31 @@ declare global {
         prototype: HTMLEnTextareaElement;
         new (): HTMLEnTextareaElement;
     };
+    interface HTMLEnToastElementEventMap {
+        "enToastDismiss": { id: number };
+    }
+    /**
+     * en-toast — toaster: host de notificações efêmeras flutuantes.
+     * Coloque uma vez no layout e dispare via JS:
+     *   const t = document.querySelector('en-toast');
+     *   t.show({ variant: 'positive', heading: 'Pagamento recebido', message: 'Fatura de maio quitada.' });
+     * Empilha no canto (máx `max`), some sozinho após `duration`ms. Para avisos
+     * persistentes ancorados ao layout, use `en-alert`.
+     */
+    interface HTMLEnToastElement extends Components.EnToast, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLEnToastElementEventMap>(type: K, listener: (this: HTMLEnToastElement, ev: EnToastCustomEvent<HTMLEnToastElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLEnToastElementEventMap>(type: K, listener: (this: HTMLEnToastElement, ev: EnToastCustomEvent<HTMLEnToastElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLEnToastElement: {
+        prototype: HTMLEnToastElement;
+        new (): HTMLEnToastElement;
+    };
     /**
      * Tooltip exibido ao hover/focus no elemento filho.
      */
@@ -1464,6 +1532,7 @@ declare global {
         "en-tab": HTMLEnTabElement;
         "en-tag": HTMLEnTagElement;
         "en-textarea": HTMLEnTextareaElement;
+        "en-toast": HTMLEnToastElement;
         "en-tooltip": HTMLEnTooltipElement;
         "en-tour": HTMLEnTourElement;
     }
@@ -2257,6 +2326,35 @@ declare namespace LocalJSX {
         "variantSize"?: TextareaVariantSize;
     }
     /**
+     * en-toast — toaster: host de notificações efêmeras flutuantes.
+     * Coloque uma vez no layout e dispare via JS:
+     *   const t = document.querySelector('en-toast');
+     *   t.show({ variant: 'positive', heading: 'Pagamento recebido', message: 'Fatura de maio quitada.' });
+     * Empilha no canto (máx `max`), some sozinho após `duration`ms. Para avisos
+     * persistentes ancorados ao layout, use `en-alert`.
+     */
+    interface EnToast {
+        /**
+          * Duração padrão (ms) até auto-dismiss. 0 desativa.
+          * @default 5000
+         */
+        "duration"?: number;
+        /**
+          * Máximo de toasts simultâneos (o mais antigo sai ao exceder)
+          * @default 3
+         */
+        "max"?: number;
+        /**
+          * Emitido quando um toast é removido (auto ou manual)
+         */
+        "onEnToastDismiss"?: (event: EnToastCustomEvent<{ id: number }>) => void;
+        /**
+          * Canto onde a pilha aparece
+          * @default 'top-right'
+         */
+        "position"?: ToastPosition;
+    }
+    /**
      * Tooltip exibido ao hover/focus no elemento filho.
      */
     interface EnTooltip {
@@ -2520,6 +2618,11 @@ declare namespace LocalJSX {
         "rows": number;
         "variantSize": TextareaVariantSize;
     }
+    interface EnToastAttributes {
+        "position": ToastPosition;
+        "max": number;
+        "duration": number;
+    }
     interface EnTooltipAttributes {
         "content": string;
         "text": string;
@@ -2564,6 +2667,7 @@ declare namespace LocalJSX {
         "en-tab": Omit<EnTab, keyof EnTabAttributes> & { [K in keyof EnTab & keyof EnTabAttributes]?: EnTab[K] } & { [K in keyof EnTab & keyof EnTabAttributes as `attr:${K}`]?: EnTabAttributes[K] } & { [K in keyof EnTab & keyof EnTabAttributes as `prop:${K}`]?: EnTab[K] };
         "en-tag": Omit<EnTag, keyof EnTagAttributes> & { [K in keyof EnTag & keyof EnTagAttributes]?: EnTag[K] } & { [K in keyof EnTag & keyof EnTagAttributes as `attr:${K}`]?: EnTagAttributes[K] } & { [K in keyof EnTag & keyof EnTagAttributes as `prop:${K}`]?: EnTag[K] };
         "en-textarea": Omit<EnTextarea, keyof EnTextareaAttributes> & { [K in keyof EnTextarea & keyof EnTextareaAttributes]?: EnTextarea[K] } & { [K in keyof EnTextarea & keyof EnTextareaAttributes as `attr:${K}`]?: EnTextareaAttributes[K] } & { [K in keyof EnTextarea & keyof EnTextareaAttributes as `prop:${K}`]?: EnTextarea[K] };
+        "en-toast": Omit<EnToast, keyof EnToastAttributes> & { [K in keyof EnToast & keyof EnToastAttributes]?: EnToast[K] } & { [K in keyof EnToast & keyof EnToastAttributes as `attr:${K}`]?: EnToastAttributes[K] } & { [K in keyof EnToast & keyof EnToastAttributes as `prop:${K}`]?: EnToast[K] };
         "en-tooltip": Omit<EnTooltip, keyof EnTooltipAttributes> & { [K in keyof EnTooltip & keyof EnTooltipAttributes]?: EnTooltip[K] } & { [K in keyof EnTooltip & keyof EnTooltipAttributes as `attr:${K}`]?: EnTooltipAttributes[K] } & { [K in keyof EnTooltip & keyof EnTooltipAttributes as `prop:${K}`]?: EnTooltip[K] };
         "en-tour": Omit<EnTour, keyof EnTourAttributes> & { [K in keyof EnTour & keyof EnTourAttributes]?: EnTour[K] } & { [K in keyof EnTour & keyof EnTourAttributes as `attr:${K}`]?: EnTourAttributes[K] } & { [K in keyof EnTour & keyof EnTourAttributes as `prop:${K}`]?: EnTour[K] };
     }
@@ -2646,6 +2750,15 @@ declare module "@stencil/core" {
              */
             "en-tag": LocalJSX.IntrinsicElements["en-tag"] & JSXBase.HTMLAttributes<HTMLEnTagElement>;
             "en-textarea": LocalJSX.IntrinsicElements["en-textarea"] & JSXBase.HTMLAttributes<HTMLEnTextareaElement>;
+            /**
+             * en-toast — toaster: host de notificações efêmeras flutuantes.
+             * Coloque uma vez no layout e dispare via JS:
+             *   const t = document.querySelector('en-toast');
+             *   t.show({ variant: 'positive', heading: 'Pagamento recebido', message: 'Fatura de maio quitada.' });
+             * Empilha no canto (máx `max`), some sozinho após `duration`ms. Para avisos
+             * persistentes ancorados ao layout, use `en-alert`.
+             */
+            "en-toast": LocalJSX.IntrinsicElements["en-toast"] & JSXBase.HTMLAttributes<HTMLEnToastElement>;
             /**
              * Tooltip exibido ao hover/focus no elemento filho.
              */

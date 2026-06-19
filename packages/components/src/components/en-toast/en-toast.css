@@ -1,0 +1,87 @@
+:host {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--en-spacing-2, 0.5rem);
+  pointer-events: none; /* só os toasts recebem clique */
+  max-width: calc(100vw - 2rem);
+}
+
+/* Posições */
+:host(.pos-top-right)    { top: var(--en-spacing-4, 1rem);    right: var(--en-spacing-4, 1rem);  align-items: flex-end; }
+:host(.pos-top-left)     { top: var(--en-spacing-4, 1rem);    left: var(--en-spacing-4, 1rem);   align-items: flex-start; }
+:host(.pos-top-center)   { top: var(--en-spacing-4, 1rem);    left: 50%; transform: translateX(-50%); align-items: center; }
+:host(.pos-bottom-right) { bottom: var(--en-spacing-4, 1rem); right: var(--en-spacing-4, 1rem);  align-items: flex-end; flex-direction: column-reverse; }
+:host(.pos-bottom-left)  { bottom: var(--en-spacing-4, 1rem); left: var(--en-spacing-4, 1rem);   align-items: flex-start; flex-direction: column-reverse; }
+:host(.pos-bottom-center){ bottom: var(--en-spacing-4, 1rem); left: 50%; transform: translateX(-50%); align-items: center; flex-direction: column-reverse; }
+
+.toast {
+  pointer-events: auto;
+  width: 360px;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--en-spacing-3, 0.75rem);
+  padding: var(--en-spacing-3, 0.75rem) var(--en-spacing-4, 1rem);
+  border: 1px solid transparent;
+  border-radius: var(--en-radius-lg, 0.5rem);
+  box-shadow: var(--en-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.10));
+  font-family: var(--en-font-family-sans, 'Hotmart Sans', sans-serif);
+  animation: en-toast-in 180ms ease;
+}
+
+.toast.leaving {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+@keyframes en-toast-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.icon { flex-shrink: 0; display: inline-flex; line-height: 0; margin-top: 1px; }
+.content { flex: 1 1 auto; min-width: 0; }
+
+.heading {
+  margin: 0;
+  font-size: var(--en-font-size-sm, 0.875rem);
+  font-weight: var(--en-font-weight-bold, 700);
+  line-height: var(--en-font-leading-5, 1.25rem);
+}
+.message {
+  font-size: var(--en-font-size-sm, 0.875rem);
+  font-weight: var(--en-font-weight-normal, 400);
+  line-height: var(--en-font-leading-5, 1.25rem);
+}
+.heading + .message { margin-top: 2px; }
+
+.close-btn {
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.5rem; height: 1.5rem; padding: 0; margin: -2px -4px 0 0;
+  border: none; background: transparent; border-radius: var(--en-radius-sm, 0.25rem);
+  color: inherit; opacity: 0.7; cursor: pointer;
+  transition: opacity 150ms ease, background-color 150ms ease;
+}
+.close-btn:hover { opacity: 1; background: rgba(0,0,0,0.06); }
+.close-btn:focus-visible { outline: 2px solid currentColor; outline-offset: 1px; }
+
+/* Variantes — superfície de feedback + borda; ícone na cor cheia */
+:host .variant-positive    { background: var(--en-feedback-success-background, #e6f7ec); color: var(--en-feedback-success-foreground, #0e5c27); border-color: var(--en-feedback-success-icon, #1a8a3c); }
+:host .variant-attention   { background: var(--en-feedback-warning-background, #fff8e1); color: var(--en-feedback-warning-foreground, #92600a); border-color: var(--en-feedback-warning-icon, #f59e0b); }
+:host .variant-negative    { background: var(--en-feedback-danger-background, #fde8e8);  color: var(--en-feedback-danger-foreground, #c01f1f);  border-color: var(--en-feedback-danger-icon, #f13838); }
+:host .variant-informative { background: var(--en-feedback-info-background, #ebe1fc);    color: var(--en-feedback-info-foreground, #38178f);    border-color: var(--en-feedback-info-icon, #a475ff); }
+
+:host .variant-positive .icon    { color: var(--en-feedback-success-icon, #1a8a3c); }
+:host .variant-attention .icon   { color: var(--en-feedback-warning-icon, #f59e0b); }
+:host .variant-negative .icon    { color: var(--en-feedback-danger-icon, #f13838); }
+:host .variant-informative .icon { color: var(--en-feedback-info-icon, #a475ff); }
+
+@media (prefers-reduced-motion: reduce) {
+  .toast { animation: none; }
+  .toast.leaving { transition: opacity 120ms ease; transform: none; }
+}
