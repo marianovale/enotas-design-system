@@ -126,6 +126,10 @@ export FIGMA_API_KEY=figd_...
 
 Ao receber uma URL de frame Figma, o agente acessa tokens, componentes e variants direto do arquivo — e gera código usando `<en-*>` reais graças ao Code Connect.
 
+## Feedback de produtos consumidores
+
+- **`feedback-do-emissor.md`** — achados e pedidos vindos da iniciativa Emissor/Gestão Financeira 2026 (jun/2026). Status: `<en-alert>` e `<en-toast>` ✅ criados (com doc no Figma); tipografia ✅ documentada; cor de "info" ✅ resolvida = **purple unificado** (`#a475ff`) em banner/alert/toast **e** status de fatura — teal do Emissor descontinuado. Em aberto: confirmar ícones faltantes (item 4) e variantes de `RegistroFatura` a partir do catálogo de estados (item 5). **Ler ao trabalhar em feedback/alert/toast, tipografia ou estados de fatura.**
+
 ## Agentes Disponíveis
 
 - `.claude/agents/product-designer.md` — para tarefas de design: extrair tokens do Figma, propor componentes, escrever docs MDX
