@@ -1,9 +1,11 @@
 import type { Preview } from '@storybook/web-components';
 import '@enotas-ds/tokens/css';
-import { defineCustomElements } from '@enotas-ds/components/loader';
 
-// Registra todos os Web Components do eNotas DS
-defineCustomElements();
+// Registra todos os Web Components do eNotas DS.
+// Usamos o bundle `dist-custom-elements` (auto-define) em vez do lazy-loader:
+// o Vite empacota tudo estaticamente, sem chunks `.entry.js` carregados em runtime
+// (que davam 404 no Storybook publicado no GitHub Pages).
+import '@enotas-ds/components/components';
 
 const preview: Preview = {
   parameters: {

@@ -11,7 +11,8 @@
       "require": "./dist/index.cjs.js",
       "types": "./dist/types/index.d.ts"
     },
-    "./loader": "./loader/index.js"
+    "./loader": "./loader/index.js",
+    "./components": "./dist/components/index.js"
   },
   "collection": "dist/collection/collection-manifest.json",
   "files": ["dist", "loader"],
