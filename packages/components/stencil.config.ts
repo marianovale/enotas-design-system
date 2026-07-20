@@ -10,7 +10,11 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
-      customElementsExportBehavior: 'auto-define-custom-elements',
+      // `bundle`: gera uma função defineCustomElements() que registra TODOS os
+      // componentes. Necessário para o Storybook — o modo auto-define é
+      // tree-shakeable e o Vite removia componentes não referenciados por
+      // outros (ex.: en-alert, en-toast), deixando o preview em branco.
+      customElementsExportBehavior: 'bundle',
       externalRuntime: false,
     },
     {
