@@ -22,3 +22,8 @@ mockups/
 # Contextos de sessão Claude
 cosmos-ds-new-project-context.md
 
+# Google Drive — ponteiros gerados ao abrir docs (não versionar)
+*.gdoc
+*.gslides
+*.gsheet
+
